@@ -3,6 +3,249 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-	<h1 class="text-2xl text-center text-amber-500">Ethan Omasta-Parisot</h1>
-	<h2>J'aime le caca</h2>
+  <section class="relative w-full h-screen flex items-center justify-center overflow-hidden bg-[#232836]">
+    <img src="src/assets/photo_moi.png" alt="Photo de moi" class="absolute inset-0 w-full h-full object-cover z-0 opacity-80" />
+    <div class="absolute inset-0 bg-[#232836] opacity-60 z-10"></div>
+    <div class="absolute left-0 bottom-0 w-full h-[40vh] z-20 pointer-events-none" style="background: linear-gradient(to top, #232836 0%, rgba(35,40,54,0.8) 30%, rgba(35,40,54,0.4) 60%, transparent 100%);"></div>
+
+    <div class="relative z-30 flex flex-col items-center justify-center h-full -mt-12">
+      <h1 class="text-[48px] font-semibold font-sans text-[#f5dbf7] text-center mb-16" style="font-family: 'Inter', sans-serif;">
+        Faire d’un message une narration<br/> qui engage et convainc
+      </h1>
+
+      <div class="mt-12 flex justify-center">
+        <svg class="scroll-indicator" width="38" height="84" viewBox="0 0 38 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="34" height="80" rx="17" stroke="#E5E7EB" stroke-width="4" fill="none"/>
+          <circle class="scroll-dot" cx="19" cy="20" r="6" fill="#E5E7EB"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="relative w-full flex items-center min-h-[520px] bg-[#232836] py-24">
+    <div class="absolute right-0 top-0 h-full w-auto max-w-[55vw] z-0 overflow-hidden">
+      <img src="src/assets/photo_moi_2.png" alt="Photo présentation" class="h-full object-cover opacity-75 pointer-events-none" />
+      <div class="absolute left-0 top-0 w-full h-[35vh] z-10 pointer-events-none" style="background: linear-gradient(to bottom, #232836 0%, rgba(35,40,54,0.8) 40%, rgba(35,40,54,0.3) 80%, transparent 100%);"></div>
+    </div>
+
+    <div class="absolute inset-0 bg-[#232836] opacity-40 z-10"></div>
+
+    <div class="relative z-20 max-w-xl ml-12">
+      <h2 class="font-sans font-semibold text-[48px] text-[#f5dbf7] mb-6" style="font-family:'Inter',sans-serif;">Me connaître</h2>
+
+      <p class="font-sans text-[18px] text-[#f5dbf7] mb-12 leading-relaxed" style="font-family:'Inter',sans-serif;">
+        Je suis Ethan Omasta-Parisot, étudiant en communication passionné par la création de messages efficaces et impactants. Discipline, rigueur et organisation guident chacun de mes projets, où stratégie et originalité se rencontrent. Pour moi, la communication ne se limite pas à transmettre de l’information : elle crée du sens, suscite des émotions et tisse des liens.
+      </p>
+
+      <a href="/about" class="bg-[#e5e7eb] text-[#232836] font-semibold rounded-xl px-8 py-4 text-[24px] w-fit shadow transition hover:bg-[#ffd6ff]">A propos</a>
+    </div>
+  </section>
+
+  <section class="w-full bg-[#232836] py-20">
+      <h2 class="text-[48px] font-semibold font-sans text-[#f5dbf7] mb-14 ml-12" style="font-family:'Inter',sans-serif;">Mes projets</h2>
+
+	
+   <div class="max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+        <div class="relative flex flex-col rounded-3xl overflow-hidden bg-[#30333b] shadow-md transition-transform hover:-translate-y-2 hover:shadow-2xl group items-center">
+          <img src="src/assets/logo.png" alt="Logo project" class="w-[345px] h-[395px] object-contain bg-[#232836] rounded-t-2xl" />
+          <div class="flex-1 flex flex-col px-6 py-6 bg-gradient-to-b from-[#30333b]/60 to-[#343848] w-full">
+            <div class="font-sans font-semibold text-[22px] text-[#f5dbf7] mb-2" style="font-family:'Inter',sans-serif;">Identité graphique personnelle</div>
+            <p class="font-sans text-[17px] text-[#c3b4d7] mb-6">Mon logo, sous différentes formes et couleurs.</p>
+            <a href="#" class="mt-auto bg-[#e5e7eb] text-[#232836] font-semibold rounded-xl px-6 py-3 text-[19px] w-fit shadow transition hover:bg-[#ffd6ff]">Voir la réalisation</a>
+          </div>
+        </div>
+
+        <div class="relative flex flex-col rounded-3xl overflow-hidden bg-[#30333b] shadow-md transition-transform hover:-translate-y-2 hover:shadow-2xl group items-center">
+          <img src="src/assets/cookit-up.png" alt="Cookit-UP project" class="w-[345px] h-[395px] object-contain bg-[#232836] rounded-t-2xl" />
+          <div class="flex-1 flex flex-col px-6 py-6 bg-gradient-to-b from-[#30333b]/60 to-[#343848] w-full">
+            <div class="font-sans font-semibold text-[22px] text-[#f5dbf7] mb-2">Cookit-UP</div>
+            <p class="font-sans text-[17px] text-[#c3b4d7] mb-6">Application web réalisée en équipe : solution pour une consommation plus saine.</p>
+            <a href="#" class="mt-auto bg-[#e5e7eb] text-[#232836] font-semibold rounded-xl px-6 py-3 text-[19px] w-fit shadow transition hover:bg-[#ffd6ff]">Voir la réalisation</a>
+          </div>
+        </div>
+
+        <div class="relative flex flex-col rounded-3xl overflow-hidden bg-[#30333b] shadow-md transition-transform hover:-translate-y-2 hover:shadow-2xl group items-center">
+          <img src="src/assets/holovisio.png" alt="HoloVisio project" class="w-[345px] h-[395px] object-contain bg-[#232836] rounded-t-2xl" />
+          <div class="flex-1 flex flex-col px-6 py-6 bg-gradient-to-b from-[#30333b]/60 to-[#343848] w-full">
+            <div class="font-sans font-semibold text-[22px] text-[#f5dbf7] mb-2">HoloVisio</div>
+            <p class="font-sans text-[17px] text-[#c3b4d7] mb-6">Site web mobile-first imaginé autour d’une télévision du futur.</p>
+            <a href="#" class="mt-auto bg-[#e5e7eb] text-[#232836] font-semibold rounded-xl px-6 py-3 text-[19px] w-fit shadow transition hover:bg-[#ffd6ff]">Voir la réalisation</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-center">
+        <a href="/projects" class="bg-[#e5e7eb] text-[#232836] font-semibold rounded-xl px-10 py-5 text-[25px] shadow transition hover:bg-[#ffd6ff]">Découvrir plus de projets</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nouvelle section Compétences redessinée avec logos repositionnés -->
+<section class="w-full bg-[#232836] py-24">
+  <h2 class="text-[48px] font-semibold font-sans text-[#f5dbf7] mb-16 ml-12" style="font-family:'Inter',sans-serif;">
+    Mes compétences
+  </h2>
+
+  <!-- Container global -->
+  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 xl:grid-cols-3 gap-16">
+
+    <!-- Bloc 1 : Outils de communication / gestion -->
+    <div class="bg-[#30333b] rounded-3xl p-10 shadow-lg">
+      <h3 class="text-[32px] font-semibold text-[#f5dbf7] mb-8">Communication & Organisation</h3>
+
+      <div class="grid grid-cols-2 gap-8">
+        <!-- Excel -->
+        <div class="flex flex-col items-center text-center">
+          <img src="src/assets/excel.png" width="115" height="109" alt="Excel" />
+          <p class="text-[#f5dbf7] mt-3 font-medium">Excel</p>
+          <span class="text-[#c3b4d7] text-[15px]">Intermédiaire</span>
+        </div>
+
+        <!-- Miro -->
+        <div class="flex flex-col items-center text-center">
+          <img src="src/assets/miro.png" width="115" height="115" alt="Miro" />
+          <p class="text-[#f5dbf7] mt-3 font-medium">Miro</p>
+          <span class="text-[#c3b4d7] text-[15px]">Avancé</span>
+        </div>
+
+        <!-- Jira -->
+        <div class="flex flex-col items-center text-center">
+          <img src="src/assets/jira.png" width="115" height="115" alt="Jira" />
+          <p class="text-[#f5dbf7] mt-3 font-medium">Jira</p>
+          <span class="text-[#c3b4d7] text-[15px]">Intermédiaire</span>
+        </div>
+
+        <!-- Trello -->
+        <div class="flex flex-col items-center text-center">
+          <img src="src/assets/trello.png" width="115" height="115" alt="Trello" />
+          <p class="text-[#f5dbf7] mt-3 font-medium">Trello</p>
+          <span class="text-[#c3b4d7] text-[15px]">Avancé</span>
+        </div>
+
+        <!-- Notion -->
+        <div class="flex flex-col items-center text-center">
+          <img src="src/assets/notion.png" width="115" height="115" alt="Notion" />
+          <p class="text-[#f5dbf7] mt-3 font-medium">Notion</p>
+          <span class="text-[#c3b4d7] text-[15px]">Avancé</span>
+        </div>
+
+        <!-- Google Drive -->
+        <div class="flex flex-col items-center text-center">
+          <img src="src/assets/google_drive.png" width="115" height="103" alt="Google Drive" />
+          <p class="text-[#f5dbf7] mt-3 font-medium">Google Drive</p>
+          <span class="text-[#c3b4d7] text-[15px]">Avancé</span>
+        </div>
+
+        <!-- Tom's Planner -->
+        <div class="flex flex-col items-center text-center col-span-2">
+          <img src="src/assets/toms_planner.png" width="203" height="107" alt="Tom's Planner" />
+          <p class="text-[#f5dbf7] mt-3 font-medium">Tom's Planner</p>
+          <span class="text-[#c3b4d7] text-[15px]">Intermédiaire</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bloc 2 : Technique / Développement -->
+    <div class="bg-[#30333b] rounded-3xl p-10 shadow-lg">
+      <h3 class="text-[32px] font-semibold text-[#f5dbf7] mb-8">Développement & Web</h3>
+
+      <div class="grid grid-cols-2 gap-8">
+        <!-- Github -->
+        <div class="flex flex-col items-center text-center">
+          <img src="src/assets/github2.png" width="115" height="115" alt="Github" />
+          <p class="text-[#f5dbf7] mt-3 font-medium">Github</p>
+          <span class="text-[#c3b4d7] text-[15px]">Intermédiaire</span>
+        </div>
+
+        <!-- Astro -->
+        <div class="flex flex-col items-center text-center">
+          <img src="src/assets/astro.png" width="115" height="115" alt="Astro" />
+          <p class="text-[#f5dbf7] mt-3 font-medium">Astro</p>
+          <span class="text-[#c3b4d7] text-[15px]">Intermédiaire</span>
+        </div>
+
+        <!-- Tailwind -->
+        <div class="flex flex-col items-center text-center">
+          <img src="src/assets/tailwind.png" width="115" height="70" alt="Tailwind" />
+          <p class="text-[#f5dbf7] mt-3 font-medium">Tailwind CSS</p>
+          <span class="text-[#c3b4d7] text-[15px]">Intermédiaire</span>
+        </div>
+
+        <!-- HTML -->
+        <div class="flex flex-col items-center text-center">
+          <img src="src/assets/html.png" width="115" height="115" alt="HTML" />
+          <p class="text-[#f5dbf7] mt-3 font-medium">HTML</p>
+          <span class="text-[#c3b4d7] text-[15px]">Avancé</span>
+        </div>
+
+        <!-- CSS -->
+        <div class="flex flex-col items-center text-center">
+          <img src="src/assets/css.png" width="81" height="115" alt="CSS" />
+          <p class="text-[#f5dbf7] mt-3 font-medium">CSS</p>
+          <span class="text-[#c3b4d7] text-[15px]">Intermédiaire</span>
+        </div>
+
+        <!-- Wordpress -->
+        <div class="flex flex-col items-center text-center">
+          <img src="src/assets/wordpress.png" width="249" height="166" alt="Wordpress" />
+          <p class="text-[#f5dbf7] mt-3 font-medium">Wordpress</p>
+          <span class="text-[#c3b4d7] text-[15px]">Intermédiaire</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bloc 3 : Création visuelle -->
+    <div class="bg-[#30333b] rounded-3xl p-10 shadow-lg">
+      <h3 class="text-[32px] font-semibold text-[#f5dbf7] mb-8">Création visuelle</h3>
+
+      <div class="grid grid-cols-2 gap-8">
+        <!-- Figma -->
+        <div class="flex flex-col items-center text-center">
+          <img src="src/assets/figma.png" width="282" height="282" alt="Figma" />
+          <p class="text-[#f5dbf7] mt-3 font-medium">Figma</p>
+          <span class="text-[#c3b4d7] text-[15px]">Avancé</span>
+        </div>
+
+        <!-- Adobe Illustrator -->
+        <div class="flex flex-col items-center text-center">
+          <img src="src/assets/illustrator.png" width="115" height="112" alt="Adobe Illustrator" />
+          <p class="text-[#f5dbf7] mt-3 font-medium">Illustrator</p>
+          <span class="text-[#c3b4d7] text-[15px]">Débutant</span>
+        </div>
+
+        <!-- Davinci Resolve -->
+        <div class="flex flex-col items-center text-center">
+          <img src="src/assets/davinci_resolve.png" width="115" height="115" alt="Davinci Resolve" />
+          <p class="text-[#f5dbf7] mt-3 font-medium">DaVinci Resolve</p>
+          <span class="text-[#c3b4d7] text-[15px]">Intermédiaire</span>
+        </div>
+
+        <!-- ChatGPT / IA -->
+        <div class="flex flex-col items-center text-center">
+          <img src="src/assets/chatgpt.png" width="115" height="115" alt="ChatGPT" />
+          <p class="text-[#f5dbf7] mt-3 font-medium">Intelligence Artificielle</p>
+          <span class="text-[#c3b4d7] text-[15px]">Avancé</span>
+        </div>
+      </div>
+    </div>
+</div>
+	<div class="flex justify-center mt-16 w-full">
+	<a href="/contact" class="bg-[#e5e7eb] text-[#232836] font-semibold rounded-xl px-10 py-5 text-[25px] shadow transition hover:bg-[#ffd6ff]">
+		Contactez-moi
+	</a>
+	</div>
+</section>
+
+  <style>
+    .scroll-dot {
+      animation: dot-scroll-move 1.5s cubic-bezier(.7,0,.3,1) infinite;
+    }
+    @keyframes dot-scroll-move {
+      0% { cy: 20; opacity: 1; }
+      60% { cy: 65; opacity: 1; }
+      80% { cy: 65; opacity: 0; }
+      100% { cy: 20; opacity: 0; }
+    }
+  </style>
 </Layout>

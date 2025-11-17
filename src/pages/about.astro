@@ -1,0 +1,103 @@
+---
+import Layout from "../layouts/Layout.astro"
+---
+
+<Layout>
+  <!-- Hero haut de page comme sur la home -->
+  <section class="relative w-full h-screen flex items-center justify-center overflow-hidden bg-[#232836]">
+    <img src="src/assets/photo_moi.png" alt="Photo de moi" class="absolute inset-0 w-full h-full object-cover z-0 opacity-80" />
+    <div class="absolute inset-0 bg-[#232836] opacity-60 z-10"></div>
+    <div class="absolute left-0 bottom-0 w-full h-[40vh] z-20 pointer-events-none" style="background: linear-gradient(to top, #232836 0%, rgba(35,40,54,0.8) 30%, rgba(35,40,54,0.4) 60%, transparent 100%);"></div>
+
+    <div class="relative z-30 flex flex-col items-center justify-center h-full -mt-12">
+      <h1 class="text-[48px] font-semibold font-sans text-[#f5dbf7] text-center mb-16" style="font-family: 'Inter', sans-serif;">
+        Mon profil et mes objectifs<br/>de communiquant
+      </h1>
+      <div class="mt-12 flex justify-center">
+        <svg class="scroll-indicator" width="38" height="84" viewBox="0 0 38 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="34" height="80" rx="17" stroke="#E5E7EB" stroke-width="4" fill="none"/>
+          <circle class="scroll-dot" cx="19" cy="20" r="6" fill="#E5E7EB"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="w-full bg-[#232836] pt-20 pb-16">
+  <div class="max-w-7xl mx-auto px-6 ml-6 pr-12"> 
+    <h2 class="text-[48px] font-semibold mb-16 text-left" style="font-family: 'Inter', sans-serif; color:#f5dbf7;">
+      Me connaître
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20">
+
+      <!-- A propos -->
+      <div class="flex flex-col items-start">
+        <div class="flex items-center gap-5 mb-6">
+          <img src="src/assets/about.png" alt="À propos de moi" class="w-[54px] h-[54px]" />
+          <h3 class="text-[33px] font-semibold text-[#f5dbf7]">À propos</h3>
+        </div>
+
+        <div class="w-full max-w-[560px] rounded-3xl bg-[#2A2D35] border border-[#c9bedc40] p-10 shadow-[0_0_25px_-8px_rgba(201,190,220,0.25)] text-[#f5dbf7] text-[18px] leading-relaxed">
+          Je m’appelle Ethan Omasta-Parisot, étudiant passionné par la communication. 
+          J’accorde une grande importance à la manière dont les messages sont pensés, structurés 
+          et diffusés afin de toucher efficacement leur public.
+        </div>
+      </div>
+
+      <!-- Ma manière de travailler -->
+      <div class="flex flex-col items-start">
+        <div class="flex items-center gap-5 mb-6">
+          <img src="src/assets/engrenage.png" alt="Ma manière de travailler" class="w-[54px] h-[54px]" />
+          <h3 class="text-[33px] font-semibold text-[#f5dbf7]">Ma manière de travailler</h3>
+        </div>
+
+        <div class="w-full max-w-[560px] rounded-3xl bg-[#2A2D35] border border-[#c9bedc40] p-10 shadow-[0_0_25px_-8px_rgba(201,190,220,0.25)] text-[#f5dbf7] text-[18px] leading-relaxed">
+          Je suis quelqu’un de rigoureux, organisé et orienté méthode. 
+          Je privilégie une approche structurée pour garantir la cohérence 
+          et l’efficacité des projets tout en laissant une place à la créativité.
+        </div>
+      </div>
+
+      <!-- Ce qui m’anime -->
+      <div class="flex flex-col items-start md:col-span-2">
+        <div class="flex items-center gap-5 mb-6">
+          <img src="src/assets/aime.png" alt="Ce qui m'anime" class="w-[54px] h-[54px]" />
+          <h3 class="text-[33px] font-semibold text-[#f5dbf7]">Ce qui m’anime</h3>
+        </div>
+
+        <div class="w-full max-w-[1160px] rounded-3xl bg-[#2A2D35] border border-[#c9bedc40] p-12 shadow-[0_0_25px_-8px_rgba(201,190,220,0.25)] text-[#f5dbf7] text-[18px] leading-relaxed">
+          Pour moi, la communication va bien au-delà de l’information. 
+          Elle permet de créer du sens, d’établir des liens et de susciter des émotions. 
+          Cette vision me pousse à explorer différents outils numériques pour enrichir 
+          ma pratique et proposer des expériences plus fortes.
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="w-full bg-[#232836] mb-24">
+    <div class="flex flex-col items-center gap-8">
+      <h2 class="text-[28px] font-semibold text-[#e4c2ea] text-center mb-2" style="font-family: 'Inter', sans-serif;">
+        Vous pouvez accéder à mes projets ici
+      </h2>
+      <a href="/projects" class="bg-[#e5e7eb] text-[#232836] font-semibold rounded-xl px-10 py-4 text-[20px] shadow transition hover:bg-[#ffd6ff]">
+        Découvrir plus de projets
+      </a>
+    </div>
+  </section>
+
+  <style>
+    .scroll-dot {
+      animation: dot-scroll-move 1.5s cubic-bezier(.7,0,.3,1) infinite;
+    }
+    @keyframes dot-scroll-move {
+      0% { cy: 20; opacity: 1; }
+      60% { cy: 65; opacity: 1; }
+      80% { cy: 65; opacity: 0; }
+      100% { cy: 20; opacity: 0; }
+    }
+  </style>
+</Layout>

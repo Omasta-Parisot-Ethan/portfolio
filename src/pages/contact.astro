@@ -1,0 +1,105 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+  <section class="w-full bg-[#232836] min-h-screen pt-32 pb-20">
+    <div class="flex flex-col items-center">
+      <h1 class="text-[48px] font-semibold font-sans text-[#f5dbf7] text-center mb-16 mt-4"
+        style="font-family: 'Inter', sans-serif;">
+        Contactez-moi
+      </h1>
+
+      <form
+        action="https://formspree.io/f/mwparwld"
+        method="POST"
+        class="w-full max-w-3xl mx-auto flex flex-col gap-8"
+      >
+        <!-- Champ Formspree portfolio -->
+        <input type="hidden" name="form-name" value="portfolio" />
+
+        <div class="flex gap-4">
+          <div class="flex flex-col w-1/2">
+            <label for="nom" class="mb-1 text-[#f5dbf7] font-semibold text-sm">Nom</label>
+            <input
+              class="bg-[#e5e7eb] rounded-xl px-4 py-2 text-[#232836] placeholder-[#656975] focus:outline-none focus:border-[#ffd6ff] border-2 border-transparent transition"
+              type="text"
+              id="nom"
+              name="Nom"
+              placeholder="Nom"
+              autocomplete="family-name"
+            />
+          </div>
+          <div class="flex flex-col w-1/2">
+            <label for="prenom" class="mb-1 text-[#f5dbf7] font-semibold text-sm">Prénom</label>
+            <input
+              class="bg-[#e5e7eb] rounded-xl px-4 py-2 text-[#232836] placeholder-[#656975] focus:outline-none focus:border-[#ffd6ff] border-2 border-transparent transition"
+              type="text"
+              id="prenom"
+              name="Prénom"
+              placeholder="Prénom"
+              autocomplete="given-name"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="organisation" class="mb-1 text-[#f5dbf7] font-semibold text-sm">Organisation</label>
+          <input
+            class="w-full bg-[#e5e7eb] rounded-xl px-4 py-2 text-[#232836] placeholder-[#656975] focus:outline-none focus:border-[#ffd6ff] border-2 border-transparent transition"
+            type="text"
+            id="organisation"
+            name="Organisation"
+            placeholder="Organisation"
+            autocomplete="organization"
+          />
+        </div>
+
+        <div>
+          <label for="email" class="mb-1 text-[#f5dbf7] font-semibold text-sm">Email *</label>
+          <input
+            class="w-full bg-[#e5e7eb] rounded-xl px-4 py-2 text-[#232836] placeholder-[#656975] focus:outline-none focus:border-[#ffd6ff] border-2 border-transparent transition"
+            type="email"
+            id="email"
+            name="Email"
+            placeholder="exemple@mail.com"
+            required
+            autocomplete="email"
+          />
+        </div>
+
+        <div>
+          <label for="objet" class="mb-1 text-[#f5dbf7] font-semibold text-sm">Objet *</label>
+          <input
+            class="w-full bg-[#e5e7eb] rounded-xl px-4 py-2 text-[#232836] placeholder-[#656975] focus:outline-none focus:border-[#ffd6ff] border-2 border-transparent transition"
+            type="text"
+            id="objet"
+            name="Objet"
+            placeholder="Sujet du message / demande"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="message" class="mb-1 text-[#f5dbf7] font-semibold text-sm">Message *</label>
+          <textarea
+            class="w-full min-h-[120px] bg-[#e5e7eb] rounded-xl px-4 py-2 text-[#232836] placeholder-[#656975] focus:outline-none focus:border-[#ffd6ff] border-2 border-transparent transition"
+            id="message"
+            name="Message"
+            placeholder="Descriptif du message / demande"
+            required
+          ></textarea>
+        </div>
+
+        <div class="flex justify-end mt-2">
+          <button
+            type="submit"
+            class="bg-[#e5e7eb] text-[#232836] font-semibold rounded-xl px-10 py-4 text-[22px] shadow transition hover:bg-[#ffd6ff]"
+          >
+            Envoyer le message
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+</Layout>
