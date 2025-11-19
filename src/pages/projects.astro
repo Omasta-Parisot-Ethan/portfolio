@@ -3,49 +3,115 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-  <section class="w-full bg-[#232836] pt-24 min-h-screen">
-    <!-- Titre principal, centré comme en home -->
-    <div class="relative z-30 flex flex-col items-center justify-center h-full mt-12">
-      <h1 class="text-[48px] font-semibold font-sans text-[#f5dbf7] text-center mb-16"
-          style="font-family: 'Inter', sans-serif;">
+  <section class="w-full bg-[#232836] pt-16 sm:pt-24 min-h-screen px-4 sm:px-6 md:px-12">
+    <!-- Titre principal centré -->
+    <div class="relative z-30 flex flex-col items-center justify-center h-full mt-8 sm:mt-12 mb-12">
+      <h1
+        class="font-semibold font-sans text-[#f5dbf7] text-center mb-12"
+        style="font-family: 'Inter', sans-serif; font-size: clamp(2rem, 5vw, 3rem);"
+      >
         Mes projets
       </h1>
     </div>
-    <div class="max-w-6xl mx-auto px-6">
-      <!-- Grid des projets -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">
+
+    <div class="max-w-6xl mx-auto">
+      <!-- Grid responsive des projets -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 mb-20">
         <!-- Card 1 -->
-        <div class="relative flex flex-col rounded-3xl overflow-hidden bg-[#30333b] shadow-md transition-transform hover:-translate-y-2 hover:shadow-2xl group items-center">
-          <img src="/logo.png" alt="Logo project" class="w-[345px] h-[395px] object-contain bg-[#232836] rounded-t-2xl" />
-          <div class="flex-1 flex flex-col px-6 py-6 bg-gradient-to-b from-[#30333b]/60 to-[#343848] w-full">
-            <div class="font-sans font-semibold text-[22px] text-[#f5dbf7] mb-2">Identité graphique personnelle</div>
-            <p class="font-sans text-[17px] text-[#c3b4d7] mb-6">Mon logo, sous différentes formes et couleurs.</p>
-            <a href="#" class="mt-auto bg-[#e5e7eb] text-[#232836] font-semibold rounded-xl px-6 py-3 text-[19px] w-fit shadow transition hover:bg-[#ffd6ff]">Voir la réalisation</a>
+        <div
+          class="relative flex flex-col rounded-3xl overflow-hidden bg-[#30333b] shadow-md transition-transform hover:-translate-y-2 hover:shadow-2xl group items-center"
+        >
+          <img
+            src="/logo.png"
+            alt="Logo project"
+            class="w-full h-[220px] sm:h-[295px] md:h-[395px] object-contain bg-[#232836] rounded-t-2xl"
+          />
+          <div
+            class="flex-1 flex flex-col px-4 sm:px-6 md:px-6 py-4 sm:py-6 bg-gradient-to-b from-[#30333b]/60 to-[#343848] w-full"
+          >
+            <div
+              class="font-sans font-semibold text-[#f5dbf7] mb-2"
+              style="font-family: 'Inter', sans-serif; font-size: 1.25rem;"
+            >
+              Identité graphique personnelle
+            </div>
+            <p class="font-sans text-[#c3b4d7] mb-6 text-sm sm:text-base">
+              Mon logo, sous différentes formes et couleurs.
+            </p>
+            <a
+              href="#"
+              class="mt-auto bg-[#e5e7eb] text-[#232836] font-semibold rounded-xl px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base w-fit shadow transition hover:bg-[#ffd6ff]"
+            >
+              Voir la réalisation
+            </a>
           </div>
         </div>
+
         <!-- Card 2 -->
-        <div class="relative flex flex-col rounded-3xl overflow-hidden bg-[#30333b] shadow-md transition-transform hover:-translate-y-2 hover:shadow-2xl group items-center">
-          <img src="/cookit-up.png" alt="Cookit-UP project" class="w-[345px] h-[395px] object-contain bg-[#232836] rounded-t-2xl" />
-          <div class="flex-1 flex flex-col px-6 py-6 bg-gradient-to-b from-[#30333b]/60 to-[#343848] w-full">
-            <div class="font-sans font-semibold text-[22px] text-[#f5dbf7] mb-2">Cookit-UP</div>
-            <p class="font-sans text-[17px] text-[#c3b4d7] mb-6">Application web réalisée en équipe : solution pour une consommation plus saine.</p>
-            <a href="/cookit-up" class="mt-auto bg-[#e5e7eb] text-[#232836] font-semibold rounded-xl px-6 py-3 text-[19px] w-fit shadow transition hover:bg-[#ffd6ff]">Voir la réalisation</a>
+        <div
+          class="relative flex flex-col rounded-3xl overflow-hidden bg-[#30333b] shadow-md transition-transform hover:-translate-y-2 hover:shadow-2xl group items-center"
+        >
+          <img
+            src="/cookit-up.png"
+            alt="Cookit-UP project"
+            class="w-full h-[220px] sm:h-[295px] md:h-[395px] object-contain bg-[#232836] rounded-t-2xl"
+          />
+          <div
+            class="flex-1 flex flex-col px-4 sm:px-6 md:px-6 py-4 sm:py-6 bg-gradient-to-b from-[#30333b]/60 to-[#343848] w-full"
+          >
+            <div
+              class="font-sans font-semibold text-[#f5dbf7] mb-2"
+              style="font-family: 'Inter', sans-serif; font-size: 1.25rem;"
+            >
+              Cookit-UP
+            </div>
+            <p class="font-sans text-[#c3b4d7] mb-6 text-sm sm:text-base">
+              Application web réalisée en équipe : solution pour une consommation plus saine.
+            </p>
+            <a
+              href="/cookit-up"
+              class="mt-auto bg-[#e5e7eb] text-[#232836] font-semibold rounded-xl px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base w-fit shadow transition hover:bg-[#ffd6ff]"
+            >
+              Voir la réalisation
+            </a>
           </div>
         </div>
+
         <!-- Card 3 -->
-        <div class="relative flex flex-col rounded-3xl overflow-hidden bg-[#30333b] shadow-md transition-transform hover:-translate-y-2 hover:shadow-2xl group items-center">
-          <img src="/holovisio.png" alt="HoloVisio project" class="w-[345px] h-[395px] object-contain bg-[#232836] rounded-t-2xl" />
-          <div class="flex-1 flex flex-col px-6 py-6 bg-gradient-to-b from-[#30333b]/60 to-[#343848] w-full">
-            <div class="font-sans font-semibold text-[22px] text-[#f5dbf7] mb-2">HoloVisio</div>
-            <p class="font-sans text-[17px] text-[#c3b4d7] mb-6">Site web mobile-first imaginé autour d’une télévision du futur.</p>
-            <a href="#" class="mt-auto bg-[#e5e7eb] text-[#232836] font-semibold rounded-xl px-6 py-3 text-[19px] w-fit shadow transition hover:bg-[#ffd6ff]">Voir la réalisation</a>
+        <div
+          class="relative flex flex-col rounded-3xl overflow-hidden bg-[#30333b] shadow-md transition-transform hover:-translate-y-2 hover:shadow-2xl group items-center"
+        >
+          <img
+            src="/holovisio.png"
+            alt="HoloVisio project"
+            class="w-full h-[220px] sm:h-[295px] md:h-[395px] object-contain bg-[#232836] rounded-t-2xl"
+          />
+          <div
+            class="flex-1 flex flex-col px-4 sm:px-6 md:px-6 py-4 sm:py-6 bg-gradient-to-b from-[#30333b]/60 to-[#343848] w-full"
+          >
+            <div
+              class="font-sans font-semibold text-[#f5dbf7] mb-2"
+              style="font-family: 'Inter', sans-serif; font-size: 1.25rem;"
+            >
+              HoloVisio
+            </div>
+            <p class="font-sans text-[#c3b4d7] mb-6 text-sm sm:text-base">
+              Site web mobile-first imaginé autour d’une télévision du futur.
+            </p>
+            <a
+              href="#"
+              class="mt-auto bg-[#e5e7eb] text-[#232836] font-semibold rounded-xl px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base w-fit shadow transition hover:bg-[#ffd6ff]"
+            >
+              Voir la réalisation
+            </a>
           </div>
         </div>
       </div>
+
       <!-- Plus de projets à venir -->
       <div class="flex flex-col items-center mt-12 mb-24">
         <div class="bg-[#30333b] rounded-2xl px-8 py-6 shadow">
-          <span class="font-sans text-[22px] text-[#f5dbf7] font-medium tracking-wide">
+          <span class="font-sans text-[#f5dbf7] font-medium tracking-wide text-lg sm:text-xl">
             Plus de projets à venir
           </span>
         </div>
