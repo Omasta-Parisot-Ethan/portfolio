@@ -1,3 +1,11 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const revealElements = document.querySelectorAll("[data-reveal]");
+  revealElements.forEach(el => {
+    el.classList.add("revealed");
+  });
+});
+
+
 const revealElements = document.querySelectorAll("[data-reveal]");
 
 const revealObserver = new IntersectionObserver((entries) => {
