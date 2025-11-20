@@ -10,6 +10,7 @@ import Layout from "../layouts/Layout.astro"
       class="absolute inset-0 w-full h-full object-cover z-0 opacity-80"
       draggable="false" 
       style="user-select:none;" 
+      data-parallax
     />
     <div class="absolute inset-0 bg-[#232836] opacity-60 z-10"></div>
     <div class="absolute left-0 bottom-0 w-full h-[40vh] z-20 pointer-events-none" 
@@ -17,10 +18,12 @@ import Layout from "../layouts/Layout.astro"
 
     <div class="absolute z-30 flex flex-col items-center w-full left-0 top-[22%]">
       <h1 class="text-[48px] font-semibold font-sans text-[#f5dbf7] text-center mb-16"
-          style="font-family: 'Inter', sans-serif;">
+          style="font-family: 'Inter', sans-serif;"
+          data-reveal
+      >
         Cookit-UP
       </h1>
-      <div class="mt-28 flex justify-center">
+      <div class="mt-28 flex justify-center" data-reveal>
         <svg class="scroll-indicator" width="38" height="84" viewBox="0 0 38 84" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="2" y="2" width="34" height="80" rx="17" stroke="#E5E7EB" stroke-width="4" fill="none"/>
           <circle class="scroll-dot" cx="19" cy="20" r="6" fill="#E5E7EB"/>
@@ -30,94 +33,94 @@ import Layout from "../layouts/Layout.astro"
   </section>
 
   <section class="w-full bg-[#232836] py-24 px-4">
-  <div class="max-w-6xl mx-auto flex flex-col gap-24">
+    <div class="max-w-6xl mx-auto flex flex-col gap-24">
 
-    <!-- Bloc 1 -->
-    <div class="flex flex-col md:flex-row items-center gap-12">
-      <div class="flex-1 w-full">
-        <div class="rounded-3xl overflow-hidden bg-[#2A2D35] border border-[#c9bedc35] shadow-[0_0_35px_-6px_rgba(201,190,220,0.25)] p-6">
-          <img src="/logos.png" alt="Logos Cookit-UP" class="w-full rounded-xl object-contain" />
+      <!-- Bloc 1 -->
+      <div class="flex flex-col md:flex-row items-center gap-12">
+        <div class="flex-1 w-full">
+          <div class="rounded-3xl overflow-hidden bg-[#2A2D35] border border-[#c9bedc35] shadow-[0_0_35px_-6px_rgba(201,190,220,0.25)] p-6" data-reveal>
+            <img src="/logos.png" alt="Logos Cookit-UP" class="w-full rounded-xl object-contain" />
+          </div>
+        </div>
+
+        <div class="flex-1 w-full">
+          <h2 class="text-[32px] font-semibold text-[#f5dbf7] mb-4" style="font-family:'Inter',sans-serif;" data-reveal>
+            Cookit-UP, un site web pensé pour améliorer le quotidien étudiant
+          </h2>
+
+          <p class="text-[18px] text-[#f5dbf7] leading-relaxed bg-[#2A2D35]/60 border border-[#c9bedc30] rounded-2xl p-8 shadow-[0_0_25px_-8px_rgba(201,190,220,0.20)]" style="font-family:'Inter',sans-serif;" data-reveal>
+            Cookit-UP est un projet mené en équipe dans le cadre de ma formation (février → juin 2025). 
+            Nous avons conçu une plateforme dédiée à une alimentation plus saine et accessible, tout en luttant contre le gaspillage alimentaire.  
+            L’outil s’adresse en priorité aux étudiants, avec une réflexion centrée sur leurs contraintes et leurs besoins.
+          </p>
         </div>
       </div>
 
-      <div class="flex-1 w-full">
-        <h2 class="text-[32px] font-semibold text-[#f5dbf7] mb-4" style="font-family:'Inter',sans-serif;">
-          Cookit-UP, un site web pensé pour améliorer le quotidien étudiant
-        </h2>
+      <!-- Bloc 2 -->
+      <div class="flex flex-col md:flex-row-reverse items-center gap-12">
+        <div class="flex-1 w-full">
+          <div class="rounded-3xl overflow-hidden bg-[#2A2D35] border border-[#c9bedc35] shadow-[0_0_35px_-6px_rgba(201,190,220,0.25)] p-6" data-reveal>
+            <img src="/exemple.png" alt="Maquette du site Cookit-UP" class="w-full rounded-xl object-contain" />
+          </div>
+        </div>
 
-        <p class="text-[18px] text-[#f5dbf7] leading-relaxed bg-[#2A2D35]/60 border border-[#c9bedc30] rounded-2xl p-8 shadow-[0_0_25px_-8px_rgba(201,190,220,0.20)]" style="font-family:'Inter',sans-serif;">
-          Cookit-UP est un projet mené en équipe dans le cadre de ma formation (février → juin 2025). 
-          Nous avons conçu une plateforme dédiée à une alimentation plus saine et accessible, tout en luttant contre le gaspillage alimentaire.  
-          L’outil s’adresse en priorité aux étudiants, avec une réflexion centrée sur leurs contraintes et leurs besoins.
-        </p>
-      </div>
-    </div>
+        <div class="flex-1 w-full">
+          <h3 class="text-[24px] font-semibold text-[#f5dbf7] mb-3" style="font-family:'Inter',sans-serif;" data-reveal>
+            Identité visuelle & stratégie de positionnement
+          </h3>
 
-    <!-- Bloc 2 -->
-    <div class="flex flex-col md:flex-row-reverse items-center gap-12">
-      <div class="flex-1 w-full">
-        <div class="rounded-3xl overflow-hidden bg-[#2A2D35] border border-[#c9bedc35] shadow-[0_0_35px_-6px_rgba(201,190,220,0.25)] p-6">
-          <img src="/exemple.png" alt="Maquette du site Cookit-UP" class="w-full rounded-xl object-contain" />
+          <p class="text-[18px] text-[#f5dbf7] leading-relaxed bg-[#2A2D35]/60 border border-[#c9bedc30] rounded-2xl p-8 shadow-[0_0_25px_-8px_rgba(201,190,220,0.20)]" style="font-family:'Inter',sans-serif;" data-reveal>
+            Nous avons conçu l’identité graphique complète du projet : logo, palette, typographie 
+            et ton de communication.  
+            Le travail s’est conclu par une soutenance présentant la plateforme, sa direction artistique 
+            et les choix stratégiques visant à ancrer Cookit-UP comme un outil utile et crédible auprès des étudiants.
+          </p>
         </div>
       </div>
 
-      <div class="flex-1 w-full">
-        <h3 class="text-[24px] font-semibold text-[#f5dbf7] mb-3" style="font-family:'Inter',sans-serif;">
-          Identité visuelle & stratégie de positionnement
-        </h3>
+      <!-- Bloc 3 -->
+      <div class="flex flex-col md:flex-row items-center gap-12">
+        <div class="flex-1 w-full">
+          <div class="rounded-3xl overflow-hidden bg-[#2A2D35] border border-[#c9bedc35] shadow-[0_0_35px_-6px_rgba(201,190,220,0.25)] p-6" data-reveal>
+            <img src="/menu.png" alt="Interface de recettes Cookit-UP" class="w-full rounded-xl object-contain" />
+          </div>
+        </div>
 
-        <p class="text-[18px] text-[#f5dbf7] leading-relaxed bg-[#2A2D35]/60 border border-[#c9bedc30] rounded-2xl p-8 shadow-[0_0_25px_-8px_rgba(201,190,220,0.20)]" style="font-family:'Inter',sans-serif;">
-          Nous avons conçu l’identité graphique complète du projet : logo, palette, typographie 
-          et ton de communication.  
-          Le travail s’est conclu par une soutenance présentant la plateforme, sa direction artistique 
-          et les choix stratégiques visant à ancrer Cookit-UP comme un outil utile et crédible auprès des étudiants.
-        </p>
-      </div>
-    </div>
+        <div class="flex-1 w-full">
+          <h3 class="text-[24px] font-semibold text-[#f5dbf7] mb-3" style="font-family:'Inter',sans-serif;" data-reveal>
+            Un projet technique, collaboratif et communautaire
+          </h3>
 
-    <!-- Bloc 3 -->
-    <div class="flex flex-col md:flex-row items-center gap-12">
-      <div class="flex-1 w-full">
-        <div class="rounded-3xl overflow-hidden bg-[#2A2D35] border border-[#c9bedc35] shadow-[0_0_35px_-6px_rgba(201,190,220,0.25)] p-6">
-          <img src="/menu.png" alt="Interface de recettes Cookit-UP" class="w-full rounded-xl object-contain" />
+          <p class="text-[18px] text-[#f5dbf7] leading-relaxed bg-[#2A2D35]/60 border border-[#c9bedc30] rounded-2xl p-8 shadow-[0_0_25px_-8px_rgba(201,190,220,0.20)]" style="font-family:'Inter',sans-serif;" data-reveal>
+            La seconde phase du projet portait sur l’intégration et la partie technique.  
+            Notre équipe a développé un site fonctionnel reposant sur une base de données PocketBase, 
+            permettant aux utilisateurs d’ajouter et partager leurs propres recettes.  
+            Cette dimension collaborative renforce l’aspect communautaire et donne un vrai rôle actif à l’étudiant.  
+            <br/><br/>
+            Lors de la soutenance finale, la pertinence du concept et la qualité du développement ont 
+            été particulièrement appréciées par le jury.
+          </p>
         </div>
       </div>
 
-      <div class="flex-1 w-full">
-        <h3 class="text-[24px] font-semibold text-[#f5dbf7] mb-3" style="font-family:'Inter',sans-serif;">
-          Un projet technique, collaboratif et communautaire
-        </h3>
-
-        <p class="text-[18px] text-[#f5dbf7] leading-relaxed bg-[#2A2D35]/60 border border-[#c9bedc30] rounded-2xl p-8 shadow-[0_0_25px_-8px_rgba(201,190,220,0.20)]" style="font-family:'Inter',sans-serif;">
-          La seconde phase du projet portait sur l’intégration et la partie technique.  
-          Notre équipe a développé un site fonctionnel reposant sur une base de données PocketBase, 
-          permettant aux utilisateurs d’ajouter et partager leurs propres recettes.  
-          Cette dimension collaborative renforce l’aspect communautaire et donne un vrai rôle actif à l’étudiant.  
-          <br/><br/>
-          Lors de la soutenance finale, la pertinence du concept et la qualité du développement ont 
-          été particulièrement appréciées par le jury.
-        </p>
+      <div class="w-full flex justify-center mt-20" data-reveal>
+        <img src="/cookit-up_com.png" alt="Conclusion Cookit-UP" class="w-full max-w-5xl rounded-3xl shadow-[0_0_35px_-6px_rgba(201,190,220,0.25)] object-contain" />
       </div>
     </div>
-    <div class="w-full flex justify-center mt-20">
-<img src="/cookit-up_com.png" alt="Conclusion Cookit-UP" class="w-full max-w-5xl rounded-3xl shadow-[0_0_35px_-6px_rgba(201,190,220,0.25)] object-contain" />
-</div>
-  </div>
-</section>
+  </section>
 
-<section class="w-full bg-[#232836] mb-24">
-  <div class="flex flex-col items-center gap-8">
-    <h2 class="text-[28px] font-semibold text-center text-[#e4c2ea] leading-tight"
-        style="font-family:'Inter',sans-serif;">
-      Envie de découvrir Cookit-UP par vous-même ?
-    </h2>
-    <a href="https://cookit-up.netlify.app/" target="_blank" rel="noopener"
-       class="bg-[#e5e7eb] text-[#232836] font-semibold rounded-xl px-10 py-4 text-[20px] shadow transition hover:bg-[#ffd6ff]">
-      Découvrir Cookit-UP
-    </a>
-  </div>
-</section>
-
+  <section class="w-full bg-[#232836] mb-24">
+    <div class="flex flex-col items-center gap-8" data-reveal>
+      <h2 class="text-[28px] font-semibold text-center text-[#e4c2ea] leading-tight"
+          style="font-family:'Inter',sans-serif;">
+        Envie de découvrir Cookit-UP par vous-même ?
+      </h2>
+      <a href="https://cookit-up.netlify.app/" target="_blank" rel="noopener"
+         class="bg-[#e5e7eb] text-[#232836] font-semibold rounded-xl px-10 py-4 text-[20px] shadow transition hover:bg-[#ffd6ff]">
+        Découvrir Cookit-UP
+      </a>
+    </div>
+  </section>
 
   <style>
     .scroll-dot {

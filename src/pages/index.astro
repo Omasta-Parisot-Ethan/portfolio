@@ -3,24 +3,36 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
+
   <!-- Hero Section -->
   <section class="relative w-full min-h-[550px] h-screen flex items-center justify-center overflow-hidden bg-[#232836] px-4 sm:px-6 md:px-12">
-    <img src="/photo_moi.png" alt="Photo de moi" class="absolute inset-0 w-full h-full object-cover opacity-80 z-0" />
+
+    <img 
+      src="/photo_moi.png" 
+      alt="Photo de moi" 
+      class="absolute inset-0 w-full h-full object-cover opacity-80 z-0" 
+      data-parallax 
+      data-speed="0.18"
+    />
+
     <div class="absolute inset-0 bg-[#232836] opacity-60 z-10"></div>
+
     <div
       class="absolute left-0 bottom-0 w-full h-[40vh] z-20 pointer-events-none"
       style="background: linear-gradient(to top, #232836 0%, rgba(35,40,54,0.8) 30%, rgba(35,40,54,0.4) 60%, transparent 100%);"
     ></div>
 
     <div class="relative z-30 flex flex-col items-center justify-center h-full -mt-8 sm:-mt-12 text-center max-w-[900px]">
+      
       <h1
         class="font-semibold text-[#f5dbf7] mb-10 sm:mb-16 leading-tight"
         style="font-family: 'Inter', sans-serif; font-size: clamp(2rem, 5vw, 3rem);"
+        data-reveal
       >
         Faire d’un message une narration<br /> qui engage et convainc
       </h1>
 
-      <div class="mt-8 sm:mt-12 flex justify-center">
+      <div class="mt-8 sm:mt-12 flex justify-center" data-reveal>
         <svg
           class="scroll-indicator"
           width="38"
@@ -33,16 +45,20 @@ import Layout from '../layouts/Layout.astro';
           <circle class="scroll-dot" cx="19" cy="20" r="6" fill="#E5E7EB" />
         </svg>
       </div>
+
     </div>
   </section>
 
   <!-- About Section -->
   <section class="relative w-full flex items-center min-h-[520px] bg-[#232836] py-16 sm:py-24 px-4 sm:px-6 md:px-12">
+
     <div class="absolute right-0 top-0 h-full w-2/5 max-w-[55vw] z-0 overflow-hidden hidden sm:block">
       <img
         src="/photo_moi_2.png"
         alt="Photo présentation"
         class="h-full object-cover opacity-75 pointer-events-none"
+        data-parallax
+        data-speed="0.12"
       />
       <div
         class="absolute left-0 top-0 w-full h-[35vh] z-10 pointer-events-none"
@@ -53,9 +69,11 @@ import Layout from '../layouts/Layout.astro';
     <div class="absolute inset-0 bg-[#232836] opacity-40 z-10"></div>
 
     <div class="relative z-20 max-w-xl sm:max-w-lg md:max-w-xl lg:max-w-2xl">
+
       <h2
         class="font-semibold text-[#f5dbf7] mb-6"
         style="font-family: 'Inter', sans-serif; font-size: clamp(2rem, 4vw, 3rem);"
+        data-reveal
       >
         Me connaître
       </h2>
@@ -63,6 +81,7 @@ import Layout from '../layouts/Layout.astro';
       <p
         class="text-[#f5dbf7] mb-12 leading-relaxed"
         style="font-family: 'Inter', sans-serif; font-size: clamp(1rem, 2vw, 1.125rem);"
+        data-reveal
       >
         Je suis Ethan Omasta-Parisot, étudiant en communication passionné par la création de messages efficaces et
         impactants. Discipline, rigueur et organisation guident chacun de mes projets, où stratégie et originalité se
@@ -73,26 +92,33 @@ import Layout from '../layouts/Layout.astro';
       <a
         href="/about"
         class="bg-[#e5e7eb] text-[#232836] font-semibold rounded-xl px-6 py-4 text-lg sm:text-xl shadow hover:bg-[#ffd6ff] transition w-fit"
+        data-reveal
       >
         A propos
       </a>
+
     </div>
   </section>
 
   <!-- Projects Section -->
   <section class="w-full bg-[#232836] py-16 sm:py-20 px-4 sm:px-6 md:px-12">
+
     <h2
       class="font-semibold text-[#f5dbf7] mb-12 ml-3 sm:ml-6"
       style="font-family: 'Inter', sans-serif; font-size: clamp(2rem, 4vw, 3rem);"
+      data-reveal
     >
       Mes projets
     </h2>
 
     <div class="max-w-6xl mx-auto">
+
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 mb-16">
-        <!-- Project Card -->
+
+        <!-- Project card 1 -->
         <div
           class="relative flex flex-col rounded-3xl overflow-hidden bg-[#30333b] shadow-md transition-transform hover:-translate-y-2 hover:shadow-2xl group items-center"
+          data-reveal
         >
           <img
             src="/logo.png"
@@ -120,9 +146,10 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
 
-        <!-- Repeat for other projects with respective images and texts -->
+        <!-- Project card 2 -->
         <div
           class="relative flex flex-col rounded-3xl overflow-hidden bg-[#30333b] shadow-md transition-transform hover:-translate-y-2 hover:shadow-2xl group items-center"
+          data-reveal
         >
           <img
             src="/cookit-up.png"
@@ -150,8 +177,10 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
 
+        <!-- Project card 3 -->
         <div
           class="relative flex flex-col rounded-3xl overflow-hidden bg-[#30333b] shadow-md transition-transform hover:-translate-y-2 hover:shadow-2xl group items-center"
+          data-reveal
         >
           <img
             src="/holovisio.png"
@@ -178,9 +207,10 @@ import Layout from '../layouts/Layout.astro';
             </a>
           </div>
         </div>
+
       </div>
 
-      <div class="flex justify-center">
+      <div class="flex justify-center" data-reveal>
         <a
           href="/projects"
           class="bg-[#e5e7eb] text-[#232836] font-semibold rounded-xl px-8 sm:px-10 py-4 sm:py-5 text-lg sm:text-xl shadow transition hover:bg-[#ffd6ff]"
@@ -188,54 +218,53 @@ import Layout from '../layouts/Layout.astro';
           Découvrir plus de projets
         </a>
       </div>
+
     </div>
   </section>
 
   <!-- Skills Section -->
   <section class="w-full bg-[#232836] py-16 sm:py-24 px-4 sm:px-6 md:px-12">
+
     <h2
       class="font-semibold text-[#f5dbf7] mb-14 ml-3 sm:ml-6"
       style="font-family:'Inter',sans-serif; font-size: clamp(2rem, 4vw, 3rem);"
+      data-reveal
     >
       Mes compétences
     </h2>
 
     <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-16">
-      <!-- Bloc 1 : Communication & Organisation -->
-      <div class="bg-[#30333b] rounded-3xl p-6 md:p-10 shadow-lg">
+
+      <!-- Bloc 1 -->
+      <div class="bg-[#30333b] rounded-3xl p-6 md:p-10 shadow-lg" data-reveal>
         <h3 class="text-[28px] md:text-[32px] font-semibold text-[#f5dbf7] mb-8">Communication & Organisation</h3>
         <div class="grid grid-cols-2 gap-6 md:gap-8">
-          <!-- Repeat each skill as below -->
+
           <div class="flex flex-col items-center text-center">
             <img src="/excel.png" width="90" height="85" alt="Excel" />
             <p class="text-[#f5dbf7] mt-3 font-medium">Excel</p>
             <span class="text-[#c3b4d7] text-sm md:text-[15px]">Intermédiaire</span>
           </div>
-
           <div class="flex flex-col items-center text-center">
             <img src="/miro.png" width="90" height="90" alt="Miro" />
             <p class="text-[#f5dbf7] mt-3 font-medium">Miro</p>
             <span class="text-[#c3b4d7] text-sm md:text-[15px]">Avancé</span>
           </div>
-
           <div class="flex flex-col items-center text-center">
             <img src="/jira.png" width="90" height="90" alt="Jira" />
             <p class="text-[#f5dbf7] mt-3 font-medium">Jira</p>
             <span class="text-[#c3b4d7] text-sm md:text-[15px]">Intermédiaire</span>
           </div>
-
           <div class="flex flex-col items-center text-center">
             <img src="/trello.png" width="90" height="90" alt="Trello" />
             <p class="text-[#f5dbf7] mt-3 font-medium">Trello</p>
             <span class="text-[#c3b4d7] text-sm md:text-[15px]">Avancé</span>
           </div>
-
           <div class="flex flex-col items-center text-center">
             <img src="/notion.png" width="90" height="90" alt="Notion" />
             <p class="text-[#f5dbf7] mt-3 font-medium">Notion</p>
             <span class="text-[#c3b4d7] text-sm md:text-[15px]">Avancé</span>
           </div>
-
           <div class="flex flex-col items-center text-center">
             <img src="/google_drive.png" width="90" height="80" alt="Google Drive" />
             <p class="text-[#f5dbf7] mt-3 font-medium">Google Drive</p>
@@ -247,75 +276,89 @@ import Layout from '../layouts/Layout.astro';
             <p class="text-[#f5dbf7] mt-3 font-medium">Tom's Planner</p>
             <span class="text-[#c3b4d7] text-sm md:text-[15px]">Intermédiaire</span>
           </div>
+
         </div>
       </div>
 
-      <!-- Bloc 2 : Développement & Web -->
-      <div class="bg-[#30333b] rounded-3xl p-6 md:p-10 shadow-lg">
+      <!-- Bloc 2 -->
+      <div class="bg-[#30333b] rounded-3xl p-6 md:p-10 shadow-lg" data-reveal>
         <h3 class="text-[28px] md:text-[32px] font-semibold text-[#f5dbf7] mb-8">Développement & Web</h3>
         <div class="grid grid-cols-2 gap-6 md:gap-8">
+          
           <div class="flex flex-col items-center text-center">
             <img src="/github2.png" width="90" height="90" alt="Github" />
             <p class="text-[#f5dbf7] mt-3 font-medium">Github</p>
             <span class="text-[#c3b4d7] text-sm md:text-[15px]">Intermédiaire</span>
           </div>
+
           <div class="flex flex-col items-center text-center">
             <img src="/astro.png" width="90" height="90" alt="Astro" />
             <p class="text-[#f5dbf7] mt-3 font-medium">Astro</p>
             <span class="text-[#c3b4d7] text-sm md:text-[15px]">Intermédiaire</span>
           </div>
+
           <div class="flex flex-col items-center text-center">
             <img src="/tailwind.png" width="90" height="55" alt="Tailwind" />
             <p class="text-[#f5dbf7] mt-3 font-medium">Tailwind CSS</p>
             <span class="text-[#c3b4d7] text-sm md:text-[15px]">Intermédiaire</span>
           </div>
+
           <div class="flex flex-col items-center text-center">
             <img src="/html.png" width="90" height="90" alt="HTML" />
             <p class="text-[#f5dbf7] mt-3 font-medium">HTML</p>
             <span class="text-[#c3b4d7] text-sm md:text-[15px]">Avancé</span>
           </div>
+
           <div class="flex flex-col items-center text-center">
             <img src="/css.png" width="65" height="90" alt="CSS" />
             <p class="text-[#f5dbf7] mt-3 font-medium">CSS</p>
             <span class="text-[#c3b4d7] text-sm md:text-[15px]">Intermédiaire</span>
           </div>
+
           <div class="flex flex-col items-center text-center">
             <img src="/wordpress.png" width="180" height="120" alt="Wordpress" />
             <p class="text-[#f5dbf7] mt-3 font-medium">Wordpress</p>
             <span class="text-[#c3b4d7] text-sm md:text-[15px]">Intermédiaire</span>
           </div>
+
         </div>
       </div>
 
-      <!-- Bloc 3 : Création Visuelle -->
-      <div class="bg-[#30333b] rounded-3xl p-6 md:p-10 shadow-lg">
+      <!-- Bloc 3 -->
+      <div class="bg-[#30333b] rounded-3xl p-6 md:p-10 shadow-lg" data-reveal>
         <h3 class="text-[28px] md:text-[32px] font-semibold text-[#f5dbf7] mb-8">Création visuelle</h3>
         <div class="grid grid-cols-2 gap-6 md:gap-8">
+
           <div class="flex flex-col items-center text-center">
             <img src="/figma.png" width="220" height="220" alt="Figma" />
             <p class="text-[#f5dbf7] mt-3 font-medium">Figma</p>
             <span class="text-[#c3b4d7] text-sm md:text-[15px]">Avancé</span>
           </div>
+
           <div class="flex flex-col items-center text-center">
             <img src="/illustrator.png" width="90" height="90" alt="Adobe Illustrator" />
             <p class="text-[#f5dbf7] mt-3 font-medium">Illustrator</p>
             <span class="text-[#c3b4d7] text-sm md:text-[15px]">Débutant</span>
           </div>
+
           <div class="flex flex-col items-center text-center">
             <img src="/davinci_resolve.png" width="90" height="90" alt="Davinci Resolve" />
             <p class="text-[#f5dbf7] mt-3 font-medium">DaVinci Resolve</p>
             <span class="text-[#c3b4d7] text-sm md:text-[15px]">Intermédiaire</span>
           </div>
+
           <div class="flex flex-col items-center text-center">
             <img src="/chatgpt.png" width="90" height="90" alt="ChatGPT" />
             <p class="text-[#f5dbf7] mt-3 font-medium">Intelligence Artificielle</p>
             <span class="text-[#c3b4d7] text-sm md:text-[15px]">Avancé</span>
           </div>
+
         </div>
       </div>
+
     </div>
 
-    <div class="flex justify-center mt-12 md:mt-16 w-full">
+    <div class="flex justify-center mt-12 md:mt-16 w-full" data-reveal>
       <a
         href="/contact"
         class="bg-[#e5e7eb] text-[#232836] font-semibold rounded-xl px-8 py-4 text-lg sm:text-xl shadow transition hover:bg-[#ffd6ff]"
@@ -323,6 +366,7 @@ import Layout from '../layouts/Layout.astro';
         Contactez-moi
       </a>
     </div>
+
   </section>
 
   <style>
@@ -330,22 +374,11 @@ import Layout from '../layouts/Layout.astro';
       animation: dot-scroll-move 1.5s cubic-bezier(0.7, 0, 0.3, 1) infinite;
     }
     @keyframes dot-scroll-move {
-      0% {
-        cy: 20;
-        opacity: 1;
-      }
-      60% {
-        cy: 65;
-        opacity: 1;
-      }
-      80% {
-        cy: 65;
-        opacity: 0;
-      }
-      100% {
-        cy: 20;
-        opacity: 0;
-      }
+      0% { cy: 20; opacity: 1; }
+      60% { cy: 65; opacity: 1; }
+      80% { cy: 65; opacity: 0; }
+      100% { cy: 20; opacity: 0; }
     }
   </style>
+
 </Layout>

@@ -1,1 +1,20 @@
 @import "tailwindcss";
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.7s cubic-bezier(.4,0,.2,1);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Header shrink */
+header.header-shrink {
+  backdrop-filter: blur(12px);
+  padding-block: 6px;
+  background-color: rgba(35, 40, 54, 0.7);
+  transition: padding 0.3s, background-color 0.3s;
+}
