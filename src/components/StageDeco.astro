@@ -1,0 +1,24 @@
+---
+// Carrés décoratifs en profondeur autour du visuel principal (motif du logo EOP.).
+// Purement décoratifs : masqués pour les technologies d'assistance.
+interface Props { class?: string; }
+const { class: className = '' } = Astro.props;
+---
+
+<div aria-hidden="true" class:list={['pointer-events-none absolute inset-0 hidden sm:block', className]}>
+  <div class="plx-s absolute -top-8 -right-3 lg:-right-8" style="--s:-70">
+    <div class="plx-p" style="--d:-26">
+      <span class="stage-pop block w-24 h-24 lg:w-32 lg:h-32 border-2 border-eop-dark bg-eop-rose" style="--i:0"></span>
+    </div>
+  </div>
+  <div class="plx-s absolute bottom-6 -left-5 lg:-left-9" style="--s:55">
+    <div class="plx-p" style="--d:20">
+      <span class="stage-pop block w-5 h-5 bg-eop-dark" style="--i:1"></span>
+    </div>
+  </div>
+  <div class="plx-s absolute -bottom-6 right-16 lg:right-24" style="--s:-30">
+    <div class="plx-p" style="--d:34">
+      <span class="stage-pop block w-12 h-12 lg:w-14 lg:h-14 border-2 border-eop-dark bg-eop-light" style="--i:2"></span>
+    </div>
+  </div>
+</div>

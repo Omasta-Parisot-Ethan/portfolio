@@ -1,0 +1,15 @@
+---
+// Pastille mono « 01 — CONTEXTE » dans le même style que les sections de l'accueil
+interface Props { num?: string; label: string; tone?: 'rose' | 'light' | 'dark'; }
+const { num, label, tone = 'rose' } = Astro.props;
+const tones = {
+  rose: 'text-eop-dark bg-eop-rose border border-eop-dark',
+  light: 'text-eop-dark bg-eop-light border border-eop-dark',
+  dark: 'text-eop-offwhite bg-eop-dark border border-eop-dark',
+};
+---
+
+<div class:list={['inline-flex items-center gap-2.5 font-mono text-xs sm:text-sm font-semibold uppercase tracking-widest px-3.5 py-1.5', tones[tone]]}>
+  <span class:list={['w-2 h-2', tone === 'dark' ? 'bg-eop-rose' : 'bg-eop-dark']} aria-hidden="true"></span>
+  <span>{num ? `${num} — ${label}` : label}</span>
+</div>

@@ -1,0 +1,30 @@
+---
+import PlaceholderSlot from './PlaceholderSlot.astro';
+import { site } from '../data/site.js';
+
+// Affiche un vrai visuel s'il est fourni (data/projects.js → images), sinon un emplacement « À compléter »
+interface Props {
+  image?: { src: string; alt: string };
+  label: string;
+  hint?: string;
+  ratio?: string;
+  caption?: string;
+  class?: string;
+}
+const { image, label, hint = '', ratio = 'aspect-[16/10]', caption = '', class: className = '' } = Astro.props;
+---
+
+{
+  (image || site.showPlaceholders) && (
+    <figure class:list={['m-0', className]}>
+      {image ? (
+        <div class:list={['overflow-hidden border-2 border-eop-dark bg-eop-light/30', ratio]}>
+          <img src={image.src} alt={image.alt} loading="lazy" decoding="async" class="pv-img w-full h-full object-cover" />
+        </div>
+      ) : (
+        <PlaceholderSlot label={label} hint={hint} ratio={ratio} />
+      )}
+      {caption && <figcaption class="font-mono text-xs text-eop-dark/70 mt-3">{caption}</figcaption>}
+    </figure>
+  )
+}

@@ -1,0 +1,122 @@
+---
+const steps = [
+  {
+    num: '01',
+    title: '01 — Comprendre',
+    description:
+      'Identifier le besoin, le contexte, les contraintes et les attentes du public.',
+    tag: 'DIAGNOSTIC & ÉCOUTE',
+  },
+  {
+    num: '02',
+    title: '02 — Structurer',
+    description:
+      'Organiser les informations, hiérarchiser les priorités et définir une direction.',
+    tag: 'ARCHITECTURE & SENS',
+  },
+  {
+    num: '03',
+    title: '03 — Concevoir',
+    description:
+      'Transformer la stratégie en propositions visuelles, éditoriales ou numériques.',
+    tag: 'CRÉATION & FORME',
+  },
+  {
+    num: '04',
+    title: '04 — Ajuster',
+    description:
+      'Tester, recueillir les retours et améliorer la réponse finale.',
+    tag: 'ITÉRATION & JUSTESSE',
+  },
+];
+---
+
+<section
+  id="methode"
+  data-section="methode"
+  class="dark-surface py-20 lg:py-28 bg-eop-dark text-eop-offwhite eop-grid-bg-dark border-b border-eop-light/20 relative overflow-hidden"
+>
+  <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
+    <!-- En-tête de la section Méthode -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-12 border-b border-eop-light/20 items-end">
+      <div class="lg:col-span-5" data-reveal="slide-right">
+        <div class="inline-flex items-center gap-2.5 font-mono text-xs sm:text-sm font-semibold uppercase tracking-widest text-eop-dark bg-eop-rose px-3.5 py-1.5 mb-4">
+          <span class="w-2 h-2 bg-eop-dark" aria-hidden="true"></span>
+          <span>04 — APPROCHE</span>
+        </div>
+        <h2 class="font-display font-extrabold heading-section text-eop-offwhite">
+          La méthode derrière chaque idée.
+        </h2>
+      </div>
+
+      <div class="lg:col-span-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4" data-reveal="up">
+        <p class="text-base sm:text-lg text-eop-light/85 max-w-xl leading-relaxed">
+          Un parcours structuré en quatre temps pour garantir que chaque choix graphique ou éditorial réponde à une intention précise.
+        </p>
+        <div class="font-mono text-xs text-eop-rose border border-eop-rose/40 px-3 py-2 shrink-0 self-start">
+          CYCLE : [01 → 04]
+        </div>
+      </div>
+    </div>
+
+    <!-- Barre de progression géométrique sur ordinateur -->
+    <div class="hidden lg:grid grid-cols-4 gap-6 pt-12 pb-4" aria-hidden="true">
+      {
+        steps.map((step) => (
+          <div class="flex items-center gap-3">
+            <span
+              data-method-indicator={step.num}
+              class="w-4 h-4 border-2 border-eop-rose bg-eop-dark transition-all duration-500"
+            />
+            <div class="h-[1.5px] flex-1 bg-eop-light/25 relative overflow-hidden">
+              <div
+                data-method-bar={step.num}
+                class=" inset-y-0 left-0 w-full bg-eop-rose origin-left scale-x-0 transition-transform duration-700"
+              />
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Grille des 4 étapes (progression verticale sur mobile, 4 colonnes décalées sur desktop) -->
+    <ol class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-8 lg:pt-4">
+      {
+        steps.map((step, index) => (
+          <li
+            data-reveal="up"
+            data-method-step={step.num}
+            style={`transition-delay: ${index * 110}ms;`}
+            class="method-step-card relative border border-eop-light/25 bg-eop-dark/90 p-6 sm:p-7 flex flex-col justify-between transition-all duration-500 hover:border-eop-rose"
+          >
+            <div>
+              <!-- En-tête de l'étape -->
+              <div class="flex items-center justify-between gap-2 pb-4 mb-6 border-b border-eop-light/15 font-mono text-xs">
+                <span class="text-eop-rose font-semibold">{step.tag}</span>
+                <span class="w-7 h-7 border border-eop-light/30 flex items-center justify-center text-eop-light">
+                  {step.num}
+                </span>
+              </div>
+
+              <!-- Titre exact de l'étape -->
+              <h3 class="font-display font-bold text-xl sm:text-2xl text-eop-light mb-4">
+                {step.title}
+              </h3>
+
+              <!-- Description exacte de l'étape -->
+              <p class="text-base text-eop-offwhite/85 leading-relaxed">
+                {step.description}
+              </p>
+            </div>
+
+            <!-- Repère inférieur carré -->
+            <div class="mt-8 pt-4 border-t border-eop-light/15 flex items-center justify-between font-mono text-[11px] text-eop-light/60">
+              <span>ÉTAPE {step.num}/04</span>
+              <span class="w-2.5 h-2.5 bg-eop-rose inline-block" aria-hidden="true" />
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

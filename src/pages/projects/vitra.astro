@@ -1,0 +1,405 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import SectionTag from '../../components/SectionTag.astro';
+import ProjectVisual from '../../components/ProjectVisual.astro';
+import ProjectFigure from '../../components/ProjectFigure.astro';
+import PlaceholderSlot from '../../components/PlaceholderSlot.astro';
+import ProjectPager from '../../components/ProjectPager.astro';
+import StageTitle from '../../components/StageTitle.astro';
+import StageDeco from '../../components/StageDeco.astro';
+import { getProject } from '../../data/projects.js';
+
+const p = getProject('vitra');
+const cover = p.images[0];
+
+const chapters = [
+  { id: 'contexte', label: 'Contexte' },
+  { id: 'probleme', label: 'Problème' },
+  { id: 'public', label: 'Public' },
+  { id: 'reflexion', label: 'Réflexion' },
+  { id: 'parcours', label: 'Parcours' },
+  { id: 'conception', label: 'Conception' },
+  { id: 'resultat', label: 'Résultat' },
+];
+
+// Les cinq difficultés rencontrées par un visiteur sur le campus (énoncé du projet)
+const frictions = [
+  { title: 'Se repérer sur le campus', question: 'Où suis-je, et dans quelle direction aller ?' },
+  { title: 'Découvrir les bâtiments et les espaces', question: 'Qu’y a-t-il à voir, et où ?' },
+  { title: 'Comprendre les possibilités de visite', question: 'Que puis-je faire ici, et dans quel ordre ?' },
+  { title: 'Organiser son parcours', question: 'Comment construire une visite à mon rythme ?' },
+  { title: 'Passer d’une information physique à une information numérique', question: 'Comment prolonger sur mon téléphone ce que je vois sur place ?' },
+];
+
+// Les trois façons de visiter citées dans la démarche du projet
+const visitModes = [
+  { name: 'Découverte libre', text: 'Explorer sans plan défini, au gré des bâtiments et des espaces.' },
+  { name: 'Parcours thématique', text: 'Suivre un fil conducteur à travers le campus.' },
+  { name: 'Visite rapide', text: 'Voir l’essentiel avec un temps limité.' },
+];
+
+// Mise en regard difficulté → élément de réponse décrit dans la démarche du projet
+const journey = [
+  { step: 'Se repérer', answer: 'Visualiser sa position', from: 'Interface mobile' },
+  { step: 'Découvrir', answer: 'Repérer les points d’intérêt', from: 'Interface mobile' },
+  { step: 'Comprendre', answer: 'Des repères visuels modulaires', from: 'Système de repères' },
+  { step: 'Organiser', answer: 'Voir le temps de parcours', from: 'Interface mobile' },
+  { step: 'Prolonger', answer: 'Une interface claire, sans surcharge cognitive', from: 'Physique → numérique' },
+];
+
+---
+
+<PageLayout
+  current="projects"
+  stage
+  title="Vitra — Autonomie accompagnée · Étude de cas EOP."
+  description="Étude de cas : concevoir une expérience de visite plus autonome et intuitive sur le Vitra Campus — repérage, parcours et interface mobile."
+>
+  <div id="reading-progress" class="eop-progress" aria-hidden="true"></div>
+
+  <!-- ========== HERO : entrée en scène « repérage » ========== -->
+  <section class="stg-root eop-grid-bg bg-eop-light/40 border-b-2 border-eop-dark overflow-hidden" data-hero>
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 pt-10 pb-14 lg:pt-14 lg:pb-20">
+      <nav aria-label="Fil d’Ariane" class="stage-rise font-mono text-xs text-eop-dark/70 mb-8" style="--d:0.9s">
+        <a href="/projects/" class="eop-link hover:text-eop-dark">Projets</a>
+        <span aria-hidden="true"> / </span>
+        <span aria-current="page" class="text-eop-dark font-semibold">{p.name}</span>
+      </nav>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-end">
+        <div class="lg:col-span-5 space-y-6">
+          <div class="stage-rise" style="--d:1s"><SectionTag num={p.num} label={p.categories} /></div>
+          <div class="plx-s" style="--s:-60">
+            <h1 class="font-display font-extrabold text-eop-dark leading-[0.95] tracking-tight text-[clamp(4.3rem,12vw,8.8rem)]">
+              <StageTitle lines={[{ text: p.name }]} variant="snap" />
+            </h1>
+          </div>
+          <p class="stage-rise font-display font-bold text-2xl sm:text-3xl text-eop-dark" style="--d:1.35s">{p.tagline}</p>
+          <p class="stage-rise text-lg text-eop-dark/85 leading-relaxed max-w-md" style="--d:1.45s">{p.description}</p>
+
+          <dl class="stage-rise grid grid-cols-2 gap-px bg-eop-dark/30 border border-eop-dark/30 max-w-md text-sm" style="--d:1.6s">
+            <div class="bg-eop-offwhite p-3"><dt class="font-mono text-[11px] uppercase tracking-wider text-eop-dark/65">Type</dt><dd class="font-semibold mt-0.5">Projet de conception</dd></div>
+            <div class="bg-eop-offwhite p-3"><dt class="font-mono text-[11px] uppercase tracking-wider text-eop-dark/65">Terrain</dt><dd class="font-semibold mt-0.5">Vitra Campus</dd></div>
+            <div class="bg-eop-offwhite p-3"><dt class="font-mono text-[11px] uppercase tracking-wider text-eop-dark/65">Domaine</dt><dd class="font-semibold mt-0.5">{p.domain}</dd></div>
+            <div class="bg-eop-offwhite p-3"><dt class="font-mono text-[11px] uppercase tracking-wider text-eop-dark/65">Livrables</dt><dd class="font-semibold mt-0.5">{p.deliverables.length} supports</dd></div>
+          </dl>
+        </div>
+
+        <div class="relative lg:col-span-7">
+          <StageDeco />
+          <div class="plx-s" style="--s:30">
+            <div class="plx-p" style="--d:10">
+              <div class="relative border-2 border-eop-dark bg-eop-offwhite p-3 sm:p-5 shadow-[10px_10px_0px_#232836]">
+                <div class="flex items-center justify-between pb-3 mb-3 border-b border-eop-dark/20 font-mono text-xs text-eop-dark/75">
+                  <span class="flex items-center gap-2"><span class="w-2 h-2 bg-eop-dark inline-block" aria-hidden="true"></span>PROJET {p.num} // VISUEL PRINCIPAL</span>
+                  <span class="font-semibold text-eop-dark hidden sm:inline">{p.categories}</span>
+                </div>
+                <div class="stage-frame stage-art relative overflow-hidden border border-eop-dark bg-eop-light/30 aspect-[16/10]" style="--clip-from: inset(39% 43% 39% 43%)">
+                  <div class="stage-img w-full h-full">
+                    {cover ? <img src={cover.src} alt={cover.alt} class="w-full h-full object-cover" /> : <ProjectVisual id="vitra" />}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== RAIL DE CHAPITRES ========== -->
+  <div class="sticky top-16 z-40 bg-eop-offwhite/95 backdrop-blur-sm border-b border-eop-dark/25">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
+      <nav aria-label="Chapitres de l’étude de cas">
+        <ol data-chapter-rail class="chapter-rail relative flex gap-1 overflow-x-auto py-2">
+          {
+            chapters.map((c, i) => (
+              <li class="shrink-0">
+                <a
+                  href={`#${c.id}`}
+                  data-chapter-link={c.id}
+                  class="inline-flex items-center gap-2 px-3 py-2 font-mono text-xs uppercase tracking-wider text-eop-dark hover:bg-eop-light"
+                >
+                  <span class="opacity-60">0{i + 1}</span>{c.label}
+                </a>
+              </li>
+            ))
+          }
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <!-- ========== 01 CONTEXTE ========== -->
+  <section id="contexte" data-chapter="contexte" class="py-20 lg:py-28 bg-eop-offwhite border-b border-eop-dark/20">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+      <div class="lg:col-span-4" data-reveal="slide-right">
+        <SectionTag num="01" label="Contexte" tone="light" />
+        <p class="mt-6 text-lg text-eop-dark/85 leading-relaxed">
+          Concevoir une expérience de visite plus autonome et intuitive sur le Vitra Campus. {p.context}
+        </p>
+      </div>
+      <div class="lg:col-span-8 bg-eop-dark text-eop-offwhite p-7 sm:p-10 lg:p-14 border-2 border-eop-dark shadow-[8px_8px_0px_#e8bce9] dark-surface" data-reveal="scale-square">
+        <div class="flex items-center justify-between font-mono text-xs text-eop-rose mb-5"><span>QUESTION CENTRALE</span><span>[?]</span></div>
+        <blockquote class="font-display font-extrabold text-2xl sm:text-3xl lg:text-5xl tracking-tight leading-[1.1] text-eop-light">
+          Comment donner à un public précis une nouvelle raison de découvrir, comprendre ou vivre Vitra ?
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 02 PROBLÈME ========== -->
+  <section id="probleme" data-chapter="probleme" class="py-20 lg:py-28 bg-eop-light/30 eop-grid-bg border-b border-eop-dark/20">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-12 border-b border-eop-dark/20 items-end">
+        <div class="lg:col-span-6" data-reveal="slide-right">
+          <SectionTag num="02" label="Le problème" tone="dark" />
+          <h2 data-words class="font-display font-extrabold heading-section text-eop-dark mt-5">Cinq moments où le visiteur perd le fil.</h2>
+        </div>
+        <p class="lg:col-span-6 text-lg text-eop-dark/85 leading-relaxed" data-reveal="up">
+          Sur un campus fait de bâtiments et d’espaces multiples, un visiteur peut rencontrer des difficultés à chaque étape de sa visite. Faites défiler : le parcours se construit au fil des difficultés.
+        </p>
+      </div>
+
+      <div data-sync-scope class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 pt-12">
+        <!-- Carte schématique synchronisée (ordinateur) -->
+        <div class="hidden lg:block lg:col-span-5">
+          <div class="sticky top-40 border-2 border-eop-dark bg-eop-offwhite p-5 shadow-[6px_6px_0px_#232836]">
+            <div class="font-mono text-xs text-eop-dark/70 flex justify-between pb-3 mb-3 border-b border-eop-dark/20"><span>CARTE SCHÉMATIQUE</span><span>5 REPÈRES</span></div>
+            <svg viewBox="0 0 400 360" class="w-full h-auto" role="img" aria-label="Carte schématique abstraite : cinq repères reliés par un tracé, qui s’allument au fil des difficultés listées">
+              <rect width="400" height="360" fill="#fffaff" />
+              <g stroke="#232836" stroke-opacity="0.1">
+                <line x1="80" y1="0" x2="80" y2="360" /><line x1="160" y1="0" x2="160" y2="360" /><line x1="240" y1="0" x2="240" y2="360" /><line x1="320" y1="0" x2="320" y2="360" />
+                <line x1="0" y1="90" x2="400" y2="90" /><line x1="0" y1="180" x2="400" y2="180" /><line x1="0" y1="270" x2="400" y2="270" />
+              </g>
+              <rect x="30" y="30" width="120" height="90" fill="#f5dbf7" stroke="#232836" stroke-width="2" />
+              <rect x="190" y="50" width="100" height="110" fill="#232836" />
+              <rect x="300" y="30" width="70" height="140" fill="#e8bce9" stroke="#232836" stroke-width="2" />
+              <rect x="60" y="210" width="150" height="100" fill="#fffaff" stroke="#232836" stroke-width="2" />
+              <rect x="250" y="220" width="110" height="90" fill="#f5dbf7" stroke="#232836" stroke-width="2" />
+              <path d="M 70 90 L 235 110 L 335 100 L 130 260 L 305 265" fill="none" stroke="#232836" stroke-width="2.5" stroke-dasharray="7 6" />
+              <g>
+                <rect class="sync-node" data-sync-target="1" x="58" y="78" width="24" height="24" fill="#232836" />
+                <rect class="sync-node" data-sync-target="2" x="223" y="98" width="24" height="24" fill="#e8bce9" stroke="#fffaff" stroke-width="2" />
+                <rect class="sync-node" data-sync-target="3" x="323" y="88" width="24" height="24" fill="#fffaff" stroke="#232836" stroke-width="2.5" />
+                <rect class="sync-node" data-sync-target="4" x="118" y="248" width="24" height="24" fill="#232836" />
+                <rect class="sync-node" data-sync-target="5" x="293" y="253" width="24" height="24" fill="#e8bce9" stroke="#232836" stroke-width="2.5" />
+              </g>
+              <g font-family="monospace" font-size="11" font-weight="bold" fill="#232836">
+                <text x="66" y="95" fill="#fffaff" font-size="10">1</text>
+                <text x="231" y="115" font-size="10">2</text>
+                <text x="331" y="105" font-size="10">3</text>
+                <text x="126" y="265" fill="#fffaff" font-size="10">4</text>
+                <text x="301" y="270" font-size="10">5</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Les 5 difficultés -->
+        <ol class="lg:col-span-7 divide-y divide-eop-dark/25 border-y border-eop-dark/25">
+          {
+            frictions.map((f, i) => (
+              <li data-sync-row={i + 1} class="sync-row py-8 lg:py-12">
+                <div data-reveal="up" class="grid grid-cols-[auto_1fr] gap-5 sm:gap-8 items-start">
+                  <span class="font-display font-extrabold text-5xl sm:text-6xl text-transparent [-webkit-text-stroke:2px_#232836] leading-none">0{i + 1}</span>
+                  <div>
+                    <h3 class="font-display font-bold heading-card text-eop-dark">{f.title}</h3>
+                    <p class="mt-3 text-base sm:text-lg text-eop-dark/80 italic">« {f.question} »</p>
+                  </div>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 03 PUBLIC ========== -->
+  <section id="public" data-chapter="public" class="py-20 lg:py-28 bg-eop-offwhite border-b border-eop-dark/20">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-12 border-b border-eop-dark/20 items-end">
+        <div class="lg:col-span-6" data-reveal="slide-right">
+          <SectionTag num="03" label="Le public visé" tone="light" />
+          <h2 data-words class="font-display font-extrabold heading-section text-eop-dark mt-5">Une visite, plusieurs façons de la vivre.</h2>
+        </div>
+        <p class="lg:col-span-6 text-lg text-eop-dark/85 leading-relaxed" data-reveal="up">
+          {p.approach[0]}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 pt-12">
+        {
+          visitModes.map((m, i) => (
+            <article data-reveal="up" style={`transition-delay:${i * 90}ms`} class:list={['lg:col-span-4 border-2 border-eop-dark p-6 sm:p-8 flex flex-col justify-between min-h-[15rem]', i === 1 ? 'bg-eop-light/60 lg:mt-10' : 'bg-eop-offwhite']}>
+              <div class="flex items-center justify-between font-mono text-xs text-eop-dark/70"><span>PROFIL 0{i + 1}</span><span class:list={['w-3 h-3 inline-block', i === 1 ? 'bg-eop-rose border border-eop-dark' : 'bg-eop-dark']} aria-hidden="true"></span></div>
+              <div>
+                <h3 class="font-display font-bold heading-card text-eop-dark mt-8">{m.name}</h3>
+                <p class="mt-3 text-eop-dark/85">{m.text}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="pt-8" data-reveal="up">
+        <div class="overflow-hidden border-2 border-eop-dark bg-eop-offwhite">
+          <img src="/cible_vitra.png" alt="Public cible du projet Vitra : le visiteur autonome, notamment les touristes, les familles, les curieux et les amateurs de design." class="block w-full h-auto" loading="lazy" decoding="async" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 04 RÉFLEXION ========== -->
+  <section id="reflexion" data-chapter="reflexion" class="dark-surface py-20 lg:py-28 bg-eop-dark text-eop-offwhite eop-grid-bg-dark border-b border-eop-light/20">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
+      <div class="pb-12 border-b border-eop-light/20" data-reveal="slide-right">
+        <SectionTag num="04" label="La réflexion stratégique" />
+        <h2 data-words class="font-display font-extrabold heading-section text-eop-offwhite mt-5 max-w-4xl">L’autonomie accompagnée : laisser le choix, donner des repères.</h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 pt-12 items-stretch">
+        <div data-reveal="up" class="lg:col-span-4 border border-eop-light/30 p-6 sm:p-8">
+          <span class="font-mono text-xs text-eop-rose">AUTONOMIE</span>
+          <p class="font-display font-bold text-2xl mt-4 text-eop-light">Explorer à son propre rythme.</p>
+        </div>
+        <div class="hidden lg:flex lg:col-span-1 items-center justify-center font-display font-extrabold text-4xl text-eop-rose" aria-hidden="true">+</div>
+        <div data-reveal="up" style="transition-delay:90ms" class="lg:col-span-3 border border-eop-light/30 p-6 sm:p-8">
+          <span class="font-mono text-xs text-eop-rose">ACCOMPAGNEMENT</span>
+          <p class="font-display font-bold text-2xl mt-4 text-eop-light">Se repérer et comprendre le campus.</p>
+        </div>
+        <div class="hidden lg:flex lg:col-span-1 items-center justify-center font-display font-extrabold text-4xl text-eop-rose" aria-hidden="true">=</div>
+        <div data-reveal="up" style="transition-delay:180ms" class="lg:col-span-3 bg-eop-rose text-eop-dark p-6 sm:p-8">
+          <span class="font-mono text-xs">VISITE</span>
+          <p class="font-display font-extrabold text-2xl mt-4">Autonome et intuitive.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 pt-6">
+        <p data-reveal="up" class="lg:col-span-6 text-lg text-eop-light/90 leading-relaxed">
+          Le projet vise à {p.description.charAt(0).toLowerCase() + p.description.slice(1)}
+        </p>
+        <p class="lg:col-span-6 text-lg text-eop-light/90 leading-relaxed" data-reveal="up">
+          Afin de définir le positionnement stratégique optimal pour Vitra, j'ai mené une étude comparative d'institutions culturelles majeures telles que le V&amp;A, The Getty Center, la Fondation Louis Vuitton et le Musée du Louvre.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 05 PARCOURS ========== -->
+  <section id="parcours" data-chapter="parcours" class="py-20 lg:py-28 bg-eop-offwhite border-b border-eop-dark/20">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-12 items-end">
+        <div class="lg:col-span-6" data-reveal="slide-right">
+          <SectionTag num="05" label="Le parcours imaginé" tone="light" />
+          <h2 data-words class="font-display font-extrabold heading-section text-eop-dark mt-5">De la difficulté à la réponse.</h2>
+        </div>
+        <p class="lg:col-span-6 text-lg text-eop-dark/85 leading-relaxed" data-reveal="up">
+          Chaque étape de la visite est mise en regard d’un élément de la démarche : la signalétique physique et l’interface mobile se répondent.
+        </p>
+      </div>
+
+      <div data-draw class="relative pt-4">
+        <!-- Tracé horizontal (ordinateur) -->
+        <div class="hidden lg:block absolute left-0 right-0 top-[3.1rem] h-[3px] bg-eop-dark/15" aria-hidden="true">
+          <div class="draw-x h-full w-full bg-eop-dark"></div>
+        </div>
+        <!-- Tracé vertical (mobile) -->
+        <div class="lg:hidden absolute left-[0.7rem] top-6 bottom-6 w-[3px] bg-eop-dark/15" aria-hidden="true">
+          <div class="draw-y h-full w-full bg-eop-dark"></div>
+        </div>
+
+        <ol class="relative grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-6">
+          {
+            journey.map((s, i) => (
+              <li class="draw-stop relative pl-12 lg:pl-0 lg:pt-14" style={`--i:${i}`}>
+                <span class:list={['absolute left-0 top-0 lg:top-[0.9rem] w-6 h-6 border-2 border-eop-dark', i % 2 === 0 ? 'bg-eop-dark' : 'bg-eop-rose']} aria-hidden="true"></span>
+                <span class="font-mono text-xs text-eop-dark/65">ÉTAPE 0{i + 1}</span>
+                <h3 class="font-display font-extrabold text-2xl text-eop-dark mt-1">{s.step}</h3>
+                <p class="mt-3 font-semibold text-eop-dark">{s.answer}</p>
+                <p class="mt-2 font-mono text-[11px] uppercase tracking-wider text-eop-dark/60">{s.from}</p>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 06 CONCEPTION ========== -->
+  <section id="conception" data-chapter="conception" class="py-20 lg:py-28 bg-eop-light/40 eop-grid-bg border-b border-eop-dark/20">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
+      <div class="pb-10" data-reveal="slide-right">
+        <SectionTag num="06" label="Conception & maquettes" tone="dark" />
+        <h2 data-words class="font-display font-extrabold heading-section text-eop-dark mt-5 max-w-4xl">Un système de repères et une interface mobile.</h2>
+      </div>
+
+      <!-- Visuel large : direction visuelle -->
+      <figure data-reveal="frame" class="m-0">
+        <div class="border-2 border-eop-dark bg-eop-offwhite p-3 sm:p-5 shadow-[8px_8px_0px_#232836]">
+          <div class="overflow-hidden border border-eop-dark bg-eop-light/30 aspect-[16/10] lg:aspect-[16/8]">
+            <ProjectVisual id="vitra" />
+          </div>
+        </div>
+        <figcaption class="font-mono text-xs text-eop-dark/75 mt-4">Aperçu schématique — direction visuelle : {p.visualDirection}</figcaption>
+      </figure>
+
+      <!-- Maquettes : emplacements pour les vrais écrans -->
+      <div class="grid grid-cols-2 lg:grid-cols-12 gap-5 lg:gap-8 pt-14 items-start">
+        <div class="col-span-2 lg:col-span-6" data-reveal="up">
+          <ProjectFigure image={{ src: '/principe_vitra.png', alt: 'Principe de conception du projet Vitra.' }} label="Principe de conception" ratio="aspect-[2/1]" caption="Principe de conception" />
+        </div>
+        <div class="lg:col-span-3" data-reveal="up" style="transition-delay:90ms">
+          <ProjectFigure image={{ src: '/reperage.png', alt: 'Écran de repérage de l’interface Vitra.' }} label="Repérage" ratio="aspect-[9/16]" caption="Repérage" />
+        </div>
+        <div class="lg:col-span-3 lg:mt-12" data-reveal="up" style="transition-delay:180ms">
+          <ProjectFigure image={{ src: '/parcours.png', alt: 'Écran de parcours de l’interface Vitra.' }} label="Parcours" ratio="aspect-[9/16]" caption="Parcours" />
+        </div>
+      </div>
+
+      <!-- Propositions de conception -->
+      <ol class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-14">
+        {
+          [p.approach[1], p.approach[2], 'Quatre livrables : ' + p.deliverables.join(', ') + '.'].map((txt, i) => (
+            <li data-reveal="up" style={`transition-delay:${i * 90}ms`} class:list={['border-2 border-eop-dark p-6', i === 1 ? 'bg-eop-rose/50' : 'bg-eop-offwhite']}>
+              <span class="font-mono text-xs text-eop-dark/65">PROPOSITION 0{i + 1}</span>
+              <p class="mt-4 text-eop-dark leading-relaxed">{txt}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- ========== 07 RÉSULTAT ========== -->
+  <section id="resultat" data-chapter="resultat" class="dark-surface py-20 lg:py-28 bg-eop-dark text-eop-offwhite eop-grid-bg-dark">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
+      <div class="lg:col-span-6" data-reveal="slide-right">
+        <SectionTag num="07" label="Le résultat" />
+        <h2 data-words class="font-display font-extrabold heading-section text-eop-offwhite mt-5">Une réflexion stratégique devenue expérience cohérente.</h2>
+        <p class="mt-6 text-lg text-eop-light/90 leading-relaxed">
+          Le projet relie une question de communication — donner une nouvelle raison de découvrir un lieu — à la conception d’une expérience de visite, de la signalétique physique à l’interface numérique.
+        </p>
+      </div>
+
+      <div class="lg:col-span-6 space-y-6" data-reveal="up">
+        <ul class="border-t border-eop-light/25">
+          {
+            p.deliverables.map((d, i) => (
+              <li class="flex items-center justify-between gap-4 py-5 border-b border-eop-light/25">
+                <span class="font-display font-bold text-xl text-eop-light">{d}</span>
+                <span class="font-mono text-xs text-eop-rose">LIVRABLE 0{i + 1}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="font-display font-bold text-lg text-eop-light/90 leading-relaxed">
+          Le projet Vitra m’a appris à concevoir une expérience de communication complète, en partant des besoins des visiteurs et de l’identité du lieu. J’ai pu approfondir mes compétences en UX/UI, en direction artistique et en conception de supports numériques et physiques. Ce projet m’a également permis de comprendre l’importance de rendre un lieu culturel accessible et de favoriser l’autonomie des visiteurs, tout en les guidant dans leur découverte du Campus Vitra.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <ProjectPager currentId="vitra" />
+</PageLayout>

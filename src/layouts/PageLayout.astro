@@ -1,0 +1,61 @@
+---
+import Layout from './Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/pages.css';
+
+// Gabarit commun des nouvelles pages : réutilise Layout, Header et Footer existants.
+// stage = true : entrée en scène (rideau de colonnes + chorégraphie du hero) sur cette page.
+interface Props {
+  title: string;
+  description?: string;
+  current?: 'projects' | 'parcours' | 'contact' | '';
+  stage?: boolean;
+}
+const { title, description, current = '', stage = false } = Astro.props;
+const veilColumns = [0, 1, 2, 3, 4, 5, 6];
+---
+
+<Layout title={title} description={description}>
+  {/*
+    Posé avant tout contenu : prépare l'entrée en scène sans attendre le chargement des scripts.
+    - mouvement réduit → aucune classe ajoutée : la page s'affiche telle quelle ;
+    - filet de sécurité : après 4,5 s, tout est forcé à son état final.
+  */}
+  <script is:inline define:vars={{ stage }}>
+    (function () {
+      var root = document.documentElement;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var fromVeil = false;
+      try {
+        fromVeil = sessionStorage.getItem('eop-veil') === '1';
+        sessionStorage.removeItem('eop-veil');
+      } catch (e) {}
+      if (!reduce && (stage || fromVeil)) {
+        root.classList.add('veil-arrive');
+        if (stage) root.classList.add('has-stage');
+        window.setTimeout(function () {
+          root.classList.add('stage-done');
+        }, 4500);
+      }
+    })();
+  </script>
+
+  <div class="veil" data-veil aria-hidden="true">
+    {
+      veilColumns.map((i) => (
+        <span class="veil-col" style={`--i:${i}`}>
+          <span class="veil-rose"></span>
+          <span class="veil-dark"></span>
+        </span>
+      ))
+    }
+  </div>
+
+  <Header variant="page" current={current} />
+  <main id="contenu-principal" class="flex-1 pt-20">
+    <slot />
+  </main>
+  <Footer variant="page" />
+  <script src="../scripts/pages.js"></script>
+</Layout>

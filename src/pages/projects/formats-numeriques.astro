@@ -1,0 +1,157 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import SectionTag from '../../components/SectionTag.astro';
+import ProjectVisual from '../../components/ProjectVisual.astro';
+import ProjectFigure from '../../components/ProjectFigure.astro';
+import PlaceholderSlot from '../../components/PlaceholderSlot.astro';
+import ProjectPager from '../../components/ProjectPager.astro';
+import StageTitle from '../../components/StageTitle.astro';
+import StageDeco from '../../components/StageDeco.astro';
+import { getProject } from '../../data/projects.js';
+
+const p = getProject('formats-numeriques');
+const cover = p.images[0];
+
+// Un cadre par livrable, avec des proportions de support différentes
+const frames = [
+  { d: p.deliverables[1], ratio: 'aspect-[9/16]', tag: 'FORMAT VERTICAL', img: p.images[1] },
+  { d: p.deliverables[0], ratio: 'aspect-square', tag: 'FORMAT CARRÉ 1:1', img: p.images[2], caption: 'Gabarits post X / Twitter' },
+  { d: p.deliverables[2], ratio: 'aspect-[16/10]', tag: 'FORMAT WEB', img: p.images[3] },
+];
+---
+
+<PageLayout
+  current="projects"
+  stage
+  title="Communication — Formats numériques · Étude de cas EOP."
+  description="Étude de cas : décliner un message sur plusieurs supports numériques — carrousels, gabarits réseaux sociaux et landing page éditoriale."
+>
+  <div id="reading-progress" class="eop-progress" aria-hidden="true"></div>
+
+  <!-- ========== HERO : les formats défilent puis s'éventent ========== -->
+  <section class="stg-root bg-eop-rose/40 eop-grid-bg border-b-2 border-eop-dark overflow-hidden" data-hero>
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 pt-10 pb-14 lg:pt-14 lg:pb-20">
+      <nav aria-label="Fil d’Ariane" class="stage-rise font-mono text-xs text-eop-dark/70 mb-8" style="--d:0.9s">
+        <a href="/projects/" class="eop-link hover:text-eop-dark">Projets</a>
+        <span aria-hidden="true"> / </span>
+        <span aria-current="page" class="text-eop-dark font-semibold">{p.name}</span>
+      </nav>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <div class="lg:col-span-6">
+          <div class="stage-rise" style="--d:1s"><SectionTag num={p.num} label={p.categories} tone="dark" /></div>
+          <div class="plx-s" style="--s:-45">
+            <h1 class="font-display font-extrabold text-eop-dark leading-[0.95] tracking-tight text-[clamp(3rem,6.8vw,6.25rem)] mt-6">
+              <StageTitle lines={[{ text: 'Formats' }, { text: 'numériques' }]} variant="swipe" />
+            </h1>
+          </div>
+          <div class="mt-8 space-y-3">
+            <p class="stage-rise font-display font-bold text-2xl text-eop-dark" style="--d:1.5s">{p.tagline}</p>
+            <p class="stage-rise text-lg text-eop-dark/85 leading-relaxed max-w-lg" style="--d:1.6s">{p.description}</p>
+          </div>
+        </div>
+
+        <div class="relative lg:col-span-6">
+          <StageDeco />
+          <div class="plx-s" style="--s:25">
+            <div class="plx-p" style="--d:10">
+              <div class="relative border-2 border-eop-dark bg-eop-offwhite p-3 shadow-[8px_8px_0px_#232836]">
+                <div class="stage-frame stage-art overflow-hidden border border-eop-dark bg-eop-light/30 aspect-[16/10]" style="--clip-from: inset(0 100% 0 0)">
+                  <div class="stage-img w-full h-full">
+                    {cover ? <img src={cover.src} alt={cover.alt} class="w-full h-full object-cover" /> : <ProjectVisual id="formats-numeriques" />}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTEXTE ========== -->
+  <section class="py-16 lg:py-24 bg-eop-offwhite border-b border-eop-dark/20">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div class="lg:col-span-4" data-reveal="slide-right">
+        <SectionTag num="01" label="Contexte & besoin" tone="light" />
+      </div>
+      <div class="lg:col-span-8 space-y-5" data-reveal="mask">
+        <p class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl leading-tight tracking-tight text-eop-dark">{p.context}</p>
+        <p class="text-lg text-eop-dark/80 leading-relaxed">Direction visuelle : {p.visualDirection}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== DÉMARCHE : frise horizontale ========== -->
+  <section aria-labelledby="demarche-titre" class="py-20 lg:py-28 bg-eop-light/40 border-b border-eop-dark/20">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
+      <div data-reveal="slide-right" class="pb-12">
+        <SectionTag num="02" label="La démarche" tone="dark" />
+        <h2 data-words id="demarche-titre" class="font-display font-extrabold heading-section text-eop-dark mt-5">Une grille constante, des formats qui changent.</h2>
+      </div>
+
+      <div data-draw class="relative">
+        <div class="hidden lg:block absolute left-0 right-0 top-[1.15rem] h-[3px] bg-eop-dark/15" aria-hidden="true"><div class="draw-x h-full bg-eop-dark"></div></div>
+        <ol class="relative grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
+          {
+            p.approach.map((step, i) => (
+              <li class="draw-stop relative border-2 border-eop-dark bg-eop-offwhite p-6 lg:mt-12 shadow-[5px_5px_0px_#232836]" style={`--i:${i}`}>
+                <span class="absolute -top-3 left-6 lg:-top-[2.55rem] w-6 h-6 border-2 border-eop-dark bg-eop-rose" aria-hidden="true"></span>
+                <span class="font-mono text-xs text-eop-dark/65">TEMPS 0{i + 1}</span>
+                <p class="mt-4 text-base sm:text-lg text-eop-dark leading-relaxed">{step}</p>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== RÉALISATIONS : cadres aux proportions de chaque support ========== -->
+  <section aria-labelledby="realisations-titre" class="py-20 lg:py-28 bg-eop-offwhite border-b border-eop-dark/20">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
+      <div data-reveal="slide-right" class="pb-12">
+        <SectionTag num="03" label="Les réalisations" tone="light" />
+        <h2 data-words id="realisations-titre" class="font-display font-extrabold heading-section text-eop-dark mt-5">Un message, trois formats.</h2>
+        <p class="mt-4 font-mono text-xs text-eop-dark/65 hidden lg:block">Survolez un cadre pour l’agrandir.</p>
+      </div>
+
+      <div class="fmt-row flex flex-col lg:flex-row gap-8 items-start">
+        {
+          frames.map((f, i) => (
+            <div class="fmt-frame w-full">
+              <div data-reveal="frame">
+                <p class="font-mono text-[11px] uppercase tracking-wider text-eop-dark/65 mb-2">0{i + 1} // {f.tag}</p>
+                <ProjectFigure image={f.img} label={f.d} hint="Ajoutez votre visuel dans src/data/projects.js." ratio={f.ratio} caption={f.caption ?? f.d} />
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <figure data-reveal="frame" class="m-0 mt-16 border-2 border-eop-dark bg-eop-offwhite p-3 sm:p-5 shadow-[8px_8px_0px_#e8bce9]">
+        <div class="overflow-hidden border border-eop-dark bg-eop-light/30 aspect-[16/10] lg:aspect-[16/7]"><ProjectVisual id="formats-numeriques" /></div>
+        <figcaption class="font-mono text-xs text-eop-dark/75 mt-4">Aperçu schématique : format vertical, carrousel 1:1, synthèse et format web.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ========== CONCLUSION ========== -->
+  <section class="py-16 lg:py-24 bg-eop-dark text-eop-offwhite dark-surface eop-grid-bg-dark">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+      <div class="lg:col-span-6" data-reveal="slide-right">
+        <SectionTag num="04" label="Le résultat" />
+        <p class="mt-6 font-display font-extrabold text-2xl sm:text-3xl text-eop-light leading-tight">
+          Des gabarits qui rendent le message reconnaissable d’un support à l’autre.
+        </p>
+      </div>
+      <div class="lg:col-span-6" data-reveal="up">
+        <p class="font-display text-lg sm:text-xl text-eop-offwhite/85 leading-relaxed">
+          Ces multiples projets, réalisés sur divers formats numériques, m'ont permis de développer une véritable polyvalence graphique et en communication. Ils m'ont appris à aborder une problématique sous différents angles, tout en restant ouvert à de nouvelles approches.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <ProjectPager currentId="formats-numeriques" />
+</PageLayout>

@@ -1,0 +1,154 @@
+---
+// variant="home" (défaut) : navigation par ancres de la page d'accueil — rendu inchangé.
+// variant="page" : navigation entre les pages (Projets, Parcours, Contact) pour les nouvelles pages.
+interface Props { variant?: 'home' | 'page'; current?: string; }
+const { variant = 'home', current = '' } = Astro.props;
+
+const homeItems = [
+  { label: 'Accueil', href: '#accueil' },
+  { label: 'À propos', href: '#a-propos' },
+  { label: 'Compétences', href: '#competences' },
+  { label: 'Projets', href: '#projets' },
+  { label: 'Méthode', href: '#methode' },
+  { label: 'Contact', href: '#contact' },
+];
+const pageItems = [
+  { label: 'Accueil', href: '/', key: 'home' },
+  { label: 'Projets', href: '/projects/', key: 'projects' },
+  { label: 'Parcours', href: '/parcours/', key: 'parcours' },
+  { label: 'Contact', href: '/contact/', key: 'contact' },
+];
+const isPage = variant === 'page';
+const navItems = isPage ? pageItems : homeItems;
+const logoHref = isPage ? '/' : '#accueil';
+const contactHref = isPage ? '/contact/' : '#contact';
+---
+
+<header
+  id="site-header"
+  class="fixed top-0 left-0 right-0 z-50 bg-eop-offwhite/90 backdrop-blur-sm border-b border-eop-dark/15 transition-all duration-300"
+>
+  <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
+    <div
+      id="header-inner"
+      class="flex items-center justify-between h-20 transition-all duration-300"
+    >
+      <!-- Logo EOP. -->
+      <a
+        href={logoHref}
+        class="group inline-flex items-center gap-3 focus:outline-none"
+        aria-label="EOP. — Retour à l'accueil"
+      >
+        <span
+          class="w-7 h-7 bg-eop-dark text-eop-offwhite flex items-center justify-center font-mono text-xs font-medium border border-eop-dark transition-transform duration-300 group-hover:bg-eop-rose group-hover:text-eop-dark group-hover:rotate-90"
+          aria-hidden="true"
+        >
+          ■
+        </span>
+        <span class="font-display font-extrabold text-2xl tracking-tight text-eop-dark">
+          EOP.
+        </span>
+      </a>
+
+      <!-- Navigation horizontale Desktop -->
+      <nav aria-label="Navigation principale" class="hidden lg:flex items-center gap-7">
+        <ul class="flex items-center gap-7">
+          {
+            navItems.map((item, index) => (
+              <li>
+                <a
+                  href={item.href}
+                  data-nav-link={item.href.replace('#', '')}
+                  aria-current={isPage && item.key === current ? 'page' : undefined}
+                  class="eop-link font-sans text-sm font-medium text-eop-dark/80 hover:text-eop-dark py-1 transition-colors"
+                >
+                  <span class="font-mono text-[10px] text-eop-dark/50 mr-1.5" aria-hidden="true">
+                    0{index + 1}
+                  </span>
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <!-- Action Desktop + Bouton Menu Mobile -->
+      <div class="flex items-center gap-3">
+        <a
+          href={contactHref}
+          class="hidden sm:inline-flex items-center gap-2.5 bg-eop-dark text-eop-offwhite px-4 py-2.5 text-sm font-semibold border border-eop-dark transition-all duration-300 hover:bg-eop-rose hover:text-eop-dark hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#232836]"
+        >
+          <span class="w-2 h-2 bg-eop-rose inline-block" aria-hidden="true"></span>
+          <span>Me contacter</span>
+        </a>
+
+        <!-- Bouton d'ouverture du menu mobile -->
+        <button
+          id="mobile-menu-toggle"
+          type="button"
+          class="lg:hidden inline-flex items-center justify-center w-11 h-11 border border-eop-dark bg-eop-offwhite text-eop-dark hover:bg-eop-light transition-colors"
+          aria-expanded="false"
+          aria-controls="mobile-menu-panel"
+          aria-label="Ouvrir le menu de navigation"
+        >
+          <span class="sr-only">Menu</span>
+          <div class="w-5 h-4 relative flex flex-col justify-between" aria-hidden="true">
+            <span
+              id="burger-line-1"
+              class="w-full h-0.5 bg-eop-dark transition-transform duration-300 origin-center"
+            ></span>
+            <span
+              id="burger-line-2"
+              class="w-full h-0.5 bg-eop-dark transition-opacity duration-300"
+            ></span>
+            <span
+              id="burger-line-3"
+              class="w-full h-0.5 bg-eop-dark transition-transform duration-300 origin-center"
+            ></span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Menu Mobile Accessible -->
+  <div
+    id="mobile-menu-panel"
+    class="lg:hidden hidden border-t border-eop-dark/20 bg-eop-offwhite"
+    aria-label="Menu mobile"
+  >
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 py-6">
+      <div class="grid grid-cols-1 gap-2 border-l-2 border-eop-dark pl-4">
+        {
+          navItems.map((item, index) => (
+            <a
+              href={item.href}
+              data-mobile-link
+              data-nav-link={item.href.replace('#', '')}
+              aria-current={isPage && item.key === current ? 'page' : undefined}
+              class="flex items-center justify-between py-3 px-3 border border-transparent hover:border-eop-dark/20 hover:bg-eop-light/50 text-lg font-display font-bold text-eop-dark transition-colors"
+            >
+              <span>{item.label}</span>
+              <span class="font-mono text-xs text-eop-dark/60">[0{index + 1}]</span>
+            </a>
+          ))
+        }
+      </div>
+
+      <div class="mt-6 pt-5 border-t border-eop-dark/15 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+        <a
+          href={contactHref}
+          data-mobile-link
+          class="eop-btn-primary w-full sm:w-auto text-center"
+        >
+          <span>Me contacter</span>
+          <span aria-hidden="true">→</span>
+        </a>
+        <p class="font-mono text-xs text-eop-dark/60">
+          EOP. // STRATÉGIE &amp; CRÉATION NUMÉRIQUE
+        </p>
+      </div>
+    </div>
+  </div>
+</header>

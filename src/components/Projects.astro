@@ -1,0 +1,425 @@
+---
+const projects = [
+  {
+    id: 'vitra',
+    num: '01',
+    title: 'Vitra — Autonomie accompagnée',
+    categories: 'STRATÉGIE · UX/UI',
+    description:
+      'Imaginer une expérience de visite qui aide chacun à se repérer, à comprendre le campus et à explorer à son propre rythme.',
+    visualDirection: 'Cartographie abstraite, modules, repères et système de navigation.',
+    context:
+      'Projet de démonstration (à personnaliser) portant sur l’orientation et la médiation au sein d’un espace culturel et architectural complexe.',
+    approach: [
+      'Analyse des besoins d’orientation selon différents profils de visiteurs (découverte libre, parcours thématique, visite rapide).',
+      'Conception d’un système de repères visuels modulaires inspiré du carré et de la signalétique éditoriale.',
+      'Prototypage d’une interface mobile claire permettant de visualiser sa position, les points d’intérêt et le temps de parcours sans surcharge cognitive.',
+    ],
+    deliverables: ['Note d’intention stratégique', 'Système de pictogrammes & repères', 'Maquettes UX/UI interactives'],
+  },
+  {
+    id: 'festivete',
+    num: '02',
+    title: 'Bocksons Festival — Identité événementielle',
+    categories: 'DIRECTION ARTISTIQUE · PRINT',
+    description:
+      'Construire un univers graphique convivial et cohérent pour valoriser un événement culturel et renforcer son identité.',
+    visualDirection: 'Affiche illustrée, composition géométrique et ambiance événementielle chaleureuse.',
+    context:
+      'Projet de démonstration (à personnaliser) visant à doter un rendez-vous culturel estival d’une identité visuelle immédiatement identifiable sur l’ensemble de ses supports.',
+    approach: [
+      'Définition d’un langage géométrique associant trames structurées, typographie expressive et contrastes chromatiques.',
+      'Conception d’une affiche maîtresse modulaire pouvant se décliner en programme imprimé, signalétique sur site et bannières numériques.',
+      'Hiérarchisation claire des informations pratiques (programmation, lieux, horaires) pour garantir une lecture immédiate.',
+    ],
+    deliverables: ['Affiche officielle & déclinaisons print', 'Charte graphique événementielle', 'Kit de signalétique modulaire'],
+  },
+  {
+    id: 'formats-numeriques',
+    num: '03',
+    title: 'Communication — Formats numériques',
+    categories: 'CONTENU · DIGITAL',
+    description:
+      'Décliner un message sur différents supports numériques en conciliant lisibilité, cohérence éditoriale et impact visuel.',
+    visualDirection: 'Composition éditoriale et aperçu de supports numériques.',
+    context:
+      'Projet de démonstration (à personnaliser) explorant l’adaptation d’une campagne éditoriale multi-supports (carrousels pédagogiques, formats courts et page dédiée).',
+    approach: [
+      'Découpage d’un sujet complexe en séquences narratives courtes, structurées autour d’une grille modulaire constante.',
+      'Création de gabarits éditoriaux garantissant une reconnaissance visuelle immédiate d’un format à l’autre.',
+      'Optimisation des contrastes typographiques et du rythme de lecture pour les écrans mobiles et ordinateurs.',
+    ],
+    deliverables: ['Série de carrousels éditoriaux', 'Gabarits réseaux sociaux', 'Landing page éditoriale responsive'],
+  },
+];
+---
+
+<section
+  id="projets"
+  data-section="projets"
+  class="py-20 lg:py-28 bg-eop-offwhite border-b border-eop-dark/20 relative"
+>
+  <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
+    <!-- En-tête de la section Projets -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-12 border-b border-eop-dark/20 items-end">
+      <div class="lg:col-span-6" data-reveal="slide-right">
+        <div class="inline-flex items-center gap-2.5 font-mono text-xs sm:text-sm font-semibold uppercase tracking-widest text-eop-dark bg-eop-rose px-3.5 py-1.5 border border-eop-dark mb-4">
+          <span class="w-2 h-2 bg-eop-dark" aria-hidden="true"></span>
+          <span>03 — SÉLECTION</span>
+        </div>
+        <h2 class="font-display font-extrabold heading-section text-eop-dark">
+          Des intentions, des idées, des réalisations.
+        </h2>
+      </div>
+
+      <div class="lg:col-span-6 flex flex-col justify-between gap-20" data-reveal="up">
+        <p class="text-lg sm:text-xl text-eop-dark/85 leading-relaxed">
+          Chaque projet est une occasion d'explorer une problématique, de prendre des décisions et de donner forme à une idée.
+        </p>
+        <a href="/projects/" class="eop-btn-secondary self-start group/all">
+          <span>Voir tous les projets</span>
+          <span class="transition-transform duration-300 group-hover/all:translate-x-1" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Liste des 3 projets avec compositions variées et asymétriques -->
+    <div class="divide-y divide-eop-dark/20">
+      {
+        projects.map((project, index) => {
+          const isReversed = index === 1;
+          return (
+            <article
+              data-reveal="up"
+              class="py-12 lg:py-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center group"
+            >
+              <!-- Visuel SVG Original sur-mesure (7 colonnes sur desktop) -->
+              <div
+                class:list={[
+                  'lg:col-span-7 relative',
+                  isReversed ? 'lg:order-2' : 'lg:order-1',
+                ]}
+              >
+                <div class="border-2 border-eop-dark bg-eop-offwhite p-3 sm:p-5 shadow-[6px_6px_0px_#232836] transition-transform duration-500 group-hover:-translate-y-1">
+                  <!-- Barre d'en-tête du cadre visuel -->
+                  <div class="flex items-center justify-between pb-3 mb-3 border-b border-eop-dark/20 font-mono text-xs text-eop-dark/75">
+                    <span class="flex items-center gap-2">
+                      <span class="w-2 h-2 bg-eop-dark inline-block" />
+                      PROJET {project.num} // EXEMPLE À PERSONNALISER
+                    </span>
+                    <span class="font-semibold text-eop-dark">{project.categories}</span>
+                  </div>
+
+                  <!-- Illustration SVG intégrée spécifique à chaque projet -->
+                  <div class="relative overflow-hidden border border-eop-dark bg-eop-light/30 aspect-[16/10]">
+                    {project.id === 'vitra' && (
+                      <svg
+                        viewBox="0 0 640 400"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                        role="img"
+                        aria-label="Illustration abstraite de cartographie et système de navigation pour le projet Vitra"
+                      >
+                        <rect width="640" height="400" fill="#fffaff" />
+                        <!-- Grille cartographique -->
+                        <g stroke="#232836" stroke-opacity="0.12" stroke-width="1">
+                          <line x1="80" y1="0" x2="80" y2="400" />
+                          <line x1="160" y1="0" x2="160" y2="400" />
+                          <line x1="240" y1="0" x2="240" y2="400" />
+                          <line x1="320" y1="0" x2="320" y2="400" />
+                          <line x1="400" y1="0" x2="400" y2="400" />
+                          <line x1="480" y1="0" x2="480" y2="400" />
+                          <line x1="560" y1="0" x2="560" y2="400" />
+                          <line x1="0" y1="80" x2="640" y2="80" />
+                          <line x1="0" y1="160" x2="640" y2="160" />
+                          <line x1="0" y1="240" x2="640" y2="240" />
+                          <line x1="0" y1="320" x2="640" y2="320" />
+                        </g>
+                        <!-- Zones architecturales du campus -->
+                        <rect x="60" y="55" width="170" height="120" fill="#f5dbf7" stroke="#232836" stroke-width="2.5" />
+                        <rect x="280" y="85" width="140" height="140" fill="#232836" />
+                        <rect x="460" y="55" width="120" height="180" fill="#e8bce9" stroke="#232836" stroke-width="2.5" />
+                        <rect x="110" y="235" width="220" height="110" fill="#fffaff" stroke="#232836" stroke-width="2.5" />
+                        <!-- Tracé de parcours d'orientation -->
+                        <path
+                          d="M 145 115 L 350 155 L 520 145 L 220 290"
+                          fill="none"
+                          stroke="#232836"
+                          stroke-width="3.5"
+                          stroke-dasharray="8 6"
+                        />
+                        <!-- Nœuds carrés de repérage -->
+                        <rect x="133" y="103" width="24" height="24" fill="#232836" />
+                        <rect x="338" y="143" width="24" height="24" fill="#e8bce9" stroke="#fffaff" stroke-width="2" />
+                        <rect x="508" y="133" width="24" height="24" fill="#fffaff" stroke="#232836" stroke-width="2.5" />
+                        <rect x="208" y="278" width="24" height="24" fill="#232836" />
+                        <!-- Étiquettes de repères -->
+                        <rect x="75" y="70" width="65" height="22" fill="#232836" />
+                        <text x="84" y="85" fill="#fffaff" font-family="monospace" font-size="11">ZONE A1</text>
+                        <text x="298" y="120" fill="#f5dbf7" font-family="monospace" font-size="11">REPÈRE CENTRAL</text>
+                        <text x="130" y="265" fill="#232836" font-family="monospace" font-weight="bold" font-size="12">PARCOURS AUTONOME // 01</text>
+                      </svg>
+                    )}
+
+                    {project.id === 'festivete' && (
+                      <svg
+                        viewBox="0 0 640 400"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                        role="img"
+                        aria-label="Composition d'affiche géométrique et événementielle pour le projet Bocksons Festival"
+                      >
+                        <rect width="640" height="400" fill="#f5dbf7" />
+                        <!-- Composition d'affiche centrale et déclinaisons -->
+                        <rect x="45" y="35" width="250" height="330" fill="#232836" />
+                        <rect x="65" y="55" width="210" height="130" fill="#e8bce9" />
+                        <!-- Motifs carrés rythmiques de l'affiche -->
+                        <rect x="85" y="75" width="45" height="45" fill="#232836" />
+                        <rect x="140" y="75" width="45" height="45" fill="#fffaff" />
+                        <rect x="195" y="75" width="60" height="90" fill="#232836" />
+                        <rect x="85" y="130" width="100" height="35" fill="#f5dbf7" />
+                        <text x="65" y="225" fill="#fffaff" font-family="sans-serif" font-weight="bold" font-size="20">Bocksons Festival</text>
+                        <text x="65" y="252" fill="#e8bce9" font-family="monospace" font-size="12">ÉDITION CULTURELLE // PRINT</text>
+                        <line x1="65" y1="272" x2="275" y2="272" stroke="#f5dbf7" stroke-width="1.5" />
+                        <rect x="65" y="290" width="95" height="50" fill="#fffaff" />
+                        <rect x="175" y="290" width="100" height="50" fill="#e8bce9" />
+                        <!-- Supports déclinés à droite -->
+                        <rect x="330" y="50" width="265" height="145" fill="#fffaff" stroke="#232836" stroke-width="2.5" />
+                        <rect x="350" y="70" width="75" height="105" fill="#e8bce9" stroke="#232836" stroke-width="2" />
+                        <text x="445" y="98" fill="#232836" font-family="monospace" font-weight="bold" font-size="13">SYSTÈME D’AFFICHE</text>
+                        <text x="445" y="122" fill="#232836" font-family="monospace" font-size="11">GRILLE MODULAIRE</text>
+                        <rect x="445" y="140" width="120" height="24" fill="#232836" />
+                        <rect x="330" y="220" width="265" height="145" fill="#e8bce9" stroke="#232836" stroke-width="2.5" />
+                        <rect x="350" y="242" width="48" height="48" fill="#232836" />
+                        <rect x="410" y="242" width="48" height="48" fill="#fffaff" stroke="#232836" stroke-width="2" />
+                        <rect x="470" y="242" width="100" height="48" fill="#232836" />
+                        <text x="350" y="325" fill="#232836" font-family="monospace" font-weight="bold" font-size="12">SIGNALÉTIQUE &amp; PROGRAMME</text>
+                      </svg>
+                    )}
+
+                    {project.id === 'formats-numeriques' && (
+                      <svg
+                        viewBox="0 0 640 400"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                        role="img"
+                        aria-label="Système de gabarits éditoriaux et formats numériques modulaires"
+                      >
+                        <rect width="640" height="400" fill="#fffaff" />
+                        <!-- 3 écrans / formats carrés et verticaux éditoriaux -->
+                        <rect x="40" y="45" width="170" height="310" fill="#232836" />
+                        <rect x="56" y="65" width="138" height="138" fill="#f5dbf7" />
+                        <rect x="74" y="83" width="46" height="46" fill="#232836" />
+                        <rect x="56" y="220" width="110" height="14" fill="#e8bce9" />
+                        <rect x="56" y="246" width="138" height="8" fill="#fffaff" fill-opacity="0.6" />
+                        <rect x="56" y="264" width="95" height="8" fill="#fffaff" fill-opacity="0.6" />
+                        <text x="56" y="325" fill="#f5dbf7" font-family="monospace" font-size="11">FORMAT 01 // STORY</text>
+
+                        <rect x="235" y="45" width="170" height="170" fill="#e8bce9" stroke="#232836" stroke-width="2.5" />
+                        <rect x="255" y="65" width="130" height="75" fill="#fffaff" stroke="#232836" stroke-width="2" />
+                        <text x="255" y="168" fill="#232836" font-family="monospace" font-weight="bold" font-size="12">CARROUSEL 1:1</text>
+                        <text x="255" y="190" fill="#232836" font-family="monospace" font-size="11">GRILLE ÉDITORIALE</text>
+
+                        <rect x="235" y="235" width="170" height="120" fill="#f5dbf7" stroke="#232836" stroke-width="2.5" />
+                        <rect x="255" y="255" width="36" height="36" fill="#232836" />
+                        <text x="305" y="278" fill="#232836" font-family="monospace" font-weight="bold" font-size="12">SYNTHÈSE</text>
+                        <rect x="255" y="308" width="130" height="22" fill="#232836" />
+
+                        <rect x="430" y="45" width="170" height="310" fill="#fffaff" stroke="#232836" stroke-width="2.5" />
+                        <rect x="448" y="65" width="134" height="28" fill="#232836" />
+                        <rect x="448" y="108" width="134" height="110" fill="#e8bce9" stroke="#232836" stroke-width="2" />
+                        <rect x="448" y="234" width="134" height="55" fill="#f5dbf7" stroke="#232836" stroke-width="1.5" />
+                        <text x="448" y="325" fill="#232836" font-family="monospace" font-size="11">FORMAT 03 // WEB</text>
+                      </svg>
+                    )}
+
+                    <!-- Bandeau d'indication d'interaction au survol -->
+                    <div class="
+                      absolute bottom-3 right-3 bg-eop-dark text-eop-offwhite px-3 py-1.5 font-mono text-xs
+                      border border-eop-light flex items-center gap-2 transition-transform duration-300
+                      group-hover:bg-eop-rose group-hover:text-eop-dark group-hover:border-eop-dark
+                    ">
+                      <span>APERÇU SYSTÈME</span>
+                      <span aria-hidden="true">■</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Contenu éditorial du projet (5 colonnes sur desktop) -->
+              <div
+                class:list={[
+                  'lg:col-span-5 flex flex-col justify-between space-y-6',
+                  isReversed ? 'lg:order-1' : 'lg:order-2',
+                ]}
+              >
+                <div class="space-y-4">
+                  <div class="flex items-center gap-3">
+                    <span class="font-mono text-xs font-bold px-2.5 py-1 bg-eop-dark text-eop-offwhite">
+                      {project.num}
+                    </span>
+                    <span class="font-mono text-xs sm:text-sm font-semibold tracking-wider text-eop-dark uppercase bg-eop-light px-3 py-1 border border-eop-dark">
+                      {project.categories}
+                    </span>
+                  </div>
+
+                  <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-eop-dark leading-tight">
+                    {project.title}
+                  </h3>
+
+                  <p class="text-base sm:text-lg text-eop-dark/85 leading-relaxed">
+                    {project.description}
+                  </p>
+                </div>
+
+                <!-- Repère de direction visuelle -->
+                <div class="border-l-2 border-eop-dark pl-4 py-1 bg-eop-light/30">
+                  <span class="font-mono text-[11px] uppercase tracking-wider text-eop-dark/65 block">
+                    DIRECTION VISUELLE :
+                  </span>
+                  <p class="text-sm font-medium text-eop-dark mt-0.5">
+                    {project.visualDirection}
+                  </p>
+                </div>
+
+                <!-- Bouton officiel d'ouverture du panneau de détails -->
+                <div class="pt-2 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
+                  <button
+                    type="button"
+                    data-project-open={project.id}
+                    aria-haspopup="dialog"
+                    aria-controls={`project-modal-${project.id}`}
+                    class="eop-btn-primary w-full sm:w-auto group/btn"
+                  >
+                    <span>Explorer le projet</span>
+                    <span
+                      class="w-5 h-5 border border-current flex items-center justify-center text-xs transition-transform duration-300 group-hover/btn:translate-x-1"
+                      aria-hidden="true"
+                    >
+                      +
+                    </span>
+                  </button>
+                  <a href={`/projects/${project.id}/`} class="eop-link font-semibold text-eop-dark">
+                    <span>Lire l’étude de cas</span>
+                    <span class="ml-2" aria-hidden="true">→</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
+  </div>
+
+  <!-- Panneaux de détails accessibles (Modales / Drawers utilisables au clavier) -->
+  {
+    projects.map((project) => (
+      <div
+        id={`project-modal-${project.id}`}
+        data-project-modal={project.id}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={`modal-title-${project.id}`}
+        aria-hidden="true"
+        class="fixed inset-0 z-[80] hidden items-center justify-end bg-eop-dark/70 backdrop-blur-xs p-0 sm:p-4 lg:p-6"
+      >
+        <div
+          data-modal-Box
+          class="relative w-full max-w-2xl h-full sm:h-auto sm:max-h-[90vh] overflow-y-auto bg-eop-offwhite border-2 border-eop-dark shadow-[10px_10px_0px_#e8bce9] p-6 sm:p-8 lg:p-10 flex flex-col justify-between"
+        >
+          <div>
+            <!-- Barre supérieure du panneau -->
+            <div class="flex items-center justify-between gap-4 pb-4 mb-6 border-b-2 border-eop-dark">
+              <div class="flex items-center gap-2.5">
+                <span class="w-3 h-3 bg-eop-dark inline-block" aria-hidden="true" />
+                <span class="font-mono text-xs font-bold uppercase tracking-wider text-eop-dark">
+                  FICHE PROJET {project.num} // {project.categories}
+                </span>
+              </div>
+              <button
+                type="button"
+                data-project-close
+                class="inline-flex items-center gap-2 px-3 py-1.5 border border-eop-dark bg-eop-light text-eop-dark font-mono text-xs font-bold hover:bg-eop-rose transition-colors"
+                aria-label={`Fermer les détails du projet ${project.title}`}
+              >
+                <span>FERMER</span>
+                <span aria-hidden="true">✕</span>
+              </button>
+            </div>
+
+            <!-- Mention explicite de projet de démonstration -->
+            <div class="mb-6 p-3.5 bg-eop-light/65 border border-eop-dark text-xs font-mono text-eop-dark">
+              <strong>NOTE DE DÉMONSTRATION :</strong> Cette fiche présente une structure d’étude de cas à personnaliser avec vos propres réalisations, visuels et enseignements académiques ou professionnels.
+            </div>
+
+            <h3
+              id={`modal-title-${project.id}`}
+              class="font-display font-extrabold text-2xl sm:text-3xl text-eop-dark mb-4"
+            >
+              {project.title}
+            </h3>
+
+            <p class="text-base sm:text-lg text-eop-dark/85 leading-relaxed mb-6">
+              {project.description}
+            </p>
+
+            <div class="space-y-6 border-t border-eop-dark/20 pt-6">
+              <div>
+                <h4 class="font-mono text-xs font-bold uppercase tracking-wider text-eop-dark mb-2">
+                  01 // CONTEXTE DU PROJET (DÉMONSTRATION)
+                </h4>
+                <p class="text-sm sm:text-base text-eop-dark/85 leading-relaxed">
+                  {project.context}
+                </p>
+              </div>
+
+              <div>
+                <h4 class="font-mono text-xs font-bold uppercase tracking-wider text-eop-dark mb-2.5">
+                  02 // DÉMARCHE &amp; PARTIS PRIS
+                </h4>
+                <ul class="space-y-2.5">
+                  {project.approach.map((step) => (
+                    <li class="flex items-start gap-3 text-sm sm:text-base text-eop-dark/85">
+                      <span class="w-2 h-2 bg-eop-dark mt-2 shrink-0" aria-hidden="true" />
+                      <span>{step}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h4 class="font-mono text-xs font-bold uppercase tracking-wider text-eop-dark mb-2.5">
+                  03 // LIVRABLES EXPLORÉS
+                </h4>
+                <div class="flex flex-wrap gap-2">
+                  {project.deliverables.map((item) => (
+                    <span class="font-mono text-xs px-3 py-1.5 bg-eop-offwhite border border-eop-dark text-eop-dark">
+                      ■ {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pied du panneau de détails -->
+          <div class="mt-8 pt-5 border-t border-eop-dark/20 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+            <span class="font-mono text-xs text-eop-dark/65">
+              TOUCHES : ÉCHAP POUR FERMER
+            </span>
+            <div class="flex flex-col sm:flex-row gap-3">
+              <a href={`/projects/${project.id}/`} class="eop-btn-primary py-2.5 px-5 text-sm">
+                Lire l’étude de cas
+              </a>
+              <button
+                type="button"
+                data-project-close
+                class="eop-btn-secondary py-2.5 px-5 text-sm"
+              >
+                Revenir à la sélection
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    ))
+  }
+</section>

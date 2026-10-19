@@ -1,0 +1,321 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import SectionTag from '../components/SectionTag.astro';
+import PlaceholderSlot from '../components/PlaceholderSlot.astro';
+import StageTitle from '../components/StageTitle.astro';
+import StageDeco from '../components/StageDeco.astro';
+import { steps, values, skillCategories, portfolioTools } from '../data/profile.js';
+import { projects } from '../data/projects.js';
+import { site } from '../data/site.js';
+
+// Repères de l'escalier de progression (un par étape)
+const stairLabels = ['BUT MMI', 'Communication', 'Projets', 'Ambition'];
+---
+
+<PageLayout
+  current="parcours"
+  stage
+  title="Parcours & compétences — EOP. · BUT MMI3 Communication"
+  description="Formation en BUT MMI (spécialité communication), démarche créative et domaines de compétence : stratégie, création graphique et conception numérique."
+>
+  <div id="reading-progress" class="eop-progress" aria-hidden="true"></div>
+
+  <!-- ========== HERO : entrée en scène ========== -->
+  <section class="stg-root eop-grid-bg bg-eop-light/40 border-b-2 border-eop-dark overflow-x-clip" data-hero>
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 pt-14 pb-14 lg:pt-20 lg:pb-20 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-end">
+      <div class="lg:col-span-7">
+        <div class="stage-rise" style="--d:0.9s"><SectionTag label="PARCOURS — QUI JE SUIS, COMMENT JE TRAVAILLE" /></div>
+        <div class="plx-s" style="--s:-55">
+          <h1 class="font-display font-extrabold text-eop-dark leading-[0.95] tracking-tight text-[clamp(3rem,8.2vw,6.75rem)] mt-6">
+            <StageTitle lines={[{ text: 'Parcours &' }, { text: 'démarche.' }]} variant="flip" />
+          </h1>
+        </div>
+        <p class="stage-rise text-lg sm:text-xl text-eop-dark/85 leading-relaxed max-w-2xl mt-8" style="--d:1.5s">
+          Je m’intéresse à la manière dont une idée devient un message clair, une identité cohérente ou une expérience qui a du sens. Cette page détaille la formation, la démarche et les domaines qui guident mes projets.
+        </p>
+        <div class="stage-rise flex flex-col sm:flex-row gap-4 mt-8" style="--d:1.65s">
+          {site.cv && <a href={site.cv} download class="eop-btn-primary"><span>Télécharger mon CV (PDF)</span><span aria-hidden="true">↓</span></a>}
+          <a href="/contact/" class:list={[site.cv ? 'eop-btn-secondary' : 'eop-btn-primary']}><span>Me contacter</span><span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+
+      <div class="relative lg:col-span-5">
+        <StageDeco />
+        <div class="plx-s" style="--s:30">
+          <div class="plx-p" style="--d:10">
+            <aside aria-label="Repères de profil" class="relative border-2 border-eop-dark bg-eop-offwhite shadow-[8px_8px_0px_#232836]">
+              <div class="stage-frame p-6 sm:p-8" style="--clip-from: inset(0 100% 0 0); --fd:0.7s">
+                <dl class="divide-y divide-eop-dark/20">
+                  <div class="pb-4"><dt class="font-mono text-[11px] uppercase tracking-wider text-eop-dark/65">Formation</dt><dd class="font-display font-bold text-xl mt-1">BUT MMI — 3e année</dd><dd class="text-sm text-eop-dark/80 mt-1">Spécialité communication</dd></div>
+                  <div class="py-4"><dt class="font-mono text-[11px] uppercase tracking-wider text-eop-dark/65">Parcours</dt><dd class="font-display font-bold text-xl mt-1">Stratégie de communication &amp; design d’expérience</dd></div>
+                  <div class="pt-4"><dt class="font-mono text-[11px] uppercase tracking-wider text-eop-dark/65">Recherche</dt><dd class="font-display font-bold text-xl mt-1">Expérience professionnelle</dd></div>
+                </dl>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== LE PARCOURS : le carré du logo se construit au fil du défilement ========== -->
+  <section class="journey" data-journey aria-labelledby="journey-title">
+    <h2 id="journey-title" class="sr-only">Mon parcours en quatre étapes</h2>
+    <div class="journey-track" data-journey-track>
+      <div class="journey-stage eop-grid-bg" data-journey-stage>
+        <div class="journey-dark eop-grid-bg-dark" data-journey-dark aria-hidden="true"></div>
+
+        <div class="journey-square" data-journey-square aria-hidden="true">
+          <span class="jsq jsq-c"></span><span class="jsq jsq-b"></span><span class="jsq jsq-a"></span>
+        </div>
+
+        <p class="journey-hint font-mono text-xs text-eop-dark/70" aria-hidden="true">Faites défiler : le carré se construit</p>
+
+        <ol class="journey-stations">
+          <!-- Étape 1 : la formation -->
+          <li class="station station--1" data-station>
+            <div class="station-inner" data-reveal="up">
+              <div class="sx" style="--k:0.5"><SectionTag num="01" label="Formation" tone="light" /></div>
+              <p class="giant font-display sx mt-5" style="--k:1.3"><span class="outline">BUT</span></p>
+              <p class="giant font-display sx" style="--k:-1.1">MMI</p>
+              <p class="sx text-lg sm:text-xl text-eop-dark/85 leading-relaxed max-w-md mt-6" style="--k:0.7">
+                Métiers du Multimédia et de l’Internet : le point de départ, avec la communication comme spécialité.
+              </p>
+            </div>
+          </li>
+
+          <!-- Étape 2 : la spécialité -->
+          <li class="station station--2" data-station>
+            <div class="station-inner" data-reveal="up">
+              <div class="sx" style="--k:0.5"><SectionTag num="02" label="Spécialité" tone="light" /></div>
+              <p class="giant-s font-display sx mt-5" style="--k:1.2">Stratégie</p>
+              <p class="giant-s font-display outline sx ml-[5vw]" style="--k:-1">de communication</p>
+              <p class="giant-s font-display sx ml-[10vw]" style="--k:0.8">&amp; design</p>
+              <p class="giant-s font-display outline sx ml-[5vw]" style="--k:-0.7">d’expérience</p>
+              <p class="sx text-lg sm:text-xl text-eop-dark/85 leading-relaxed max-w-lg mt-6" style="--k:0.6">
+                Troisième année : analyser un besoin, définir une cible, formuler un message et construire une direction cohérente.
+              </p>
+            </div>
+          </li>
+
+          <!-- Étape 3 : les réalisations (mise en page en liste) -->
+          <li class="station station--3" data-station>
+            <div class="station-inner" data-reveal="up">
+              <div class="sx" style="--k:0.5"><SectionTag num="03" label="Réalisations" tone="light" /></div>
+              <ol class="sx mt-6 border-t-2 border-eop-dark max-w-4xl" style="--k:0.8">
+                {
+                  projects.map((p) => (
+                    <li class="border-b-2 border-eop-dark/30">
+                      <a href={p.href} class="group flex items-baseline justify-between gap-4 py-3 sm:py-4 transition-transform duration-500 hover:translate-x-3">
+                        <span class="row-title font-display font-extrabold tracking-tight">{p.name}</span>
+                        <span class="font-mono text-xs text-eop-dark/70 text-right">{p.domain}</span>
+                      </a>
+                    </li>
+                  ))
+                }
+              </ol>
+            </div>
+          </li>
+
+          <!-- Étape 4 : la suite -->
+          <li class="station station--4 dark-surface" data-station>
+            <div class="station-inner" data-reveal="up">
+              <div class="sx" style="--k:0.5"><SectionTag num="04" label="Prochaine étape" /></div>
+              <p class="giant-s font-display sx mt-5 max-w-3xl text-eop-light" style="--k:1">Ma vision de la communication</p>
+              <p class="sx text-lg sm:text-xl text-eop-offwhite/90 leading-relaxed max-w-lg mt-6" style="--k:0.6">
+                Mettre en pratique la démarche : comprendre, structurer, concevoir, ajuster.
+              </p>
+              <div class="sx flex flex-col sm:flex-row gap-4 mt-8" style="--k:0.4">
+                <a href="/contact/" class="eop-btn-primary !bg-eop-rose !text-eop-dark !border-eop-rose"><span>Me contacter</span><span aria-hidden="true">→</span></a>
+                <a href="/projects/" class="eop-btn-secondary"><span>Voir les projets</span></a>
+              </div>
+            </div>
+          </li>
+        </ol>
+
+        <!-- Escalier : la ligne qui relie les étapes (dessinée par pages.js) -->
+        <div class="journey-band" data-journey-band aria-hidden="true">
+          <svg>
+            <path class="journey-path-base" data-journey-base></path>
+            <path class="journey-path-prog" data-journey-prog pathLength="1"></path>
+          </svg>
+          {
+            stairLabels.map((label, i) => (
+              <span class="journey-node" data-journey-node>
+                <span class="journey-node-label font-mono text-[11px] tracking-wide">0{i + 1} {label}</span>
+              </span>
+            ))
+          }
+          <span class="journey-marker" data-journey-marker></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== COMPÉTENCES ========== -->
+  <section aria-labelledby="competences-titre" class="py-20 lg:py-28 bg-eop-light/30 eop-grid-bg border-b border-eop-dark/20">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
+      <div class="pb-12" data-reveal="slide-right">
+        <SectionTag num="03" label="Domaines de compétence" tone="dark" />
+        <h2 data-words id="competences-titre" class="font-display font-extrabold heading-section text-eop-dark mt-5 max-w-3xl">Quatre manières de donner forme à une idée.</h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+        {
+          skillCategories.map((c, i) => (
+            <article data-reveal="up" style={`transition-delay:${i * 90}ms`} class:list={['lg:col-span-4 border-2 border-eop-dark p-6 sm:p-8 hover:shadow-[6px_6px_0px_#232836] transition-shadow duration-300', c.tone, i === 1 ? 'lg:mt-8' : '', i === 2 ? 'lg:mt-16' : '']}>
+              <div class="flex items-center justify-between pb-4 mb-5 border-b border-eop-dark/20">
+                <span class="w-9 h-9 bg-eop-dark text-eop-offwhite font-mono text-sm font-bold flex items-center justify-center">{c.num}</span>
+                <span class="font-mono text-xs uppercase tracking-wider px-2.5 py-1 border border-eop-dark/30 bg-eop-offwhite/80">{c.badge}</span>
+              </div>
+              <h3 class="font-display font-bold heading-card text-eop-dark">{c.title}</h3>
+              <ul class="mt-5 space-y-3 text-sm sm:text-base text-eop-dark/90">
+                {c.axes.map((a) => <li class="flex items-start gap-3"><span class="w-2 h-2 bg-eop-dark mt-2 shrink-0" aria-hidden="true"></span><span>{a}</span></li>)}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+
+      <!-- Outils -->
+      <div data-reveal="up" class="mt-10 lg:mt-12 border-2 border-eop-dark bg-eop-dark text-eop-offwhite dark-surface p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div class="lg:col-span-4">
+          <span class="font-mono text-xs text-eop-rose">04 // OUTILS &amp; LOGICIELS</span>
+          <h3 class="font-display font-bold heading-card text-eop-light mt-3">Utilisés pour ce portfolio</h3>
+        </div>
+        <div class="lg:col-span-8 space-y-10">
+          <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            {portfolioTools.map((tool) => (
+              <li class="flex min-h-28 flex-col items-center justify-center gap-3 border border-eop-light/30 bg-eop-offwhite p-4 text-center">
+                <span class:list={['flex h-12 w-12 items-center justify-center font-display font-extrabold', tool === 'Astro' ? 'text-[#ff5d01]' : tool === 'Tailwind CSS' ? 'text-[#06b6d4]' : tool === 'HTML & CSS' ? 'text-[#e34f26]' : tool === 'JavaScript' ? 'bg-[#f7df1e] text-eop-dark' : 'text-eop-dark']} aria-hidden="true">
+                  {tool === 'Astro' && (
+                    <svg viewBox="0 0 48 48" class="h-10 w-10" fill="currentColor">
+                      <path d="M24 3 29 18 45 18 32 27 37 43 24 33 11 43 16 27 3 18 19 18Z" />
+                      <circle cx="24" cy="24" r="5" fill="#fffaff" />
+                    </svg>
+                  )}
+                  {tool === 'Tailwind CSS' && (
+                    <svg viewBox="0 0 48 32" class="h-9 w-12" fill="currentColor">
+                      <path d="M12 8c4-5 10-5 14 0 2 3 5 3 8 0-4 8-10 9-14 4-2-3-5-3-8 0 1-2 1-3 0-4Zm-6 12c4-5 10-5 14 0 2 3 5 3 8 0-4 8-10 9-14 4-2-3-5-3-8 0 1-2 1-3 0-4Zm20-4c4-5 10-5 14 0 2 3 5 3 8 0-4 8-10 9-14 4-2-3-5-3-8 0 1-2 1-3 0-4Z" />
+                    </svg>
+                  )}
+                  {tool === 'HTML & CSS' && <span class="text-2xl tracking-tight">&lt;/&gt;</span>}
+                  {tool === 'JavaScript' && <span class="self-end text-xl leading-none">JS</span>}
+                  {tool === 'Three.js' && (
+                    <svg viewBox="0 0 48 48" class="h-10 w-10" fill="none" stroke="currentColor" stroke-width="2">
+                      <ellipse cx="24" cy="24" rx="20" ry="8" transform="rotate(-35 24 24)" />
+                      <ellipse cx="24" cy="24" rx="20" ry="8" transform="rotate(35 24 24)" />
+                      <circle cx="24" cy="24" r="3" fill="currentColor" />
+                    </svg>
+                  )}
+                </span>
+                <span class="font-mono text-xs text-eop-dark">{tool}</span>
+              </li>
+            ))}
+          </ul>
+          <div class="border-t border-eop-light/25 pt-7">
+            <span class="font-mono text-xs text-eop-rose">CRÉATION &amp; COMMUNICATION</span>
+            <h4 class="font-display font-bold text-xl text-eop-light mt-2">Les outils que j’utilise</h4>
+            <ul class="mt-5 grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {[
+                { name: 'Adobe InDesign', mark: 'Id', color: 'text-[#ff3366]' },
+                { name: 'Adobe Illustrator', mark: 'Ai', color: 'text-[#ff9a00]' },
+                { name: 'Adobe Photoshop', mark: 'Ps', color: 'text-[#31a8ff]' },
+                { name: 'Figma', mark: 'F', color: 'text-[#a259ff]' },
+                { name: 'Notion', mark: 'N', color: 'text-eop-gray' },
+                { name: 'Suite Google', mark: 'G', color: 'text-[#4285f4]' },
+                { name: 'IA', mark: '✳', color: 'text-eop-rose' },
+                { name: 'DaVinci Resolve', mark: '◉', color: 'text-[#f2b705]' },
+              ].map((tool) => (
+                <li class="flex items-center gap-3 border border-eop-light/25 px-3 py-3">
+                  <span class:list={['flex h-9 w-9 shrink-0 items-center justify-center border border-current font-display font-extrabold', tool.color]} aria-hidden="true">{tool.mark}</span>
+                  <span class="font-mono text-xs leading-snug text-eop-light">{tool.name}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== DÉMARCHE : 4 temps ========== -->
+  <section aria-labelledby="demarche-titre" class="dark-surface py-20 lg:py-28 bg-eop-dark text-eop-offwhite eop-grid-bg-dark border-b border-eop-light/20">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
+      <div class="pb-12" data-reveal="slide-right">
+        <SectionTag num="04" label="Ma démarche créative" />
+        <h2 data-words id="demarche-titre" class="font-display font-extrabold heading-section text-eop-offwhite mt-5 max-w-5xl">Ma manière d'aborder un projet.</h2>
+      </div>
+
+      <div data-draw class="relative">
+        <div class="hidden lg:block absolute left-0 right-0 top-[0.4rem] h-[3px] bg-eop-light/20" aria-hidden="true"><div class="draw-x h-full bg-eop-rose"></div></div>
+        <ol class="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+          {
+            steps.map((s, i) => (
+              <li class="draw-stop lg:pt-10" style={`--i:${i}`}>
+                <span class="hidden lg:block absolute -mt-[2.5rem] w-4 h-4 border-2 border-eop-rose bg-eop-dark" aria-hidden="true"></span>
+                <div class="border border-eop-light/25 p-6 h-full">
+                  <span class="font-mono text-xs text-eop-rose">{s.tag}</span>
+                  <h3 class="font-display font-extrabold text-3xl text-eop-light mt-4">{s.num}. {s.title}</h3>
+                  <p class="mt-3 text-eop-offwhite/85 leading-relaxed">{s.text}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== VALEURS ========== -->
+  <section aria-labelledby="valeurs-titre" class="py-20 lg:py-28 bg-eop-offwhite border-b border-eop-dark/20">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
+      <div class="pb-12" data-reveal="slide-right">
+        <SectionTag num="05" label="Ce qui guide mes choix" tone="light" />
+        <h2 data-words id="valeurs-titre" class="font-display font-extrabold heading-section text-eop-dark mt-5">Six piliers qui définissent mon approche.</h2>
+      </div>
+      <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-eop-dark/30 border border-eop-dark/30">
+        {
+          values.map((v, i) => (
+            <li data-reveal="up" style={`transition-delay:${(i % 3) * 80}ms`} class="bg-eop-offwhite p-6 sm:p-8 hover:bg-eop-light/50 transition-colors">
+              <span class="font-mono text-xs text-eop-dark/60">{v.num}</span>
+              <h3 class="font-display font-extrabold text-2xl text-eop-dark mt-2">{v.name}</h3>
+              <p class="mt-3 text-eop-dark/85 leading-relaxed">{v.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========== FINALE : le portail s'ouvre vers les projets ========== -->
+  <section class="bg-eop-offwhite py-16 lg:py-24 border-b-2 border-eop-dark" data-portal aria-labelledby="finale-title">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
+      <div class="finale-panel dark-surface bg-eop-dark text-eop-offwhite eop-grid-bg-dark p-8 sm:p-12 lg:p-16" data-portal-panel>
+        <h2 id="finale-title" data-words class="font-display font-extrabold heading-section text-eop-light max-w-3xl">Et maintenant, les projets ?</h2>
+
+        <ol class="mt-10 border-t border-eop-light/30">
+          {
+            projects.map((p) => (
+              <li class="border-b border-eop-light/30">
+                <a href={p.href} class="group flex items-baseline justify-between gap-4 py-4 hover:text-eop-rose transition-colors">
+                  <span class="flex items-baseline gap-4 sm:gap-6">
+                    <span class="font-mono text-xs text-eop-rose">{p.num}</span>
+                    <span class="row-title font-display font-extrabold tracking-tight transition-transform duration-500 group-hover:translate-x-3">{p.name}</span>
+                  </span>
+                  <span class="hidden sm:block font-mono text-xs text-eop-light/80 text-right">{p.domain}</span>
+                </a>
+              </li>
+            ))
+          }
+        </ol>
+
+        <div class="mt-10 flex flex-col sm:flex-row gap-4">
+          {site.cv && <a href={site.cv} download class="eop-btn-primary !bg-eop-rose !text-eop-dark !border-eop-rose"><span>Télécharger mon CV (PDF)</span><span aria-hidden="true">↓</span></a>}
+          <a href="/contact/" class:list={[site.cv ? 'eop-btn-secondary' : 'eop-btn-primary !bg-eop-rose !text-eop-dark !border-eop-rose']}><span>Aller à la page Contact</span><span aria-hidden="true">→</span></a>
+        </div>
+        {!site.cv && <div class="mt-8"><PlaceholderSlot ratio="aspect-[16/4] min-h-[7rem]" label="CV téléchargeable (PDF)" hint="Aucun CV n’est présent dans les fichiers fournis. Déposez-le dans public/ puis renseignez son chemin dans src/data/site.js : le bouton apparaîtra automatiquement." /></div>}
+      </div>
+    </div>
+  </section>
+</PageLayout>

@@ -1,0 +1,20 @@
+---
+import { site } from '../data/site.js';
+
+// Emplacement « À compléter » : visible uniquement si site.showPlaceholders = true
+interface Props { label: string; hint?: string; ratio?: string; class?: string; }
+const { label, hint = '', ratio = 'aspect-[16/10]', class: className = '' } = Astro.props;
+---
+
+{
+  site.showPlaceholders && (
+    <div
+      role="note"
+      class:list={['eop-slot w-full max-w-full flex flex-col items-center justify-center text-center p-5 sm:p-6', ratio, className]}
+    >
+      <span class="font-mono text-[11px] uppercase tracking-widest text-eop-dark/70">À compléter</span>
+      <strong class="font-display font-bold text-base sm:text-lg text-eop-dark mt-2 leading-snug">{label}</strong>
+      {hint && <p class="text-sm text-eop-dark/75 mt-2 max-w-sm leading-snug">{hint}</p>}
+    </div>
+  )
+}

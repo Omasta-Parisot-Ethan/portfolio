@@ -1,0 +1,54 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'EOP. — Portfolio Communication, Stratégie & Création Numérique (BUT MMI3)',
+  description = 'Portfolio personnel EOP. — Étudiant en troisième année de BUT MMI spécialisé en communication. Stratégie de communication, direction artistique et expériences numériques.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#232836" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Typographies éditoriales avec fallback système immédiat si hors-ligne -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Activation immédiate de la classe js-enabled pour garantir la visibilité sans JS -->
+    <script is:inline>
+      document.documentElement.classList.add('js-enabled');
+    </script>
+  </head>
+  <body class="min-h-screen flex flex-col bg-eop-offwhite text-eop-dark antialiased selection:bg-eop-rose selection:text-eop-dark">
+    <!-- Lien d'évitement pour l'accessibilité clavier -->
+    <a
+      href="#contenu-principal"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-eop-dark focus:text-eop-offwhite focus:px-5 focus:py-3 focus:font-mono focus:text-sm focus:border-2 focus:border-eop-rose"
+    >
+      Aller directement au contenu principal
+    </a>
+
+    <!-- Curseur carré personnalisé discret (désactivé sur tactile et reduced-motion) -->
+    <div id="eop-cursor" class="eop-cursor-follower" aria-hidden="true"></div>
+
+    <slot />
+
+    <script src="../scripts/main.js"></script>
+  </body>
+</html>

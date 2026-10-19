@@ -1,0 +1,186 @@
+---
+const domains = [
+  {
+    num: '01',
+    title: 'Stratégie de communication',
+    description:
+      'Analyser un besoin, définir une cible, formuler un message et construire une direction cohérente.',
+    axes: [
+      'Veille, diagnostic éditorial et analyse de positionnement',
+      'Définition des publics cibles et des objectifs de communication',
+      'Architecture de message, ton de voix et plan d’actions',
+    ],
+    layoutClass: 'lg:col-span-7 bg-eop-offwhite',
+    badge: 'ANALYSE & SENS',
+  },
+  {
+    num: '02',
+    title: 'Direction artistique',
+    description:
+      "Créer un univers visuel, définir des principes graphiques et assurer la cohérence d'une identité.",
+    axes: [
+      'Systèmes d’identité visuelle, grilles et chartes graphiques',
+      'Choix typographiques, palettes chromatiques et contrastes',
+      'Déclinaisons print et numériques cohérentes',
+    ],
+    layoutClass: 'lg:col-span-5 bg-eop-light/55',
+    badge: 'SYSTÈME VISUEL',
+  },
+  {
+    num: '03',
+    title: 'Création de contenu',
+    description:
+      'Concevoir des supports éditoriaux et numériques adaptés à leur public, à leur format et à leur objectif.',
+    axes: [
+      'Rédaction éditoriale, storytelling et hiérarchisation de l’information',
+      'Conception de visuels, mises en page et formats réseaux sociaux',
+      'Scénarisation de séquences animées et supports événementiels',
+    ],
+    layoutClass: 'lg:col-span-5 bg-eop-rose/45',
+    badge: 'ÉDITORIAL & MÉDIA',
+  },
+  {
+    num: '04',
+    title: 'Communication numérique',
+    description:
+      'Penser des interfaces et des expériences web accessibles, lisibles et cohérentes avec une stratégie globale.',
+    axes: [
+      'Architecture de l’information, parcours utilisateur et maquettage UX/UI',
+      'Intégration web soignée, responsive design et micro-interactions',
+      'Attention portée à l’accessibilité et à la clarté de navigation',
+    ],
+    layoutClass: 'lg:col-span-7 bg-eop-offwhite',
+    badge: 'EXPÉRIENCE WEB',
+  },
+];
+---
+
+<section
+  id="competences"
+  data-section="competences"
+  class="py-20 lg:py-28 bg-eop-light/30 eop-grid-bg border-b border-eop-dark/20"
+>
+  <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
+    <!-- En-tête de la section Compétences -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-12 border-b border-eop-dark/20 items-end">
+      <div class="lg:col-span-5" data-reveal="slide-right">
+        <div class="inline-flex items-center gap-2.5 font-mono text-xs sm:text-sm font-semibold uppercase tracking-widest text-eop-offwhite bg-eop-dark px-3.5 py-1.5 mb-4">
+          <span class="w-2 h-2 bg-eop-rose" aria-hidden="true"></span>
+          <span>02 — SAVOIR-FAIRE</span>
+        </div>
+        <h2 class="font-display font-extrabold heading-section text-eop-dark">
+          Des idées aux solutions concrètes.
+        </h2>
+      </div>
+
+      <div class="lg:col-span-7 lg:pl-8 border-l-0 lg:border-l border-eop-dark/20 space-y-32" data-reveal="up">
+        <p class="text-lg sm:text-xl text-eop-dark/85 leading-relaxed">
+          Chaque projet demande une approche adaptée. Voici les domaines dans lesquels je développe mes compétences.
+        </p>
+        <p class="font-mono text-xs text-eop-dark/65">
+          NOTE : DOMAINES DE TRAVAIL ET D’EXPÉRIMENTATION EN BUT MMI3 — APPROCHE ÉVOLUTIVE.
+        </p>
+      </div>
+    </div>
+
+    <!-- Grille asymétrique 7 / 5 puis 5 / 7 des 4 domaines -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 pt-12">
+      {
+        domains.map((domain, index) => (
+          <article
+            data-reveal="up"
+            style={`transition-delay: ${index * 90}ms;`}
+            class:list={[
+              domain.layoutClass,
+              'border-2 border-eop-dark p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:shadow-[6px_6px_0px_#232836] group',
+            ]}
+          >
+            <div>
+              <!-- Barre supérieure du module : numéro + pictogramme géométrique -->
+              <div class="flex items-center justify-between gap-4 pb-5 mb-6 border-b border-eop-dark/20">
+                <div class="flex items-center gap-3">
+                  <span class="w-9 h-9 bg-eop-dark text-eop-offwhite font-mono text-sm font-bold flex items-center justify-center">
+                    {domain.num}
+                  </span>
+                  <span class="font-mono text-xs uppercase tracking-wider px-2.5 py-1 border border-eop-dark/30 bg-eop-offwhite/80 text-eop-dark">
+                    {domain.badge}
+                  </span>
+                </div>
+
+                <!-- Repère géométrique unique selon le domaine -->
+                <div class="w-8 h-8 flex items-center justify-center" aria-hidden="true">
+                  {index === 0 && (
+                    <div class="w-6 h-6 border-2 border-eop-dark flex items-center justify-center transition-transform duration-300 group-hover:rotate-45">
+                      <div class="w-2 h-2 bg-eop-dark" />
+                    </div>
+                  )}
+                  {index === 1 && (
+                    <div class="grid grid-cols-2 gap-0.5 w-6 h-6">
+                      <span class="bg-eop-dark block" />
+                      <span class="border border-eop-dark bg-eop-rose block" />
+                      <span class="border border-eop-dark bg-eop-offwhite block" />
+                      <span class="bg-eop-dark block" />
+                    </div>
+                  )}
+                  {index === 2 && (
+                    <div class="w-6 h-6 border-2 border-eop-dark relative">
+                      <span class="absolute top-1 left-1 right-1 h-1 bg-eop-dark" />
+                      <span class="absolute bottom-1 left-1 w-2.5 h-2 bg-eop-dark" />
+                    </div>
+                  )}
+                  {index === 3 && (
+                    <div class="w-6 h-6 border-2 border-eop-dark flex items-end justify-end p-0.5">
+                      <span class="w-3 h-3 bg-eop-rose border border-eop-dark block transition-transform duration-300 group-hover:-translate-x-1 group-hover:-translate-y-1" />
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <!-- Titre et description exacts du domaine -->
+              <h3 class="font-display font-bold heading-card text-eop-dark mb-3">
+                {domain.title}
+              </h3>
+              <p class="text-base sm:text-lg text-eop-dark/85 leading-relaxed mb-6">
+                {domain.description}
+              </p>
+            </div>
+
+            <!-- Module extensible accessible pour consulter les champs d'application -->
+            <div class="pt-4 border-t border-eop-dark/20">
+              <button
+                type="button"
+                data-skill-toggle={`skill-detail-${domain.num}`}
+                aria-expanded="false"
+                aria-controls={`skill-detail-${domain.num}`}
+                class="w-full flex items-center justify-between text-left font-mono text-xs uppercase tracking-wider text-eop-dark font-semibold py-2 hover:text-eop-dark/70"
+              >
+                <span>Axes d’application travaillés</span>
+                <span
+                  data-skill-icon
+                  class="w-6 h-6 border border-eop-dark bg-eop-offwhite inline-flex items-center justify-center transition-transform duration-300"
+                  aria-hidden="true"
+                >
+                  +
+                </span>
+              </button>
+
+              <div
+                id={`skill-detail-${domain.num}`}
+                class="hidden pt-3 mt-2 border-t border-dashed border-eop-dark/25"
+              >
+                <ul class="space-y-2 text-sm text-eop-dark/85">
+                  {domain.axes.map((axe) => (
+                    <li class="flex items-start gap-2.5">
+                      <span class="w-2 h-2 bg-eop-dark mt-1.5 shrink-0" aria-hidden="true" />
+                      <span>{axe}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

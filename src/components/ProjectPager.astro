@@ -1,0 +1,45 @@
+---
+import { projects } from '../data/projects.js';
+
+// Navigation de fin d'étude de cas : galerie, projet précédent, projet suivant (boucle)
+interface Props { currentId: string; }
+const { currentId } = Astro.props;
+const index = projects.findIndex((p) => p.id === currentId);
+const prev = projects[(index - 1 + projects.length) % projects.length];
+const next = projects[(index + 1) % projects.length];
+---
+
+<nav aria-label="Navigation entre les études de cas" class="border-t-2 border-eop-dark bg-eop-offwhite">
+  <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 py-12 lg:py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+      <a
+        href={prev.href}
+        rel="prev"
+        class="pager-link lg:col-span-3 border border-eop-dark/40 p-5 flex flex-col justify-between gap-6 hover:bg-eop-light/50"
+      >
+        <span class="font-mono text-xs uppercase tracking-wider text-eop-dark/70">← Projet précédent</span>
+        <span class="font-display font-bold text-lg leading-tight text-eop-dark">
+          <span class="font-mono text-xs text-eop-dark/60 block mb-1">{prev.num}</span>
+          {prev.name}
+        </span>
+      </a>
+
+      <a href="/projects/" class="lg:col-span-3 eop-btn-secondary !justify-between !p-5 text-left">
+        <span class="font-display font-bold text-lg">Toute la galerie</span>
+        <span aria-hidden="true">■</span>
+      </a>
+
+      <a
+        href={next.href}
+        rel="next"
+        class="pager-link pager-next lg:col-span-6 border-2 border-eop-dark bg-eop-dark text-eop-offwhite p-6 sm:p-8 flex flex-col justify-between gap-10 hover:text-eop-dark dark-surface"
+      >
+        <span class="font-mono text-xs uppercase tracking-wider">Projet suivant →</span>
+        <span>
+          <span class="font-mono text-xs block mb-2">{next.num} // {next.categories}</span>
+          <span class="font-display font-extrabold heading-card block">{next.title}</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,1097 @@
+/* ==========================================================================
+   EOP. — Styles et animations des nouvelles pages
+   (galerie, études de cas, parcours, contact)
+   Palette et variables héritées de global.css : aucune couleur globale modifiée.
+   ========================================================================== */
+
+/* --- Transitions de page natives (amélioration progressive, sans JavaScript) ---
+   Fondu simple : la mise en scène est portée par le rideau de colonnes (voir plus bas). */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: eop-vt-out 0.2s linear both;
+}
+
+::view-transition-new(root) {
+  animation: eop-vt-in 0.3s linear both;
+}
+
+@keyframes eop-vt-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes eop-vt-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* --- Barre de progression de lecture --- */
+.eop-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 60;
+  background: var(--eop-dark);
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+/* --- Titres : apparition mot par mot (masque) --- */
+.word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+
+.word-mask > span {
+  display: inline-block;
+}
+
+.js-enabled .word-mask > span {
+  transform: translateY(112%);
+  transition: transform 0.85s var(--ease-eop);
+  transition-delay: calc(var(--i, 0) * 75ms + 120ms);
+}
+
+.js-enabled.intro-ready .word-mask > span {
+  transform: translateY(0);
+}
+
+/* --- Emplacements « À compléter » --- */
+.eop-slot {
+  border: 2px dashed rgba(35, 40, 54, 0.45);
+  background: repeating-linear-gradient(135deg, #faeafb 0 12px, #fffaff 12px 24px);
+}
+
+/* --- Galerie Projects --- */
+.pj-visual {
+  box-shadow: 6px 6px 0 var(--eop-dark);
+  transition:
+    transform 0.7s var(--ease-eop),
+    box-shadow 0.5s var(--ease-eop);
+}
+
+.pj-card:hover .pj-visual,
+.pj-card:focus-within .pj-visual {
+  transform: translate(-4px, -4px);
+  box-shadow: 11px 11px 0 var(--pj-shadow, var(--eop-dark));
+}
+
+.pj-tilt {
+  transition: transform 0.35s ease-out;
+}
+
+.pj-card .pv-svg {
+  transition: transform 0.9s var(--ease-eop);
+}
+
+.pj-card:hover .pv-svg {
+  transform: scale(1.025);
+}
+
+.pj-title-move {
+  transition: transform 0.5s var(--ease-eop);
+}
+
+.pj-card:hover .pj-title-move,
+.pj-card:focus-within .pj-title-move {
+  transform: translateX(8px);
+}
+
+.pj-arrow {
+  transition: transform 0.4s var(--ease-eop);
+}
+
+.pj-card:hover .pj-arrow,
+.pj-card:focus-within .pj-arrow {
+  transform: translateX(6px);
+}
+
+/* Informations complémentaires : révélées au survol/focus sur ordinateur,
+   toujours visibles au toucher et sur écrans sans survol. */
+@media (hover: hover) and (pointer: fine) {
+  .pj-extra {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition:
+      max-height 0.6s var(--ease-eop),
+      opacity 0.4s ease;
+  }
+
+  .pj-card:hover .pj-extra,
+  .pj-card:focus-within .pj-extra {
+    max-height: 14rem;
+    opacity: 1;
+  }
+}
+
+/* --- Études de cas : rail de chapitres --- */
+.chapter-rail {
+  scrollbar-width: none;
+}
+
+.chapter-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.chapter-rail a {
+  transition:
+    background-color 0.3s var(--ease-eop),
+    color 0.3s var(--ease-eop);
+}
+
+.chapter-rail a[aria-current='step'] {
+  background-color: var(--eop-dark);
+  color: var(--eop-offwhite);
+}
+
+[data-chapter] {
+  scroll-margin-top: 8.5rem;
+}
+
+/* --- Carte synchronisée avec le défilement (Vitra, chapitre « problème ») --- */
+.sync-node {
+  opacity: 0.22;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    opacity 0.5s var(--ease-eop),
+    transform 0.5s var(--ease-eop);
+}
+
+.sync-node.is-on {
+  opacity: 1;
+  transform: scale(1.12);
+}
+
+.sync-row {
+  transition:
+    background-color 0.5s var(--ease-eop),
+    padding-left 0.5s var(--ease-eop);
+}
+
+.sync-row.is-current {
+  background-color: rgba(245, 219, 247, 0.55);
+  padding-left: 1.25rem;
+}
+
+/* --- Tracés qui se dessinent (parcours, frise) --- */
+.draw-x {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1.5s var(--ease-eop);
+}
+
+.draw-y {
+  transform: scaleY(0);
+  transform-origin: center top;
+  transition: transform 1.5s var(--ease-eop);
+}
+
+.is-drawn .draw-x {
+  transform: scaleX(1);
+}
+
+.is-drawn .draw-y {
+  transform: scaleY(1);
+}
+
+.js-enabled [data-draw] .draw-stop {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.7s var(--ease-eop),
+    transform 0.7s var(--ease-eop);
+  transition-delay: calc(var(--i, 0) * 160ms + 200ms);
+}
+
+.js-enabled [data-draw].is-drawn .draw-stop {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Formats numériques : cadres de proportions différentes --- */
+@media (min-width: 1024px) {
+  .fmt-frame {
+    flex: 1 1 0;
+    transition: flex-grow 0.7s var(--ease-eop);
+  }
+
+  .fmt-row:hover .fmt-frame:hover {
+    flex-grow: 2.1;
+  }
+}
+
+/* --- Navigation entre projets --- */
+.pager-link {
+  transition:
+    transform 0.35s var(--ease-eop),
+    box-shadow 0.35s var(--ease-eop),
+    background-color 0.35s var(--ease-eop),
+    color 0.35s var(--ease-eop);
+}
+
+.pager-link:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 5px 5px 0 var(--eop-dark);
+}
+
+/* --- Header : page courante --- */
+.eop-link[aria-current='page']::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+/* ==========================================================================
+   ENTRÉE EN SCÈNE — pages de projets et page Parcours
+   Concept : « le carré se construit ». Un rideau de 7 colonnes (la grille EOP.)
+   s'ouvre, une fenêtre s'agrandit à partir d'un petit carré, le titre se compose.
+   Tout est animé en CSS : aucun état masqué n'existe sans la classe .has-stage,
+   posée uniquement si le mouvement n'est pas réduit.
+   ========================================================================== */
+
+:root {
+  --ease-expo: cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+/* --- Rideau de colonnes --- */
+.veil {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: none;
+  grid-template-columns: repeat(7, 1fr);
+  pointer-events: none;
+}
+
+.veil-col {
+  position: relative;
+  display: block;
+}
+
+.veil-dark,
+.veil-rose {
+  position: absolute;
+  inset: 0 -1px;
+}
+
+.veil-dark {
+  background: var(--eop-dark);
+}
+
+.veil-rose {
+  background: var(--eop-rose);
+}
+
+/* Arrivée : le rideau couvre la page puis se retire vers le haut, colonne après colonne */
+.veil-arrive .veil {
+  display: grid;
+  animation: veil-hide 0s linear 1.7s both;
+}
+
+.veil-arrive .veil-dark {
+  animation: veil-out 0.75s var(--ease-expo) calc(var(--i) * 65ms + 0.1s) both;
+}
+
+.veil-arrive .veil-rose {
+  animation: veil-out 0.75s var(--ease-expo) calc(var(--i) * 65ms + 0.22s) both;
+}
+
+/* Départ : le rideau remonte et recouvre la page avant la navigation */
+.veil.is-leaving {
+  display: grid;
+  visibility: visible;
+  animation: none;
+}
+
+.veil.is-leaving .veil-rose {
+  animation: veil-in 0.5s var(--ease-expo) calc(var(--i) * 45ms) both;
+}
+
+.veil.is-leaving .veil-dark {
+  animation: veil-in 0.5s var(--ease-expo) calc(var(--i) * 45ms + 0.09s) both;
+}
+
+@keyframes veil-out {
+  from {
+    clip-path: inset(0);
+  }
+  to {
+    clip-path: inset(0 0 100% 0);
+  }
+}
+
+@keyframes veil-in {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
+
+@keyframes veil-hide {
+  to {
+    visibility: hidden;
+  }
+}
+
+/* --- Éléments de la scène (hero) --- */
+.has-stage .stage-rise {
+  animation: stage-rise 0.9s var(--ease-eop) var(--d, 1s) both;
+}
+
+@keyframes stage-rise {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Le visuel s'ouvre comme une fenêtre depuis une forme de départ propre à chaque projet */
+.has-stage .stage-frame {
+  animation: stage-open 1.25s var(--ease-expo) var(--fd, 0.55s) both;
+}
+
+.has-stage .stage-img {
+  animation: stage-settle 1.8s var(--ease-expo) var(--fd, 0.55s) both;
+}
+
+@keyframes stage-open {
+  from {
+    clip-path: var(--clip-from, inset(44% 40% 44% 40%));
+  }
+  to {
+    clip-path: inset(-24px);
+  }
+}
+
+@keyframes stage-settle {
+  from {
+    transform: scale(1.4);
+  }
+  to {
+    transform: none;
+  }
+}
+
+.has-stage .stage-pop {
+  animation: stage-pop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) calc(1.7s + var(--i, 0) * 0.12s) both;
+}
+
+@keyframes stage-pop {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: none;
+  }
+}
+
+/* --- Titres composés lettre par lettre --- */
+.st,
+.st-line {
+  display: block;
+}
+
+.st-line {
+  white-space: nowrap;
+}
+
+.st-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.st-ch {
+  display: inline-block;
+}
+
+.has-stage .st-ch {
+  animation-duration: 0.95s;
+  animation-fill-mode: both;
+  animation-delay: calc(var(--i) * 55ms + 0.7s);
+}
+
+/* Vitra : les lettres se placent sur la grille, comme des repères sur une carte */
+.has-stage .st--snap .st-ch {
+  animation-name: st-snap;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes st-snap {
+  from {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy)) rotate(var(--r)) scale(0.5);
+  }
+  55% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Bocksons Festival : le titre retombe avec un rebond, comme des confettis */
+.has-stage .st--drop .st-ch {
+  animation-name: st-drop;
+  animation-duration: 0.85s;
+  animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes st-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-1.1em) rotate(var(--r));
+  }
+  40% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Formats numériques : les lettres défilent comme les pages d'un carrousel */
+.has-stage .st--swipe .st-word {
+  overflow: hidden;
+  vertical-align: top;
+  padding: 0.12em 0.04em 0.16em;
+  margin: -0.12em -0.04em -0.16em;
+}
+
+.has-stage .st--swipe .st-ch {
+  animation-name: st-swipe;
+  animation-timing-function: var(--ease-expo);
+}
+
+@keyframes st-swipe {
+  from {
+    transform: translateX(118%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+/* Parcours : les lettres se redressent une à une */
+.has-stage .st--flip .st-ch {
+  animation-name: st-flip;
+  transform-origin: 50% 100%;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes st-flip {
+  from {
+    opacity: 0;
+    transform: perspective(500px) rotateX(-95deg);
+  }
+  30% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --- Visuels de projet : composition qui se met en place (hero uniquement) --- */
+.has-stage .stage-art .pv-grid {
+  animation: art-fade 0.9s ease 1s both;
+}
+
+.has-stage .stage-art .pv-zone {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: art-pop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) calc(1s + var(--i, 0) * 0.12s) both;
+}
+
+.has-stage .stage-art .pv-route {
+  animation: route-draw 1.1s var(--ease-expo) 1.5s both;
+}
+
+.has-stage .stage-art .pv-node {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: art-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) calc(1.65s + var(--i, 0) * 0.13s) both;
+}
+
+.has-stage .stage-art .pv-label {
+  animation: art-slide 0.7s var(--ease-eop) 2s both;
+}
+
+.has-stage .stage-art .pv-poster {
+  animation: poster-roll 1.1s var(--ease-expo) 0.9s both;
+}
+
+.has-stage .stage-art .pv-tile {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: art-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) calc(1.5s + var(--i, 0) * 0.09s) both;
+}
+
+.has-stage .stage-art .pv-decl {
+  animation: decl-out 0.95s var(--ease-expo) calc(1.5s + var(--i, 0) * 0.15s) both;
+}
+
+.has-stage .stage-art .pv-fmt {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: fmt-fan 1s cubic-bezier(0.22, 1, 0.36, 1) calc(1s + var(--i, 0) * 0.16s) both;
+}
+
+@keyframes art-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes art-pop {
+  from {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes art-slide {
+  from {
+    transform: translateX(-14px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes route-draw {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes poster-roll {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes decl-out {
+  from {
+    transform: translateX(-210px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes fmt-fan {
+  from {
+    transform: translateY(70px) rotate(var(--r, 0deg));
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* Filet de sécurité : si quelque chose bloque, tout revient à son état final */
+.stage-done .veil:not(.is-leaving) {
+  display: none !important;
+}
+
+.stage-done .stg-root,
+.stage-done .stg-root *,
+.stage-done .stg-root *::before {
+  animation: none !important;
+}
+
+/* --- Profondeur : défilement (plx-s) et curseur (plx-p) --- */
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+  .plx-s {
+    translate: 0 calc(var(--hp, 0) * var(--s, 0) * 1px);
+  }
+
+  .plx-p {
+    translate: calc(var(--mx, 0) * var(--d, 0) * 1px) calc(var(--my, 0) * var(--d, 0) * 1px);
+    transition: translate 0.7s var(--ease-eop);
+  }
+}
+
+/* --- Titres de section : révélation mot par mot (découpe faite par pages.js) --- */
+.words-ready .wd {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding: 0.12em 0.04em 0.16em;
+  margin: -0.12em -0.04em -0.16em;
+}
+
+.words-ready .wd > span {
+  display: inline-block;
+  transform: translateY(118%);
+  transition: transform 0.95s var(--ease-expo);
+  transition-delay: calc(var(--i) * 60ms);
+}
+
+.words-in .wd > span {
+  transform: none;
+}
+
+/* --- Grands visuels : la fenêtre s'ouvre au défilement --- */
+.js-enabled [data-reveal='frame'] {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(16% 12% 16% 12%);
+  transition: clip-path 1.1s var(--ease-expo);
+}
+
+.js-enabled [data-reveal='frame'].is-visible {
+  clip-path: inset(-24px);
+}
+
+/* --- Micro-interactions --- */
+main .eop-btn-primary,
+main .eop-btn-secondary {
+  transition:
+    transform 0.35s var(--ease-eop),
+    background-color 0.35s var(--ease-eop),
+    color 0.35s var(--ease-eop),
+    box-shadow 0.35s var(--ease-eop),
+    translate 0.4s var(--ease-eop);
+}
+
+.pv-img {
+  transition: transform 0.9s var(--ease-eop);
+}
+
+figure:hover .pv-img {
+  transform: scale(1.04);
+}
+
+.eop-slot {
+  transition:
+    border-color 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.eop-slot:hover {
+  border-color: var(--eop-dark);
+}
+
+.pager-next {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.pager-next::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--eop-rose);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.55s var(--ease-expo);
+}
+
+.pager-next:hover::before,
+.pager-next:focus-visible::before {
+  transform: scaleX(1);
+}
+
+/* ==========================================================================
+   PARCOURS — le carré se construit au fil du défilement
+   Mode empilé par défaut (mobile, sans JavaScript, mouvement réduit) ;
+   le mode « scène épinglée » est activé par pages.js sur grand écran.
+   ========================================================================== */
+
+.journey-stations {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.journey-band,
+.journey-square,
+.journey-dark,
+.journey-hint {
+  display: none;
+}
+
+.station {
+  position: relative;
+  padding: 4.5rem 1rem;
+  border-top: 2px solid var(--eop-dark);
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .station {
+    padding: 5.5rem 2rem;
+  }
+}
+
+.station--1 {
+  background: var(--eop-offwhite);
+}
+
+.station--2 {
+  background: rgba(245, 219, 247, 0.55);
+}
+
+.station--3 {
+  background: rgba(232, 188, 233, 0.45);
+}
+
+.station--4 {
+  background: var(--eop-dark);
+  color: var(--eop-offwhite);
+}
+
+.station-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.giant {
+  font-weight: 800;
+  line-height: 0.88;
+  letter-spacing: -0.035em;
+  font-size: clamp(4.5rem, 21vw, 9.5rem);
+}
+
+.outline {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--eop-dark);
+}
+
+/* Scène épinglée */
+.journey--pinned .journey-track {
+  position: relative;
+  height: 440vh;
+}
+
+.journey--pinned .journey-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.journey--pinned .journey-dark {
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+}
+
+.journey--pinned .journey-square {
+  display: block;
+  position: absolute;
+  z-index: 1;
+  width: min(46vh, 34vw);
+  aspect-ratio: 1;
+  left: calc(var(--sq-x, 76) * 1%);
+  top: calc(var(--sq-y, 44) * 1%);
+  translate: -50% -50%;
+  scale: var(--sq-s, 0.9);
+  rotate: var(--sq-r, 0deg);
+}
+
+.jsq {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+}
+
+.jsq-c {
+  width: 100%;
+  background: var(--eop-dark);
+  border: 3px solid var(--eop-rose);
+  scale: var(--sc, 0);
+}
+
+.jsq-b {
+  width: 53.125%;
+  background: var(--eop-light);
+  scale: var(--sb, 0);
+}
+
+.jsq-a {
+  width: 21.875%;
+  background: var(--eop-dark);
+  scale: var(--sa, 0);
+}
+
+.journey--pinned .journey-stations {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.journey--pinned .station {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  padding: 7rem clamp(1rem, 4vw, 3rem) 11.5rem;
+  border-top: 0;
+  background: transparent;
+  color: var(--eop-dark);
+  opacity: var(--a, 0);
+  overflow: visible;
+  pointer-events: none;
+}
+
+.journey--pinned .station--4 {
+  color: var(--eop-offwhite);
+}
+
+.journey--pinned .station.is-active {
+  pointer-events: auto;
+}
+
+.journey--pinned .station-inner {
+  width: 100%;
+}
+
+.journey--pinned .giant {
+  font-size: clamp(4rem, 18vh, 11.5rem);
+}
+
+.journey--pinned .sx {
+  translate: calc(var(--x, 0) * var(--k, 1) * 1px) 0;
+}
+
+.journey--pinned .journey-hint {
+  display: block;
+  position: absolute;
+  z-index: 3;
+  top: 6.5rem;
+  right: clamp(1rem, 4vw, 3rem);
+  opacity: var(--hint, 1);
+}
+
+/* Escalier de progression */
+.journey--pinned .journey-band {
+  display: block;
+  position: absolute;
+  z-index: 3;
+  left: clamp(1rem, 4vw, 3rem);
+  right: clamp(1rem, 4vw, 3rem);
+  bottom: 2.4rem;
+  height: 6.5rem;
+  color: var(--eop-dark);
+}
+
+.journey-stage.is-dark .journey-band {
+  color: var(--eop-light);
+}
+
+.journey-band svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.journey-path-base,
+.journey-path-prog {
+  fill: none;
+  transition: stroke 0.5s var(--ease-eop);
+}
+
+.journey-path-base {
+  stroke: rgba(35, 40, 54, 0.25);
+  stroke-width: 2;
+}
+
+.journey-path-prog {
+  stroke: var(--eop-dark);
+  stroke-width: 3;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.journey-stage.is-dark .journey-path-base {
+  stroke: rgba(245, 219, 247, 0.3);
+}
+
+.journey-stage.is-dark .journey-path-prog {
+  stroke: var(--eop-rose);
+}
+
+.journey-node,
+.journey-marker {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.journey-node {
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  background: var(--eop-offwhite);
+  border: 2px solid var(--eop-dark);
+  transition:
+    background-color 0.4s var(--ease-eop),
+    border-color 0.4s var(--ease-eop);
+}
+
+.journey-node.is-on {
+  background: var(--eop-dark);
+}
+
+.journey-stage.is-dark .journey-node {
+  background: var(--eop-dark);
+  border-color: var(--eop-rose);
+}
+
+.journey-stage.is-dark .journey-node.is-on {
+  background: var(--eop-rose);
+}
+
+.journey-node-label {
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  translate: -50% 0;
+  white-space: nowrap;
+  opacity: 0.55;
+  transition: opacity 0.4s var(--ease-eop);
+}
+
+.journey-node.is-on .journey-node-label {
+  opacity: 1;
+}
+
+.journey-marker {
+  z-index: 4;
+  width: 22px;
+  height: 22px;
+  margin: -11px 0 0 -11px;
+  background: var(--eop-rose);
+  border: 2px solid var(--eop-dark);
+}
+
+/* --- Finale : le portail s'ouvre vers les projets --- */
+.finale-panel {
+  clip-path: inset(calc((1 - var(--q, 1)) * 30%) calc((1 - var(--q, 1)) * 36%));
+}
+
+/* --- Mouvement réduit : version simplifiée --- */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+
+  .js-enabled .word-mask > span,
+  .js-enabled [data-draw] .draw-stop {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  .draw-x,
+  .draw-y {
+    transform: none !important;
+  }
+
+  .sync-node {
+    opacity: 1;
+    transform: none;
+  }
+
+  .pj-extra {
+    max-height: none !important;
+    opacity: 1 !important;
+  }
+
+  .js-enabled [data-reveal='frame'] {
+    clip-path: none !important;
+  }
+
+  .finale-panel {
+    clip-path: none !important;
+  }
+
+  figure:hover .pv-img {
+    transform: none;
+  }
+
+  .pj-card:hover .pj-visual,
+  .pj-card:hover .pv-svg,
+  .pj-card:hover .pj-title-move,
+  .pj-card:hover .pj-arrow,
+  .pager-link:hover {
+    transform: none !important;
+  }
+}
+
+/* --- Parcours : tailles de titres des étapes --- */
+.giant-s {
+  font-size: clamp(2.6rem, 11vw, 4.75rem);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+
+.row-title {
+  display: block;
+  font-size: clamp(2.2rem, 8vw, 4.5rem);
+  line-height: 1;
+}
+
+.journey--pinned .giant-s {
+  font-size: clamp(2.6rem, min(10vh, 6vw), 6.5rem);
+}
+
+.journey--pinned .row-title {
+  font-size: clamp(2.2rem, 9vh, 5.5rem);
+}
+
+.journey--pinned .journey-dark {
+  background-color: var(--eop-dark);
+}

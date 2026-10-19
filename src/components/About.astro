@@ -1,0 +1,204 @@
+---
+const coreValues = [
+  {
+    id: 'rigueur',
+    num: '01',
+    name: 'Rigueur.',
+    detail: 'Chaque prise de parole repose sur une analyse vérifiée du contexte, du public et des objectifs.',
+  },
+  {
+    id: 'fiabilite',
+    num: '02',
+    name: 'Fiabilité.',
+    detail: 'Respect des délais, cohérence des livrables et clarté dans le suivi de chaque étape du projet.',
+  },
+  {
+    id: 'organisation',
+    num: '03',
+    name: 'Organisation.',
+    detail: 'Structuration méthodique des idées, des ressources éditoriales et des systèmes graphiques.',
+  },
+  {
+    id: 'efficacite',
+    num: '04',
+    name: 'Efficacité.',
+    detail: 'Aller à l’essentiel pour que le message soit compris rapidement et retienne l’attention.',
+  },
+  {
+    id: 'adaptabilite',
+    num: '05',
+    name: 'Adaptabilité.',
+    detail: 'Ajuster le ton, le format et la direction visuelle selon les contraintes et les supports.',
+  },
+  {
+    id: 'creativite',
+    num: '06',
+    name: 'Créativité maîtrisée.',
+    detail: 'Oser des partis pris graphiques et éditoriaux forts, toujours au service du sens.',
+  },
+];
+---
+
+<section
+  id="a-propos"
+  data-section="a-propos"
+  class="py-20 lg:py-28 bg-eop-offwhite border-b border-eop-dark/20 relative"
+>
+  <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
+    <!-- En-tête de section avec surtitre officiel -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-12 border-b border-eop-dark/20 items-end">
+      <div class="lg:col-span-4" data-reveal="slide-right">
+        <div class="inline-flex items-center gap-2.5 font-mono text-xs sm:text-sm font-semibold uppercase tracking-widest text-eop-dark bg-eop-light px-3 py-1.5 border border-eop-dark">
+          <span class="w-2 h-2 bg-eop-dark" aria-hidden="true"></span>
+          <span>01 — QUI JE SUIS</span>
+        </div>
+      </div>
+      <div class="lg:col-span-8" data-reveal="mask">
+        <h2 class="font-display font-extrabold heading-section text-eop-dark">
+          La créativité a besoin d'une direction.
+        </h2>
+      </div>
+    </div>
+
+    <!-- Corps éditorial asymétrique -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 pt-12 items-start">
+      <!-- Colonne Gauche : Récit éditorial + Phrase mise en évidence (7 colonnes) -->
+      <div class="lg:col-span-7 space-y-8">
+        <div
+          data-reveal="up"
+          class="relative pl-5 sm:pl-7 border-l-2 border-eop-dark space-y-6"
+        >
+          <p class="text-lg sm:text-xl text-eop-dark leading-relaxed font-normal">
+            Étudiant en troisième année de BUT Métiers du Multimédia et de l’Internet, spécialisé en communication, je m’intéresse à la manière dont une idée devient un message clair, une identité cohérente ou une expérience qui a du sens.
+          </p>
+          <p class="text-base sm:text-lg text-eop-dark/80 leading-relaxed">
+            De la réflexion stratégique à la conception visuelle, j’aime comprendre les besoins, structurer les idées et construire des réponses créatives adaptées à leurs objectifs.
+          </p>
+        </div>
+
+        <!-- Phrase mise en évidence officielle dans un module architectural -->
+        <div
+          data-reveal="scale-square"
+          class="bg-eop-dark text-eop-offwhite p-6 sm:p-8 border-2 border-eop-dark shadow-[6px_6px_0px_#e8bce9]"
+        >
+          <div class="flex items-center justify-between font-mono text-xs text-eop-rose mb-3">
+            <span>PRINCIPE DIRECTEUR // EOP.</span>
+            <span>[4 TEMPS]</span>
+          </div>
+          <blockquote class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-eop-light tracking-tight leading-tight">
+            Comprendre. Structurer. Concevoir. Transmettre.
+          </blockquote>
+        </div>
+
+        <!-- Repères complémentaires de profil (sans portrait fictif) -->
+        <div
+          data-reveal="up"
+          class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4"
+        >
+          <div class="border border-eop-dark/25 bg-eop-light/35 p-4">
+            <span class="font-mono text-xs text-eop-dark/65 block mb-1">FORMATION</span>
+            <p class="font-display font-bold text-base text-eop-dark">BUT MMI — 3e année</p>
+            <p class="text-xs text-eop-dark/75 mt-1">Parcours Stratégie de communication &amp; design d’expérience</p>
+          </div>
+          <div class="border border-eop-dark/25 bg-eop-light/35 p-4">
+            <span class="font-mono text-xs text-eop-dark/65 block mb-1">APPROCHE</span>
+            <p class="font-display font-bold text-base text-eop-dark">Éditoriale &amp; Systémique</p>
+            <p class="text-xs text-eop-dark/75 mt-1">Allier justesse du propos et lisibilité graphique</p>
+          </div>
+          <div class="border border-eop-dark/25 bg-eop-light/35 p-4">
+            <span class="font-mono text-xs text-eop-dark/65 block mb-1">IDENTITÉ</span>
+            <p class="font-display font-bold text-base text-eop-dark"> Ethan Omasta-Parisot - EOP.</p>
+            <p class="text-xs text-eop-dark/75 mt-1">Accorder autant d'importance à l'équilibre et à la structure des projets</p>
+          </div>
+        </div>
+
+        <div data-reveal="up">
+          <a href="/parcours/" class="eop-btn-primary w-full sm:w-auto group/parcours">
+            <span>Découvrir mon parcours et mes compétences</span>
+            <span class="transition-transform duration-300 group-hover/parcours:translate-x-1" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Colonne Droite : Module géométrique interactif des 6 valeurs EOP. (5 colonnes) -->
+      <div class="lg:col-span-5" data-reveal="up">
+        <div class="border-2 border-eop-dark bg-eop-light/40 p-5 sm:p-6">
+          <div class="flex items-center justify-between pb-4 mb-5 border-b border-eop-dark/20">
+            <div>
+              <span class="font-mono text-xs uppercase tracking-wider text-eop-dark/70 block">
+                MODULE INTERACTIF // VALEURS EOP.
+              </span>
+              <h3 class="font-display font-bold text-lg text-eop-dark mt-0.5">
+                Mes 6 soft skills et valeurs de travails
+              </h3>
+            </div>
+            <span class="w-6 h-6 bg-eop-dark text-eop-offwhite font-mono text-xs flex items-center justify-center" aria-hidden="true">
+              6
+            </span>
+          </div>
+
+          <p class="text-xs font-mono text-eop-dark/75 mb-4">
+            Sélectionnez un module carré pour afficher son application concrète :
+          </p>
+
+          <!-- Grille de sélection 2x3 -->
+          <div
+            class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 mb-5"
+            role="tablist"
+            aria-label="Valeurs de l'identité EOP."
+          >
+            {
+              coreValues.map((item, idx) => (
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={idx === 0 ? 'true' : 'false'}
+                  aria-controls={`value-panel-${item.id}`}
+                  id={`value-tab-${item.id}`}
+                  data-value-tab={item.id}
+                  class:list={[
+                    'value-tab-btn text-left p-3 border border-eop-dark transition-all duration-200 flex flex-col justify-between aspect-square',
+                    idx === 0
+                      ? 'bg-eop-dark text-eop-offwhite shadow-[3px_3px_0px_#e8bce9]'
+                      : 'bg-eop-offwhite text-eop-dark hover:bg-eop-rose/60',
+                  ]}
+                >
+                  <div class="flex items-center justify-between w-full font-mono text-[11px]">
+                    <span>{item.num}</span>
+                    <span class="w-2 h-2 bg-current inline-block" aria-hidden="true" />
+                  </div>
+                  <span class="font-display font-bold text-sm leading-tight mt-2">
+                    {item.name}
+                  </span>
+                </button>
+              ))
+            }
+          </div>
+
+          <!-- Zone d'affichage du détail de la valeur active -->
+          <div class="bg-eop-offwhite border border-eop-dark p-4 min-h-[108px] flex flex-col justify-between">
+            {
+              coreValues.map((item, idx) => (
+                <div
+                  id={`value-panel-${item.id}`}
+                  role="tabpanel"
+                  aria-labelledby={`value-tab-${item.id}`}
+                  data-value-panel={item.id}
+                  class={idx === 0 ? 'block' : 'hidden'}
+                >
+                  <div class="flex items-center justify-between font-mono text-xs text-eop-dark/60 mb-1.5">
+                    <span>VALEUR ACTIVE // {item.num}</span>
+                    <span class="text-eop-dark font-semibold">{item.name}</span>
+                  </div>
+                  <p class="text-sm sm:text-base text-eop-dark leading-relaxed">
+                    {item.detail}
+                  </p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

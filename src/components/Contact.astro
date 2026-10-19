@@ -1,0 +1,83 @@
+---
+import { site } from '../data/site.js';
+---
+
+<section
+  id="contact"
+  data-section="contact"
+  class="py-20 lg:py-28 bg-eop-light eop-grid-bg border-b-2 border-eop-dark relative overflow-hidden"
+>
+  <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
+    <div class="border-2 border-eop-dark bg-eop-offwhite p-6 sm:p-10 lg:p-14 shadow-[10px_10px_0px_#232836] relative">
+      <!-- Repères d'angles carrés -->
+      <span class="w-3.5 h-3.5 bg-eop-dark absolute top-3 left-3" aria-hidden="true"></span>
+      <span class="w-3.5 h-3.5 bg-eop-rose border border-eop-dark absolute top-3 right-3" aria-hidden="true"></span>
+      <span class="w-3.5 h-3.5 bg-eop-rose border border-eop-dark absolute bottom-3 left-3" aria-hidden="true"></span>
+      <span class="w-3.5 h-3.5 bg-eop-dark absolute bottom-3 right-3" aria-hidden="true"></span>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center py-4">
+        <!-- Colonne gauche : Surtitre, Titre exact, Texte (8 colonnes) -->
+        <div class="lg:col-span-8 space-y-6">
+          <div data-reveal="slide-right">
+            <div class="inline-flex items-center gap-2.5 font-mono text-xs sm:text-sm font-semibold uppercase tracking-widest text-eop-dark bg-eop-rose px-3.5 py-1.5 border border-eop-dark">
+              <span class="w-2 h-2 bg-eop-dark" aria-hidden="true"></span>
+              <span>05 — CONTACT</span>
+            </div>
+          </div>
+
+          <h2
+            data-reveal="mask"
+            class="font-display font-extrabold heading-section text-eop-dark"
+          >
+            Un projet commence par une conversation.
+          </h2>
+
+          <p
+            data-reveal="up"
+            class="text-lg sm:text-xl text-eop-dark/85 leading-relaxed max-w-2xl"
+          >
+            Une idée à développer, un besoin en communication ou une collaboration à imaginer ? Échangeons sur ce que nous pouvons construire ensemble.
+          </p>
+        </div>
+
+        <!-- Colonne droite : adresse et accès direct par e-mail -->
+        <div
+          data-reveal="scale-square"
+          class="lg:col-span-4 bg-eop-rose/55 border-2 border-eop-dark p-6 sm:p-7 flex flex-col justify-between space-y-6"
+        >
+          <div class="flex items-center justify-between font-mono text-xs text-eop-dark border-b border-eop-dark/20 pb-3">
+            <span>CANAL DIRECT</span>
+            <span class="w-2.5 h-2.5 bg-eop-dark inline-block" aria-hidden="true"></span>
+          </div>
+
+          <div>
+            <span class="font-mono text-xs uppercase tracking-wider text-eop-dark/70 block mb-1">
+              ADRESSE E-MAIL :
+            </span>
+            <p class="font-mono font-bold text-base sm:text-lg text-eop-dark break-all">
+              {site.email}
+            </p>
+          </div>
+
+          <a
+            href={`mailto:${site.email}`}
+            class="eop-btn-primary w-full text-center group"
+          >
+            <span>M'écrire</span>
+            <span
+              class="inline-block transition-transform duration-300 group-hover:translate-x-1"
+              aria-hidden="true"
+            >
+              →
+            </span>
+          </a>
+
+          <a href="/contact/" class="eop-link font-mono text-xs font-semibold text-eop-dark self-start">
+            Voir la page Contact →
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

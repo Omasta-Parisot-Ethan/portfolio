@@ -1,0 +1,362 @@
+---
+/**
+ * Composant : src/components/IntroScene.astro
+ * Scène d'introduction animée 3D (Carnet ouvert + Crayon flottant)
+ * & Calligraphie manuscrite temps réel (« Tout commence par une idée »)
+ */
+import '../styles/intro-scene.css';
+---
+
+<section
+  id="intro-scene"
+  class="intro-scene relative w-full overflow-hidden border-b border-[#232836]/15 bg-[#fffaff] text-[#232836] select-none"
+  aria-label="Introduction créative : Tout commence par une idée"
+>
+  <!-- Import de la police manuscrite éditoriale pour le tracé calligraphique -->
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  />
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Grille architecturale de fond cohérente avec le portfolio -->
+  <div class="pointer-events-none absolute inset-0 z-0 opacity-60" aria-hidden="true">
+    <div class="mx-auto flex h-full max-w-7xl justify-between px-4 sm:px-8 lg:px-12">
+      <div class="h-full w-px bg-[#232836]/10"></div>
+      <div class="hidden h-full w-px bg-[#232836]/10 lg:block"></div>
+      <div class="h-full w-px bg-[#232836]/10"></div>
+    </div>
+  </div>
+
+  <!-- Halo doux #f5dbf7 derrière l'espace de création -->
+  <div
+    class="pointer-events-none absolute -left-20 top-1/2 z-0 h-80 w-80 -translate-y-1/2 rounded-full bg-[#f5dbf7]/45 blur-3xl sm:h-96 sm:w-96"
+    aria-hidden="true"
+  ></div>
+  <div
+    class="pointer-events-none absolute right-0 top-1/3 z-0 h-64 w-64 rounded-full bg-[#f5dbf7]/30 blur-3xl"
+    aria-hidden="true"
+  ></div>
+
+  <div class="relative z-10 mx-auto flex min-h-[78vh] max-w-7xl flex-col justify-between px-4 py-6 sm:px-8 sm:py-8 lg:min-h-[84vh] lg:px-12 lg:py-10">
+    <!-- Barre éditoriale supérieure -->
+    <div class="flex items-center justify-between border-b border-[#232836]/12 pb-3 text-xs tracking-widest uppercase text-[#232836]/70 font-mono">
+      <div class="flex items-center gap-3">
+        <span class="inline-block h-2 w-2 rounded-full bg-[#232836]"></span>
+        <span>00 / PROLOGUE — ESPACE DE RÉFLEXION</span>
+      </div>
+      <div class="hidden sm:flex items-center gap-4">
+        <span id="intro-phase-indicator" class="text-[#232836]/60">INITIALISATION DE L'IDÉE</span>
+        <span class="h-3 w-px bg-[#232836]/20"></span>
+        <span>ÉDITION CRÉATIVE</span>
+      </div>
+    </div>
+
+    <!-- Corps principal : Grille 2 colonnes (Carnet 3D à gauche / Écriture manuscrite à droite) -->
+    <div class="my-auto grid grid-cols-1 items-center gap-8 py-6 lg:grid-cols-12 lg:gap-10 lg:py-8">
+      <!-- COLONNE GAUCHE : Scène 3D (Carnet ouvert + Crayon flottant) -->
+      <div class="relative order-1 flex flex-col items-center justify-center lg:col-span-6">
+        <div
+          id="intro-canvas-container"
+          class="intro-canvas-stage relative w-full h-[270px] sm:h-[340px] lg:h-[420px] flex items-center justify-center"
+          data-notebook-model="/models/notebook-open.glb"
+          data-pencil-model="/models/pencil-floating.glb"
+           data-enable-external-glb="false"
+        >
+          <!-- Canvas WebGL Three.js injecté et piloté par src/scripts/intro-scene.js -->
+          <canvas
+            id="intro-3d-canvas"
+            class="h-full w-full block cursor-grab active:cursor-grabbing"
+            aria-label="Modèle 3D interactif d'un carnet ouvert accompagné d'un crayon flottant"
+          ></canvas>
+
+          <!-- Solution de repli (Fallback SVG statique haute précision si WebGL ou JS est indisponible) -->
+          <div
+            id="intro-3d-fallback"
+            class="intro-3d-fallback absolute inset-0 flex items-center justify-center p-4"
+            aria-hidden="true"
+          >
+            <svg
+              viewBox="0 0 460 320"
+              class="h-full max-h-[300px] w-full max-w-[420px] drop-shadow-sm"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <!-- Ombre portée douce du carnet -->
+              <ellipse cx="225" cy="252" rx="155" ry="24" fill="#232836" fill-opacity="0.08" />
+              <!-- Couverture rigide #232836 en perspective 3/4 -->
+              <path
+                d="M62 198 L218 228 L382 184 L232 156 Z"
+                fill="#232836"
+                stroke="#232836"
+                stroke-width="2"
+              />
+              <!-- Épaisseur des pages (tranche gauche et droite) -->
+              <path
+                d="M68 188 L218 218 L218 226 L68 196 Z"
+                fill="#f5dbf7"
+                stroke="#232836"
+                stroke-width="1.5"
+              />
+              <path
+                d="M218 218 L374 176 L374 184 L218 226 Z"
+                fill="#e9e2da"
+                stroke="#232836"
+                stroke-width="1.5"
+              />
+              <!-- Page gauche courbée -->
+              <path
+                d="M72 186 C115 172, 175 182, 218 214 L230 144 C190 118, 132 110, 88 122 Z"
+                fill="#fffaff"
+                stroke="#232836"
+                stroke-width="1.8"
+              />
+              <!-- Page droite courbée -->
+              <path
+                d="M218 214 C262 178, 322 166, 372 174 L356 108 C312 102, 265 114, 230 144 Z"
+                fill="#fffaff"
+                stroke="#232836"
+                stroke-width="1.8"
+              />
+              <!-- Reliure centrale -->
+              <line x1="230" y1="144" x2="218" y2="218" stroke="#232836" stroke-width="2.2" />
+              <!-- Signet rose clair #f5dbf7 -->
+              <path
+                d="M218 216 Q212 246 196 262 L208 265 Q222 246 223 216 Z"
+                fill="#f5dbf7"
+                stroke="#232836"
+                stroke-width="1.2"
+              />
+              <!-- Lignes éditoriales sur les pages -->
+              <line x1="98" y1="140" x2="202" y2="160" stroke="#232836" stroke-opacity="0.22" stroke-width="1.2" />
+              <line x1="92" y1="156" x2="198" y2="176" stroke="#232836" stroke-opacity="0.22" stroke-width="1.2" />
+              <line x1="86" y1="172" x2="192" y2="192" stroke="#232836" stroke-opacity="0.22" stroke-width="1.2" />
+              <rect x="248" y="132" width="84" height="42" rx="2" fill="#f5dbf7" fill-opacity="0.4" stroke="#232836" stroke-opacity="0.3" stroke-width="1" transform="rotate(-11 248 132)" />
+              <!-- Crayon flottant au-dessus du carnet -->
+              <g transform="translate(115, 58) rotate(18)">
+                <rect x="0" y="0" width="140" height="10" rx="1" fill="#232836" />
+                <rect x="0" y="3" width="140" height="3" fill="#363d52" />
+                <rect x="-14" y="0" width="14" height="10" rx="2" fill="#f5dbf7" stroke="#232836" stroke-width="1.2" />
+                <rect x="-4" y="0" width="5" height="10" fill="#d8d2c9" />
+                <polygon points="140,0 162,5 140,10" fill="#dfb995" stroke="#232836" stroke-width="1" />
+                <polygon points="154,3.2 162,5 154,6.8" fill="#232836" />
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Légende discrète sous le carnet 3D -->
+        <div class="mt-2 flex items-center gap-2 text-[11px] font-mono tracking-wider uppercase text-[#232836]/55">
+          <span class="inline-block h-1.5 w-1.5 rounded-full bg-[#f5dbf7] ring-1 ring-[#232836]/40"></span>
+          <span>FIG. 01 — CARNET DE RECHERCHE &amp; CRAYON EN LÉVITATION</span>
+        </div>
+      </div>
+
+      <!-- COLONNE DROITE : Écriture manuscrite et plume animée -->
+      <div class="relative order-2 flex flex-col justify-center lg:col-span-6 lg:pl-4">
+        <div class="mb-3 flex items-center gap-3">
+          <span class="inline-flex items-center rounded-sm bg-[#f5dbf7] px-2.5 py-0.5 text-[11px] font-mono font-medium uppercase tracking-widest text-[#232836] border border-[#232836]/15">
+            Genèse créative
+          </span>
+          <span class="h-px flex-1 bg-[#232836]/12"></span>
+        </div>
+
+        <!-- Zone d'écriture manuscrite avec stylo-plume synchronisé -->
+        <div
+          id="intro-writing-stage"
+          class="intro-writing-stage relative w-full rounded-sm border border-[#232836]/12 bg-white/80 px-4 py-8 sm:px-7 sm:py-10 shadow-[0_12px_36px_-16px_rgba(35,40,54,0.08)] backdrop-blur-sm"
+        >
+          <!-- Repères de grille d'écriture éditoriale -->
+          <div class="pointer-events-none absolute inset-x-6 top-1/2 h-px translate-y-5 bg-[#232836]/10" aria-hidden="true"></div>
+          <div class="pointer-events-none absolute left-6 top-4 bottom-4 w-px bg-[#f5dbf7]" aria-hidden="true"></div>
+
+          <!-- Phrase accessible aux lecteurs d'écran -->
+          <h1 class="sr-only">Tout commence par une idée</h1>
+
+          <!-- Scène SVG d'écriture manuscrite + Plume suiveuse -->
+          <div class="relative w-full overflow-visible">
+            <svg
+              id="intro-handwriting-svg"
+              viewBox="0 0 780 150"
+              class="w-full h-auto overflow-visible"
+              aria-hidden="true"
+            >
+              <defs>
+                <!-- Masque dynamique piloté en JS pour révéler chaque lettre sous la pointe de la plume -->
+                <mask id="intro-writing-mask" maskUnits="userSpaceOnUse" x="-20" y="-20" width="820" height="200">
+                  <rect x="-20" y="-20" width="820" height="200" fill="black" />
+                  <g id="intro-mask-strokes"></g>
+                </mask>
+              </defs>
+
+              <!-- Ligne de base éditoriale subtile dans le SVG -->
+              <line
+                x1="28"
+                y1="104"
+                x2="752"
+                y2="104"
+                stroke="#232836"
+                stroke-opacity="0.1"
+                stroke-dasharray="4 6"
+                stroke-width="1"
+              />
+
+              <!-- Soulignement d'accentuation #f5dbf7 qui se trace en fin de phrase -->
+              <path
+                id="intro-underline-accent"
+                d="M 525 116 C 585 110, 668 112, 742 108"
+                fill="none"
+                stroke="#f5dbf7"
+                stroke-width="8"
+                stroke-linecap="round"
+                class="intro-underline-path"
+              />
+
+              <!-- Texte manuscrit réel (exactement « Tout commence par une idée » avec accents et espaces) -->
+              <text
+                id="intro-handwriting-text"
+                x="34"
+                y="96"
+                fill="#232836"
+                class="intro-handwriting-svg-text"
+                mask="url(#intro-writing-mask)"
+              >Tout commence par une idée</text>
+
+              <!-- Filet d'encre vive directement sous le bec de la plume pendant l'écriture -->
+              <path
+                id="intro-live-ink-trail"
+                d=""
+                fill="none"
+                stroke="#232836"
+                stroke-width="2.1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-opacity="0.45"
+              />
+
+              <!-- Stylo-plume élégant (Plume éditoriale #232836 & #f5dbf7) dont la pointe suit (0,0) -->
+              <g
+                id="intro-pen-actor"
+                class="intro-pen-actor"
+                transform="translate(34, 96) rotate(-32)"
+              >
+                <!-- Ombre douce de la plume sur le papier -->
+                <path
+                  d="M 2 3 L 42 18 L 155 48 L 148 56 L 36 22 Z"
+                  fill="#232836"
+                  fill-opacity="0.09"
+                />
+                <!-- Pointe / Bec de plume calligraphique en acier & or rose (origine exacte en 0,0) -->
+                <path
+                  d="M 0 0 L 22 -9 L 28 -4 L 24 4 Z"
+                  fill="#e6d5df"
+                  stroke="#232836"
+                  stroke-width="1.3"
+                  stroke-linejoin="round"
+                />
+                <!-- Fente capillaire et évent (breather hole) de la plume -->
+                <line x1="0" y1="0" x2="17" y2="-3" stroke="#232836" stroke-width="1.1" />
+                <circle cx="17" cy="-3" r="1.7" fill="#232836" />
+                <!-- Bague rose pâle #f5dbf7 entre la plume et le corps -->
+                <polygon
+                  points="22,-9 29,-12 33,3 24,4"
+                  fill="#f5dbf7"
+                  stroke="#232836"
+                  stroke-width="1.2"
+                />
+                <!-- Corps fuselé du stylo-plume en laque #232836 -->
+                <path
+                  d="M 29 -12 L 158 -42 C 166 -44, 170 -36, 162 -31 L 33 3 Z"
+                  fill="#232836"
+                  stroke="#232836"
+                  stroke-width="1.2"
+                />
+                <!-- Reflet longitudinal sur le corps du stylo -->
+                <line
+                  x1="34"
+                  y1="-8"
+                  x2="152"
+                  y2="-36"
+                  stroke="#f5dbf7"
+                  stroke-opacity="0.45"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                />
+                <!-- Agrafe géométrique minimaliste -->
+                <path
+                  d="M 98 -29 L 146 -40 L 147 -44 L 104 -34"
+                  fill="none"
+                  stroke="#f5dbf7"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+              </g>
+            </svg>
+          </div>
+
+          <!-- Sous-texte éditorial qui apparaît en douceur à la fin de l'écriture (Phase 3) -->
+          <div
+            id="intro-editorial-caption"
+            class="intro-editorial-caption mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-[#232836]/10 pt-4 text-xs text-[#232836]/75"
+          >
+            <p class="font-sans leading-relaxed">
+              De l'esquisse sur le papier à la conception d'expériences numériques structurées.
+            </p>
+            <span class="font-mono text-[11px] uppercase tracking-widest text-[#232836]/55">
+              [ 01 → PORTFOLIO ]
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barre inférieure : Transition vers le Hero & Bouton « Passer l'introduction » -->
+    <div class="flex flex-wrap items-center justify-between gap-4 border-t border-[#232836]/12 pt-4">
+      <div class="flex items-center gap-3 text-xs text-[#232836]/65">
+        <span
+          id="intro-scroll-cue"
+          class="inline-flex items-center gap-2 font-mono uppercase tracking-wider transition-opacity duration-500"
+        >
+          <span class="inline-block h-2 w-2 rounded-full bg-[#f5dbf7] ring-1 ring-[#232836]"></span>
+          <span>Défiler pour explorer les projets</span>
+        </span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button
+          id="skip-intro-btn"
+          type="button"
+          class="group inline-flex items-center gap-2 rounded-sm border border-[#232836]/25 bg-white px-3.5 py-2 text-xs font-mono uppercase tracking-wider text-[#232836] transition-all duration-200 hover:border-[#232836] hover:bg-[#f5dbf7]/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#232836] focus-visible:ring-offset-2"
+          aria-label="Passer l'animation d'introduction et accéder directement au contenu principal"
+        >
+          <span id="skip-intro-label">Passer l'introduction</span>
+          <svg
+            class="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-y-0.5"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              d="M8 2.5V13M8 13L3.5 8.5M8 13L12.5 8.5"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../scripts/intro-scene.js"></script>

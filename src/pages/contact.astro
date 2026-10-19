@@ -1,0 +1,93 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import SectionTag from '../components/SectionTag.astro';
+import PlaceholderSlot from '../components/PlaceholderSlot.astro';
+import { site } from '../data/site.js';
+
+const titleWords = 'Un projet commence par une conversation.'.split(' ');
+---
+
+<PageLayout
+  current="contact"
+  title="Contact — EOP. · Portfolio communication & création numérique"
+  description="Contacter EOP. : une idée à développer, un besoin en communication ou une collaboration à imaginer."
+>
+  <section class="eop-grid-bg bg-eop-light border-b-2 border-eop-dark overflow-hidden relative">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 pt-14 pb-16 lg:pt-24 lg:pb-28">
+      <div data-reveal="slide-right"><SectionTag label="CONTACT" /></div>
+
+      <h1 class="font-display font-extrabold heading-hero text-eop-dark mt-6 max-w-5xl">
+        {titleWords.map((w, i) => <><span class="word-mask"><span style={`--i:${i}`}>{w}</span></span>{' '}</>)}
+      </h1>
+
+      <p data-reveal="up" class="text-lg sm:text-xl text-eop-dark/85 leading-relaxed max-w-2xl mt-8">
+        Une idée à développer, un besoin en communication ou une collaboration à imaginer ? Échangeons sur ce que nous pouvons construire ensemble.
+      </p>
+
+      <!-- Adresse e-mail : accès immédiat -->
+      <div data-reveal="scale-square" class="mt-12 border-2 border-eop-dark bg-eop-offwhite p-6 sm:p-10 shadow-[10px_10px_0px_#232836] relative">
+        <span class="w-3.5 h-3.5 bg-eop-dark absolute top-3 left-3" aria-hidden="true"></span>
+        <span class="w-3.5 h-3.5 bg-eop-rose border border-eop-dark absolute top-3 right-3" aria-hidden="true"></span>
+        <span class="w-3.5 h-3.5 bg-eop-rose border border-eop-dark absolute bottom-3 left-3" aria-hidden="true"></span>
+        <span class="w-3.5 h-3.5 bg-eop-dark absolute bottom-3 right-3" aria-hidden="true"></span>
+
+        <div class="py-3 space-y-6">
+          <span class="font-mono text-xs uppercase tracking-wider text-eop-dark/70">Par e-mail</span>
+          <p>
+            <a href={`mailto:${site.email}`} class="eop-link font-mono font-bold text-[clamp(1.1rem,3.5vw,2.8rem)] leading-tight text-eop-dark break-all">
+              {site.email}
+            </a>
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href={`mailto:${site.email}`} class="eop-btn-primary group">
+              <span>M’écrire</span>
+              <span class="inline-block transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">→</span>
+            </a>
+            <button type="button" data-copy={site.email} class="eop-btn-secondary">
+              <span data-copy-label aria-live="polite">Copier l’adresse</span>
+            </button>
+          </div>
+
+          {
+            site.emailIsPlaceholder && (
+              <p class="font-mono text-[11px] sm:text-xs text-eop-dark/75 bg-eop-light/70 border border-eop-dark/30 px-3 py-2 inline-block">
+                ADRESSE DE DÉMONSTRATION — À REMPLACER DANS src/data/site.js
+              </p>
+            )
+          }
+        </div>
+      </div>
+
+      <!-- Autres accès : uniquement ceux qui existent réellement -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+        <div data-reveal="up">
+          {
+            site.linkedin ? (
+              <a href={site.linkedin} rel="noopener noreferrer" target="_blank" class="eop-btn-secondary w-full !justify-between !p-5">
+                <span>LinkedIn <span class="sr-only">(s’ouvre dans un nouvel onglet)</span></span><span aria-hidden="true">↗</span>
+              </a>
+            ) : (
+              <PlaceholderSlot ratio="min-h-[7rem]" label="Profil LinkedIn" hint="Aucune URL LinkedIn dans les fichiers fournis : renseignez-la dans src/data/site.js." />
+            )
+          }
+        </div>
+        <div data-reveal="up" style="transition-delay:80ms">
+          {
+            site.cv ? (
+              <a href={site.cv} download class="eop-btn-secondary w-full !justify-between !p-5">
+                <span>Télécharger mon CV (PDF)</span><span aria-hidden="true">↓</span>
+              </a>
+            ) : (
+              <PlaceholderSlot ratio="min-h-[7rem]" label="CV (PDF)" hint="Aucun PDF dans les fichiers fournis : renseignez son chemin dans src/data/site.js." />
+            )
+          }
+        </div>
+        <div data-reveal="up" style="transition-delay:160ms" class="flex flex-col gap-4">
+          <a href="/projects/" class="eop-btn-secondary w-full !justify-between !p-4"><span>Voir les projets</span><span aria-hidden="true">→</span></a>
+          <a href="/parcours/" class="eop-btn-secondary w-full !justify-between !p-4"><span>Voir mon parcours</span><span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>

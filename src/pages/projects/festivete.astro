@@ -1,0 +1,146 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import SectionTag from '../../components/SectionTag.astro';
+import ProjectVisual from '../../components/ProjectVisual.astro';
+import ProjectFigure from '../../components/ProjectFigure.astro';
+import PlaceholderSlot from '../../components/PlaceholderSlot.astro';
+import ProjectPager from '../../components/ProjectPager.astro';
+import StageTitle from '../../components/StageTitle.astro';
+import StageDeco from '../../components/StageDeco.astro';
+import { getProject } from '../../data/projects.js';
+
+const p = getProject('festivete');
+const cover = p.images[0];
+const bands = ['bg-eop-offwhite', 'bg-eop-light/60', 'bg-eop-rose/55'];
+---
+
+<PageLayout
+  current="projects"
+  stage
+  title="Bocksons Festival — Identité événementielle · Étude de cas EOP."
+  description="Étude de cas : construire un univers graphique convivial et cohérent pour un événement culturel — affiche, charte et signalétique."
+>
+  <div id="reading-progress" class="eop-progress" aria-hidden="true"></div>
+
+  <!-- ========== HERO : l'affiche se déroule, les déclinaisons en sortent ========== -->
+  <section class="stg-root dark-surface bg-eop-dark text-eop-offwhite eop-grid-bg-dark overflow-x-clip" data-hero>
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 pt-10 pb-0 lg:pt-14">
+      <nav aria-label="Fil d’Ariane" class="stage-rise font-mono text-xs text-eop-light/75 mb-10" style="--d:0.9s">
+        <a href="/projects/" class="eop-link hover:text-eop-rose">Projets</a>
+        <span aria-hidden="true"> / </span>
+        <span aria-current="page" class="text-eop-offwhite font-semibold">{p.name}</span>
+      </nav>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+        <div class="lg:col-span-7 pb-4 lg:pb-16">
+          <div class="stage-rise" style="--d:1s"><SectionTag num={p.num} label={p.categories} /></div>
+          <div class="plx-s" style="--s:-60">
+            <h1 class="font-display font-extrabold text-eop-light leading-[0.92] tracking-tight text-[clamp(3rem,9vw,7rem)] mt-6">
+              <StageTitle lines={[{ text: 'Bocksons' }, { text: 'Festival', class: 'text-eop-rose' }]} variant="drop" />
+            </h1>
+          </div>
+          <p class="stage-rise font-display font-bold text-2xl text-eop-offwhite mt-6" style="--d:1.4s">{p.tagline}</p>
+          <p class="stage-rise text-lg text-eop-light/85 leading-relaxed max-w-xl mt-3" style="--d:1.5s">{p.description}</p>
+        </div>
+
+        <div class="relative lg:col-span-5 lg:translate-y-16 z-10">
+          <StageDeco />
+          <div class="plx-s" style="--s:25">
+            <div class="plx-p" style="--d:12">
+              <div class="relative border-2 border-eop-dark bg-eop-rose p-3 sm:p-4 shadow-[10px_10px_0px_#f5dbf7] lg:-rotate-1">
+                <div class="stage-frame stage-art overflow-hidden border border-eop-dark bg-eop-light aspect-[16/10]" style="--clip-from: inset(0 0 100% 0)">
+                  <div class="stage-img w-full h-full">
+                    {cover ? <img src={cover.src} alt={cover.alt} class="w-full h-full object-cover" /> : <ProjectVisual id="festivete" />}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTEXTE ========== -->
+  <section class="pt-24 lg:pt-36 pb-16 lg:pb-24 bg-eop-offwhite border-b border-eop-dark/20">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div class="lg:col-span-3" data-reveal="slide-right">
+        <SectionTag num="01" label="Contexte & besoin" tone="light" />
+      </div>
+      <div class="lg:col-span-8 lg:col-start-5 space-y-6" data-reveal="mask">
+        <p class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl leading-tight tracking-tight text-eop-dark">
+          {p.context}
+        </p>
+        <p class="text-lg text-eop-dark/80 leading-relaxed max-w-2xl">Direction visuelle : {p.visualDirection}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== DÉMARCHE : bandes pleine largeur ========== -->
+  <section aria-labelledby="demarche-titre" class="border-b border-eop-dark">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 pt-16 pb-8" data-reveal="slide-right">
+      <SectionTag num="02" label="La démarche" tone="dark" />
+      <h2 data-words id="demarche-titre" class="font-display font-extrabold heading-section text-eop-dark mt-5">Un langage, une affiche, une hiérarchie.</h2>
+    </div>
+    <ol>
+      {
+        p.approach.map((step, i) => (
+          <li data-reveal="up" class:list={['border-t border-eop-dark', bands[i]]}>
+            <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 py-10 lg:py-14 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-10 items-center">
+              <span class="lg:col-span-2 font-display font-extrabold text-7xl lg:text-8xl leading-none text-transparent [-webkit-text-stroke:2px_#232836]">0{i + 1}</span>
+              <p class="lg:col-span-8 lg:col-start-4 font-display font-bold text-xl sm:text-2xl lg:text-3xl leading-snug text-eop-dark">{step}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <!-- ========== RÉALISATIONS : affiche maîtresse + déclinaisons ========== -->
+  <section aria-labelledby="realisations-titre" class="py-20 lg:py-28 bg-eop-offwhite eop-grid-bg border-b border-eop-dark/20">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
+      <div data-reveal="slide-right" class="pb-10">
+        <SectionTag num="03" label="Les réalisations" tone="light" />
+        <h2 data-words id="realisations-titre" class="font-display font-extrabold heading-section text-eop-dark mt-5">Une affiche maîtresse, des déclinaisons.</h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+        <div class="lg:col-span-6" data-reveal="frame">
+          <ProjectFigure image={{ src: '/identite_visuelle.png', alt: 'Identité visuelle de Bocksons Festival.' }} label="Identité visuelle de Bocksons Festival" ratio="aspect-[3/4]" caption="Identité visuelle de Bocksons Festival" />
+        </div>
+        <div class="lg:col-span-6 space-y-8 lg:pt-16">
+          <div data-reveal="up">
+            <ProjectFigure image={{ src: '/charte_graphique.jpg', alt: 'Charte graphique minimale de Bocksons Festival.' }} label="Charte graphique minimale" ratio="aspect-[4/3]" caption="Charte graphique minimale" />
+          </div>
+          <div data-reveal="up" style="transition-delay:90ms">
+            <ProjectFigure image={{ src: '/valeurs.png', alt: 'Valeurs indiquées et présentes dans la maquette de Bocksons Festival.' }} label="Valeurs indiquées dans la maquette" ratio="aspect-[16/10]" caption="Valeurs indiquées dans la maquette" />
+          </div>
+        </div>
+      </div>
+
+      <figure data-reveal="frame" class="m-0 mt-16 border-2 border-eop-dark bg-eop-offwhite p-3 sm:p-5 shadow-[8px_8px_0px_#e8bce9]">
+        <div class="overflow-hidden border border-eop-dark bg-eop-light/30 aspect-[16/10] lg:aspect-[16/7]"><ProjectVisual id="festivete" /></div>
+        <figcaption class="font-mono text-xs text-eop-dark/75 mt-4">Aperçu schématique du système d’affiche, de la grille modulaire et de la signalétique.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ========== CONCLUSION ========== -->
+  <section class="py-16 lg:py-24 bg-eop-light/50 border-b-2 border-eop-dark">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-10">
+      <div class="lg:col-span-6" data-reveal="slide-right">
+        <SectionTag num="04" label="Le résultat" />
+        <p class="mt-6 font-display font-extrabold text-2xl sm:text-3xl text-eop-dark leading-tight">
+          Un univers graphique pensé pour se décliner sur l’ensemble des supports de l’événement.
+        </p>
+      </div>
+      <div class="lg:col-span-6" data-reveal="up">
+        <p class="font-display font-bold text-lg text-eop-dark leading-relaxed">
+          Le projet Bocksons Festival m’a appris à travailler sur la communication d’un événement culturel, de la création de contenus à leur adaptation aux différents réseaux sociaux. J’ai pu développer ma créativité, renforcer mes compétences en communication digitale et mieux comprendre l’importance d’une identité visuelle cohérente pour attirer le public et valoriser la programmation d’un festival.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <ProjectPager currentId="festivete" />
+</PageLayout>

@@ -1,0 +1,77 @@
+---
+// variant="home" (défaut) : ancres de la page d'accueil + lien vers la page Parcours.
+// variant="page" : liens entre les pages du portfolio.
+interface Props { variant?: 'home' | 'page'; }
+const { variant = 'home' } = Astro.props;
+const isPage = variant === 'page';
+const currentYear = new Date().getFullYear();
+const footerLinks = isPage
+  ? [
+      { label: 'Accueil', href: '/' },
+      { label: 'Projets', href: '/projects/' },
+      { label: 'Parcours', href: '/parcours/' },
+      { label: 'Contact', href: '/contact/' },
+    ]
+  : [
+      { label: 'Accueil', href: '#accueil' },
+      { label: 'Projets', href: '#projets' },
+      { label: 'Parcours', href: '/parcours/' },
+      { label: 'Contact', href: '#contact' },
+    ];
+---
+
+<footer class="dark-surface bg-eop-dark text-eop-offwhite py-12 lg:py-16">
+  <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-10 border-b border-eop-light/20 items-start">
+      <!-- Logo & Texte exact -->
+      <div class="md:col-span-6 space-y-3">
+        <a
+          href={isPage ? '/' : '#accueil'}
+          class="inline-flex items-center gap-3 group"
+          aria-label="EOP. — Retour en haut de page"
+        >
+          <span
+            class="w-6 h-6 bg-eop-rose text-eop-dark font-mono text-xs font-bold flex items-center justify-center transition-transform duration-300 group-hover:rotate-90"
+            aria-hidden="true"
+          >
+            ■
+          </span>
+          <span class="font-display font-extrabold text-2xl tracking-tight text-eop-offwhite">
+            EOP.
+          </span>
+        </a>
+        <p class="text-base text-eop-light/85 max-w-md">
+          Communication, stratégie et création numérique.
+        </p>
+      </div>
+
+      <!-- Liens rapides officiels -->
+      <nav
+        aria-label="Liens de pied de page"
+        class="md:col-span-6 flex flex-wrap items-center md:justify-end gap-6 sm:gap-8 pt-2"
+      >
+        {
+          footerLinks.map((link) => (
+            <a
+              href={link.href}
+              class="eop-link font-mono text-sm text-eop-offwhite hover:text-eop-rose transition-colors"
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+
+    <!-- Coordonnées & année courante automatique -->
+    <div class="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-mono text-xs text-eop-light/70">
+      <address class="not-italic space-y-1">
+        <p>Mail : <a class="hover:text-eop-rose transition-colors" href="mailto:0ethanparisot@gmail.com">0ethanparisot@gmail.com</a></p>
+        <p>N° téléphone : <a class="hover:text-eop-rose transition-colors" href="tel:0663869890">06 63 86 98 90</a></p>
+      </address>
+      <p>
+        © {currentYear} EOP. // BUT MMI3 COMMUNICATION
+      </p>
+    </div>
+  </div>
+</footer>

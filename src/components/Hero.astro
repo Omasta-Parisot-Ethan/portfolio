@@ -1,0 +1,262 @@
+---
+---
+
+<section
+  id="accueil"
+  data-section="accueil"
+  class="relative pt-24 lg:pt-28 pb-14 lg:pb-20 eop-grid-bg border-b border-eop-dark/20 overflow-hidden"
+>
+  <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
+    <!-- Barre de repères éditoriaux supérieure -->
+    <div
+      class="flex flex-wrap items-center justify-between gap-4 pb-5 mb-8 lg:mb-12 border-b border-eop-dark/20 font-mono text-xs text-eop-dark/70"
+    >
+      <div class="flex items-center gap-2.5">
+        <span class="inline-block w-2.5 h-2.5 bg-eop-dark" aria-hidden="true"></span>
+        <span>GRILLE ÉDITORIALE // SYSTÈME EOP.03</span>
+      </div>
+      <div class="hidden md:flex items-center gap-6">
+        <span>AXE : COMMUNICATION &amp; SENS</span>
+        <span>STRUCTURE : MODULAIRE</span>
+      </div>
+      <div class="font-medium text-eop-dark">
+        <span>[ÉDITION 2026]</span>
+      </div>
+    </div>
+
+    <!-- Grille asymétrique principale du Hero -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
+      <!-- Colonne Principale : Surtitre, Titre exact, Texte et Actions (7 colonnes sur 12) -->
+      <div class="lg:col-span-7 flex flex-col justify-between z-10">
+        <!-- Surtitre officiel -->
+        <div class="hero-intro-mask mb-5">
+          <div
+            class="hero-intro-item inline-flex items-center gap-3 px-3.5 py-1.5 bg-eop-light border border-eop-dark text-eop-dark font-mono text-xs sm:text-sm font-medium tracking-wider uppercase"
+            style="transition-delay: 80ms;"
+          >
+            <span class="w-2 h-2 bg-eop-dark" aria-hidden="true"></span>
+            <span>ÉTUDIANT EN COMMUNICATION · BUT MMI3</span>
+          </div>
+        </div>
+
+        <!-- Titre principal exact -->
+        <div class="hero-intro-mask">
+          <h1
+            class="hero-intro-item font-display font-extrabold heading-hero text-eop-dark tracking-tight mb-6 lg:mb-8"
+            style="transition-delay: 180ms;"
+          >
+            Faire d’un message une narration qui engage et convainc.
+          </h1>
+        </div>
+
+        <!-- Ligne de séparation géométrique animée -->
+        <div
+          class="hero-grid-line h-[1.5px] w-full max-w-xl bg-eop-dark/25 mb-6 lg:mb-8"
+          style="transition-delay: 260ms;"
+          aria-hidden="true"
+        ></div>
+
+        <!-- Texte de présentation exact -->
+        <div class="hero-intro-mask">
+          <p
+            class="hero-intro-item text-lg sm:text-xl text-eop-dark/85 leading-relaxed max-w-2xl mb-8 lg:mb-10 font-normal"
+            style="transition-delay: 300ms;"
+          >
+            J’imagine des stratégies de communication et des expériences numériques où le fond, la forme et le sens travaillent ensemble.
+          </p>
+        </div>
+
+        <!-- Boutons d'action -->
+        <div
+          class="hero-intro-item flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-10 lg:mb-12"
+          style="transition-delay: 400ms;"
+        >
+          <a href="#projets" class="eop-btn-primary group">
+            <span>Découvrir mes projets</span>
+            <span
+              class="inline-block transition-transform duration-300 group-hover:translate-x-1"
+              aria-hidden="true"
+            >
+              ↗
+            </span>
+          </a>
+          <a href="#a-propos" class="eop-btn-secondary group">
+            <span>En savoir plus</span>
+            <span
+              class="inline-block w-2 h-2 bg-eop-dark transition-transform duration-300 group-hover:rotate-45"
+              aria-hidden="true"
+            ></span>
+          </a>
+        </div>
+
+        <!-- Repères des 6 valeurs fondamentales EOP. -->
+        <div
+          class="hero-intro-item grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-6 border-t border-eop-dark/15 max-w-2xl"
+          style="transition-delay: 500ms;"
+          aria-label="Valeurs de l'identité EOP."
+        >
+          {
+            [
+              { code: '01', label: 'Rigueur.' },
+              { code: '02', label: 'Fiabilité.' },
+              { code: '03', label: 'Organisation.' },
+              { code: '04', label: 'Efficacité.' },
+              { code: '05', label: 'Adaptabilité.' },
+              { code: '06', label: 'Créativité maîtrisée.' },
+            ].map((val) => (
+              <div class="flex items-center gap-2 font-mono text-xs text-eop-dark/80 bg-eop-offwhite/80 border border-eop-dark/15 px-2.5 py-2">
+                <span class="w-1.5 h-1.5 bg-eop-rose border border-eop-dark" aria-hidden="true" />
+                <span class="text-eop-dark/45">{val.code}</span>
+                <span class="font-sans font-semibold text-eop-dark">{val.label}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Colonne Visuelle Architecturale (5 colonnes sur 12) : Système de Carrés EOP. -->
+      <div
+        class="lg:col-span-5 relative hero-intro-item"
+        style="transition-delay: 320ms;"
+      >
+        <div
+          class="relative border-2 border-eop-dark bg-eop-offwhite p-4 sm:p-6 shadow-[8px_8px_0px_#232836]"
+        >
+          <!-- En-tête technique du module visuel -->
+          <div class="flex items-center justify-between border-b border-eop-dark/20 pb-3 mb-4 font-mono text-[11px] text-eop-dark/70">
+            <span class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-eop-dark inline-block"></span>
+              MATRICE CARRÉE // EOP.STRUCT
+            </span>
+            <span>RATIO 1:1</span>
+          </div>
+
+          <!-- Composition géométrique interactive de carrés et modules typographiques -->
+          <div class="grid grid-cols-6 gap-2.5 sm:gap-3 aspect-square">
+            <!-- Module 1 : Identité EOP -->
+            <div
+              data-parallax="0.04"
+              class="col-span-4 row-span-3 bg-eop-dark text-eop-offwhite p-4 sm:p-5 flex flex-col justify-between border border-eop-dark relative overflow-hidden group"
+            >
+              <div class="flex items-center justify-between font-mono text-[10px] text-eop-light/80">
+                <span>MOD.01 // FOND</span>
+                <span class="px-1.5 py-0.5 border border-eop-light/30">SENS</span>
+              </div>
+              <div class="my-auto py-2">
+                <p class="font-display font-bold text-xl sm:text-2xl leading-tight text-eop-light">
+                  Structure solide, sens lisible.
+                </p>
+              </div>
+              <div class="flex items-center justify-between text-[11px] font-mono text-eop-offwhite/70">
+                <span>EOP. ARCH</span>
+                <span
+                  class="w-4 h-4 border border-eop-rose bg-eop-rose/20 inline-block transition-transform duration-500 group-hover:rotate-90"
+                ></span>
+              </div>
+            </div>
+
+            <!-- Module 2 : Repère géométrique Rose -->
+            <div
+              data-parallax="-0.03"
+              class="col-span-2 row-span-2 bg-eop-rose border border-eop-dark p-3 flex flex-col justify-between"
+            >
+              <span class="font-mono text-[10px] font-semibold text-eop-dark">02 // FORME</span>
+              <svg
+                viewBox="0 0 80 80"
+                class="w-full h-auto my-auto"
+                aria-hidden="true"
+              >
+                <rect x="8" y="8" width="64" height="64" fill="none" stroke="#232836" stroke-width="2" />
+                <rect x="20" y="20" width="40" height="40" fill="#fffaff" stroke="#232836" stroke-width="2" />
+                <rect x="32" y="32" width="16" height="16" fill="#232836" />
+              </svg>
+              <span class="font-mono text-[10px] text-eop-dark/80 text-right">GRILLE</span>
+            </div>
+
+            <!-- Module 3 : Coordonnées -->
+            <div
+              class="col-span-2 row-span-1 bg-eop-light border border-eop-dark p-2.5 flex items-center justify-between"
+            >
+              <span class="font-mono text-[10px] font-bold text-eop-dark">MMI.03</span>
+              <span class="w-3 h-3 bg-eop-dark inline-block"></span>
+            </div>
+
+            <!-- Module 4 : Diagramme de narration -->
+            <div
+              data-parallax="0.025"
+              class="col-span-3 row-span-3 bg-eop-light/70 border border-eop-dark p-3.5 sm:p-4 flex flex-col justify-between"
+            >
+              <div class="flex items-center justify-between font-mono text-[10px] text-eop-dark/70">
+                <span>MOD.03 // FLUX</span>
+                <span>→</span>
+              </div>
+              <svg
+                viewBox="0 0 160 110"
+                class="w-full h-auto my-1"
+                aria-hidden="true"
+              >
+                <line x1="16" y1="25" x2="144" y2="25" stroke="#232836" stroke-width="1.5" stroke-dasharray="4 4" />
+                <line x1="16" y1="55" x2="144" y2="55" stroke="#232836" stroke-width="1.5" />
+                <line x1="16" y1="85" x2="144" y2="85" stroke="#232836" stroke-width="1.5" stroke-dasharray="4 4" />
+                <rect x="16" y="15" width="20" height="20" fill="#232836" />
+                <rect x="70" y="45" width="20" height="20" fill="#e8bce9" stroke="#232836" stroke-width="2" />
+                <rect x="124" y="75" width="20" height="20" fill="#fffaff" stroke="#232836" stroke-width="2" />
+              </svg>
+              <p class="font-mono text-[10px] text-eop-dark font-medium">
+                IDÉE → STRUCTURE → IMPACT
+              </p>
+            </div>
+
+            <!-- Module 5 : Bloc signature carré -->
+            <div
+              data-parallax="-0.035"
+              class="col-span-3 row-span-3 bg-eop-offwhite border border-eop-dark p-3.5 sm:p-4 flex flex-col justify-between relative"
+            >
+              <div class="flex items-center justify-between font-mono text-[10px] text-eop-dark/65">
+                <span>MOD.04</span>
+                <span>[4/4]</span>
+              </div>
+              <div class="border-l-2 border-eop-dark pl-3 my-auto">
+                <p class="font-display font-bold text-sm sm:text-base text-eop-dark leading-snug">
+                  Créativité maîtrisée &amp; méthode claire.
+                </p>
+              </div>
+              <div class="flex items-center justify-between font-mono text-[10px] text-eop-dark/70 pt-2 border-t border-eop-dark/15">
+                <span>STATUT : ACTIF</span>
+                <span class="w-2.5 h-2.5 bg-eop-dark inline-block"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Légende éditoriale bas de matrice -->
+          <div class="mt-4 pt-3 border-t border-eop-dark/20 flex items-center justify-between font-mono text-[11px] text-eop-dark/75">
+            <span>SYSTÈME VISUEL : LE CARRÉ COMME REPÈRE</span>
+            <span>EOP. // 2026</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Indication de défilement officielle -->
+    <div class="mt-12 lg:mt-16 pt-6 border-t border-eop-dark/20 flex items-center justify-between">
+      <a
+        href="#competences-bandeau"
+        class="group inline-flex items-center gap-3 font-mono text-xs tracking-widest uppercase text-eop-dark font-semibold hover:text-eop-dark/75"
+      >
+        <span
+          class="w-7 h-7 border border-eop-dark bg-eop-light flex items-center justify-center transition-transform duration-300 group-hover:translate-y-1"
+          aria-hidden="true"
+        >
+          ↓
+        </span>
+        <span>DÉFILER POUR EXPLORER</span>
+      </a>
+
+      <div class="hidden sm:flex items-center gap-2 font-mono text-xs text-eop-dark/60" aria-hidden="true">
+        <span class="w-2 h-2 bg-eop-dark"></span>
+        <span class="w-2 h-2 bg-eop-rose border border-eop-dark"></span>
+        <span class="w-2 h-2 bg-eop-light border border-eop-dark"></span>
+      </div>
+    </div>
+  </div>
+</section>

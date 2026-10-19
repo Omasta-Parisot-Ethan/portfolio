@@ -1,0 +1,134 @@
+/**
+ * Fichier : src/styles/intro-scene.css
+ * Styles dédiés à la scène d'introduction (3D + Calligraphie manuscrite)
+ */
+
+.intro-scene {
+  --intro-dark: #232836;
+  --intro-light: #f5dbf7;
+  --intro-paper: #fffaff;
+}
+
+/* Par défaut (sans JS ou avant initialisation), le fallback SVG est visible et la phrase est lisible */
+.intro-3d-fallback {
+  opacity: 1;
+  transition: opacity 0.45s ease;
+}
+
+.intro-scene.webgl-ready .intro-3d-fallback {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Apparition douce du conteneur 3D (Phase 1) */
+.intro-canvas-stage {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Typographie manuscrite SVG pour « Tout commence par une idée » */
+.intro-handwriting-svg-text {
+  font-family: 'Caveat', 'Cormorant Garamond', Georgia, serif;
+  font-size: 56px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  dominant-baseline: alphabetic;
+}
+
+/* Si le JavaScript n'a pas encore activé le masque d'écriture, le texte reste 100% visible */
+.intro-scene:not(.js-writing-active) #intro-handwriting-text {
+  mask: none !important;
+  -webkit-mask: none !important;
+}
+
+.intro-scene:not(.js-writing-active) .intro-pen-actor {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Acteur Stylo-plume */
+.intro-pen-actor {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  will-change: transform, opacity;
+}
+
+.intro-scene.pen-visible .intro-pen-actor {
+  opacity: 1;
+}
+
+.intro-scene.pen-finished .intro-pen-actor {
+  opacity: 0;
+  transition: opacity 0.55s ease, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Soulignement rose clair #f5dbf7 sous la fin de la phrase */
+.intro-underline-path {
+  stroke-dasharray: 240;
+  stroke-dashoffset: 240;
+  transition: stroke-dashoffset 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.intro-scene.writing-complete .intro-underline-path {
+  stroke-dashoffset: 0;
+}
+
+/* Légende éditoriale de Phase 3 */
+.intro-editorial-caption {
+  opacity: 0.35;
+  transform: translateY(4px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.intro-scene.writing-complete .intro-editorial-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Adaptation Mobile & Tablette */
+@media (max-width: 1023px) {
+  .intro-handwriting-svg-text {
+    font-size: 54px;
+  }
+}
+
+@media (max-width: 639px) {
+  .intro-writing-stage {
+    padding: 1.25rem 0.875rem;
+  }
+
+  .intro-handwriting-svg-text {
+    font-size: 50px;
+  }
+}
+
+/* Accessibilité : Respect strict de prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .intro-canvas-stage,
+  .intro-editorial-caption,
+  .intro-underline-path,
+  .intro-pen-actor {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  #intro-handwriting-text {
+    mask: none !important;
+    -webkit-mask: none !important;
+  }
+
+  .intro-underline-path {
+    stroke-dashoffset: 0 !important;
+  }
+
+  .intro-editorial-caption {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .intro-pen-actor {
+    opacity: 0 !important;
+  }
+}

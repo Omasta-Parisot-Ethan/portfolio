@@ -1,0 +1,162 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import SectionTag from '../../components/SectionTag.astro';
+import ProjectVisual from '../../components/ProjectVisual.astro';
+import { projects } from '../../data/projects.js';
+import { site } from '../../data/site.js';
+
+const titleWords = 'Des problèmes à résoudre, des idées à construire.'.split(' ');
+
+// Composition propre à chaque projet : tailles, colonnes, décalages et ombres différents
+const compositions = {
+  vitra: {
+    article: 'items-end',
+    visual: 'lg:col-span-8',
+    text: 'lg:col-span-4 lg:pb-4',
+    shadow: '#232836',
+    badge: 'Étude de cas principale',
+  },
+  festivete: {
+    article: 'items-start',
+    visual: 'lg:col-span-6 lg:col-start-6 lg:order-2',
+    text: 'lg:col-span-4 lg:col-start-1 lg:order-1 lg:mt-20',
+    shadow: '#e8bce9',
+    badge: 'Direction artistique',
+  },
+  'formats-numeriques': {
+    article: 'items-center',
+    visual: 'lg:col-span-5 lg:col-start-2',
+    text: 'lg:col-span-5 lg:col-start-8',
+    shadow: '#f5dbf7',
+    badge: 'Contenu & digital',
+  },
+};
+---
+
+<PageLayout
+  current="projects"
+  title="Projets — EOP. · Portfolio communication & création numérique"
+  description="Galerie des projets EOP. : Vitra (autonomie accompagnée), Bocksons Festival (identité événementielle) et Communication — formats numériques."
+>
+  <!-- En-tête de la galerie -->
+  <section class="eop-grid-bg bg-eop-light/40 border-b-2 border-eop-dark">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 pt-14 pb-12 lg:pt-20 lg:pb-16">
+      <div data-reveal="slide-right">
+        <SectionTag label={`PROJETS — ${projects.length} RÉALISATIONS`} />
+      </div>
+
+      <h1 class="font-display font-extrabold heading-hero text-eop-dark mt-6 max-w-5xl">
+        {
+          titleWords.map((word, i) => (
+            <>
+              <span class="word-mask"><span style={`--i:${i}`}>{word}</span></span>{' '}
+            </>
+          ))
+        }
+      </h1>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-10 items-end">
+        <p data-reveal="up" class="lg:col-span-6 text-lg sm:text-xl text-eop-dark/85 leading-relaxed">
+          Chaque projet part d’une question de communication, d’un public et d’un contexte. Ouvrez une étude de cas pour suivre la démarche, des recherches aux livrables.
+        </p>
+
+        <nav data-reveal="up" aria-label="Sommaire des projets" class="lg:col-span-6 lg:col-start-7">
+          <ol class="border-t border-eop-dark">
+            {
+              projects.map((p) => (
+                <li class="border-b border-eop-dark/30">
+                  <a href={`#p-${p.id}`} class="group flex items-baseline justify-between gap-4 py-3 hover:bg-eop-rose/40 transition-colors px-1">
+                    <span class="flex items-baseline gap-4">
+                      <span class="font-mono text-xs text-eop-dark/60">{p.num}</span>
+                      <span class="font-display font-bold text-lg sm:text-xl">{p.name}</span>
+                    </span>
+                    <span class="font-mono text-xs text-eop-dark/70 text-right">{p.domain}</span>
+                  </a>
+                </li>
+              ))
+            }
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galerie éditoriale asymétrique -->
+  <section aria-label="Galerie des projets" class="bg-eop-offwhite">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 py-16 lg:py-24 space-y-24 lg:space-y-36">
+      {
+        projects.map((p) => {
+          const c = compositions[p.id];
+          const cover = p.images[0];
+          return (
+            <article id={`p-${p.id}`} data-reveal="up" class:list={['pj-card relative grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12', c.article]}>
+              <!-- Visuel -->
+              <div class:list={['relative', c.visual]}>
+                <span aria-hidden="true" class="absolute -top-10 -left-1 font-display font-extrabold text-[5.5rem] sm:text-[7rem] leading-none text-transparent [-webkit-text-stroke:2px_#232836] select-none">
+                  {p.num}
+                </span>
+                <div
+                  data-tilt-zone
+                  class="pj-visual relative overflow-hidden border-2 border-eop-dark bg-eop-light/30 aspect-[16/10]"
+                  style={`--pj-shadow: ${c.shadow};`}
+                >
+                  <div data-tilt class="pj-tilt w-full h-full">
+                    {cover ? <img src={cover.src} alt={cover.alt} class="pv-img w-full h-full object-cover" /> : <ProjectVisual id={p.id} />}
+                  </div>
+                </div>
+              </div>
+
+              <!-- Texte -->
+              <div class:list={['space-y-5', c.text]}>
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="font-mono text-xs font-semibold uppercase tracking-wider text-eop-dark bg-eop-light px-3 py-1 border border-eop-dark">{c.badge}</span>
+                  <span class="font-mono text-xs text-eop-dark/70">{p.categories}</span>
+                </div>
+
+                <h2 class="font-display font-extrabold heading-section text-eop-dark">
+                  <a href={p.href} class="pj-title-move inline-block after:absolute after:inset-0 focus-visible:outline-offset-8">
+                    {p.name}
+                  </a>
+                </h2>
+                <p class="font-display font-bold text-xl text-eop-dark/80 -mt-2">{p.tagline}</p>
+                <p class="text-base sm:text-lg text-eop-dark/85 leading-relaxed">{p.description}</p>
+
+                <div class="pj-extra">
+                  <div class="border-l-2 border-eop-dark pl-4 py-1 bg-eop-light/30 mb-4">
+                    <span class="font-mono text-[11px] uppercase tracking-wider text-eop-dark/65 block">DIRECTION VISUELLE :</span>
+                    <p class="text-sm font-medium text-eop-dark mt-0.5">{p.visualDirection}</p>
+                  </div>
+                  <ul class="flex flex-wrap gap-2">
+                    {p.deliverables.map((d) => <li class="font-mono text-xs px-3 py-1.5 bg-eop-offwhite border border-eop-dark text-eop-dark">■ {d}</li>)}
+                  </ul>
+                </div>
+
+                <a href={p.href} class="relative z-10 inline-flex items-center gap-3 font-semibold text-eop-dark pt-1">
+                  <span class="border-b-2 border-eop-dark pb-0.5">Lire l’étude de cas</span>
+                  <span class="pj-arrow w-8 h-8 border border-eop-dark flex items-center justify-center text-sm" aria-hidden="true">→</span>
+                </a>
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
+  </section>
+
+  <!-- Passerelles vers Parcours et Contact -->
+  <section class="dark-surface bg-eop-dark text-eop-offwhite eop-grid-bg-dark border-t-2 border-eop-dark">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 py-16 lg:py-20 grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+      <h2 data-reveal="mask" class="lg:col-span-7 font-display font-extrabold heading-section text-eop-light">
+        Derrière chaque projet, une manière de travailler.
+      </h2>
+      <div data-reveal="up" class="lg:col-span-5 flex flex-col sm:flex-row gap-4">
+        <a href="/parcours/" class="eop-btn-primary !bg-eop-rose !text-eop-dark !border-eop-rose group">
+          <span>Voir mon parcours</span><span aria-hidden="true">→</span>
+        </a>
+        <a href="/contact/" class="eop-btn-secondary">
+          <span>Me contacter</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</PageLayout>

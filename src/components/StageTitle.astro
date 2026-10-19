@@ -1,0 +1,46 @@
+---
+// Titre découpé lettre par lettre pour l'entrée en scène des pages (animation CSS : voir pages.css).
+// Le texte reste lisible par les lecteurs d'écran et les moteurs de recherche (copie masquée visuellement).
+interface Line { text: string; class?: string; }
+interface Props { lines: Line[]; variant?: 'snap' | 'drop' | 'swipe' | 'flip'; }
+const { lines, variant = 'snap' } = Astro.props;
+
+// Pseudo-aléatoire déterministe : même rendu à chaque build
+const rnd = (i: number, k: number) => {
+  const v = Math.sin(i * 12.9898 + k * 78.233) * 43758.5453;
+  return v - Math.floor(v);
+};
+
+let n = 0;
+const rows = lines.map((line) => ({
+  cls: line.class ?? '',
+  words: line.text.split(' ').map((word) => ({
+    chars: [...word].map((ch) => {
+      const i = n++;
+      const dx = Math.round((rnd(i, 1) - 0.5) * 240);
+      const dy = Math.round((rnd(i, 2) - 0.5) * 160);
+      const r = Math.round((rnd(i, 3) - 0.5) * 50);
+      return { ch, style: `--i:${i};--dx:${dx}px;--dy:${dy}px;--r:${r}deg` };
+    }),
+  })),
+}));
+const fullText = lines.map((l) => l.text).join(' ');
+---
+
+<span class="sr-only">{fullText}</span>
+<span aria-hidden="true" class:list={['st', `st--${variant}`]}>
+  {
+    rows.map((row) => (
+      <span class:list={['st-line', row.cls]}>
+        {row.words.map((word, wi) => (
+          <>
+            <span class="st-word">
+              {word.chars.map((c) => <span class="st-ch" style={c.style}>{c.ch}</span>)}
+            </span>
+            {wi < row.words.length - 1 ? ' ' : ''}
+          </>
+        ))}
+      </span>
+    ))
+  }
+</span>

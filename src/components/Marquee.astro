@@ -1,0 +1,81 @@
+---
+const skillsList = [
+  'STRATÉGIE DE COMMUNICATION',
+  'DIRECTION ARTISTIQUE',
+  'IDENTITÉ VISUELLE',
+  'CRÉATION DE CONTENU',
+  'DESIGN ÉDITORIAL',
+  'UX/UI',
+  'COMMUNICATION NUMÉRIQUE',
+  'MOTION DESIGN',
+];
+---
+
+<section
+  id="competences-bandeau"
+  aria-label="Domaines de compétences clés"
+  class="marquee-wrapper relative border-b border-eop-dark overflow-hidden select-none"
+>
+  <!-- Bandeau supérieur sombre : défilement vers la gauche -->
+  <div class="bg-eop-dark text-eop-offwhite py-4 sm:py-5 border-b border-eop-light/20 overflow-hidden">
+    <div class="marquee-track-left items-center">
+      <!-- Groupe principal accessible aux lecteurs d'écran -->
+      <div class="flex items-center shrink-0">
+        {
+          skillsList.map((skill) => (
+            <div class="flex items-center shrink-0">
+              <span class="font-display font-extrabold text-lg sm:text-2xl tracking-wide px-5 sm:px-7 text-eop-offwhite">
+                {skill}
+              </span>
+              <span
+                class="text-eop-rose font-mono text-xl sm:text-2xl px-2"
+                aria-hidden="true"
+              >
+                ✳
+              </span>
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Répétitions décoratives ignorées par les technologies d'assistance -->
+      <div class="marquee-duplicate flex items-center shrink-0" aria-hidden="true">
+        {
+          skillsList.map((skill) => (
+            <div class="flex items-center shrink-0">
+              <span class="font-display font-extrabold text-lg sm:text-2xl tracking-wide px-5 sm:px-7 text-eop-offwhite">
+                {skill}
+              </span>
+              <span class="text-eop-rose font-mono text-xl sm:text-2xl px-2">
+                ✳
+              </span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Bandeau inférieur rose : défilement inversé vers la droite -->
+  <div
+    class="bg-eop-rose text-eop-dark py-3 sm:py-3.5 overflow-hidden"
+    aria-hidden="true"
+  >
+    <div class="marquee-track-right items-center">
+      {
+        [0, 1].map(() => (
+          <div class="flex items-center shrink-0">
+            {skillsList.map((skill) => (
+              <div class="flex items-center shrink-0">
+                <span class="font-mono font-semibold text-xs sm:text-sm tracking-widest uppercase px-4 sm:px-6 text-eop-dark">
+                  {skill}
+                </span>
+                <span class="text-eop-dark font-mono text-sm px-2">✳</span>
+              </div>
+            ))}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
