@@ -1,0 +1,127 @@
+---
+import '../styles/notebook.css';
+
+// Carnet de dessin : s'ouvre depuis le bouton de l'introduction (#nb-open).
+// Aucune dépendance : CSS 3D + canvas 2D. Le script est dans src/scripts/notebook.js.
+---
+
+<div
+  id="nb-overlay"
+  class="nb"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="nb-title"
+  aria-describedby="nb-desc"
+  hidden
+>
+  <div class="nb-desk" aria-hidden="true"></div>
+  <h2 id="nb-title" class="sr-only">Carnet de dessin</h2>
+  <p id="nb-desc" class="sr-only">
+    Dessinez sur les pages avec la souris, le doigt ou un stylet. Au clavier : placez-vous sur la surface de dessin,
+    déplacez le crayon avec les flèches et posez-le ou levez-le avec la barre d’espace. Échap ferme le carnet.
+  </p>
+
+  <div class="nb-stage" data-nb-stage>
+    <div class="nb-book" data-nb-book>
+      <div class="nb-shift">
+        <div class="nb-shadow"></div>
+
+        <!-- Moitié droite : plateau arrière, tranche du bloc de pages, page de dessin -->
+        <div class="nb-b">
+          <div class="nb-b-back"></div>
+          <div class="nb-edge nb-edge-r"></div>
+          <div class="nb-edge nb-edge-t"></div>
+          <div class="nb-edge nb-edge-b"></div>
+          <div class="nb-page nb-page-r"><canvas data-nb-canvas="1"></canvas></div>
+        </div>
+
+        <div class="nb-ribbon"></div>
+
+        <!-- Feuilles qui se tournent de droite à gauche : la plus basse porte la page de dessin gauche -->
+        <div class="nb-leaf" data-leaf="2" style="--i:2">
+          <div class="nb-lf"></div>
+          <div class="nb-lb"></div>
+        </div>
+        <div class="nb-leaf" data-leaf="1" style="--i:1">
+          <div class="nb-lf"></div>
+          <div class="nb-lb nb-page-l"><canvas data-nb-canvas="0"></canvas></div>
+        </div>
+
+        <!-- Couverture avant, articulée sur la reliure -->
+        <div class="nb-a">
+          <div class="nb-a-in"></div>
+          <div class="nb-a-out">
+            <span class="nb-cover-grid"></span>
+            <span class="nb-cover-band"></span>
+            <span class="nb-cover-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="nb-cover-label font-mono">CARNET DE RECHERCHE · N°03</span>
+            <span class="nb-cover-word font-display">EOP.</span>
+          </div>
+        </div>
+        <div class="nb-spine"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Surface de capture : souris, tactile, stylet et clavier -->
+  <div
+    class="nb-surface"
+    data-nb-surface
+    tabindex="0"
+    role="application"
+    aria-label="Surface de dessin. Flèches pour déplacer le crayon, espace pour poser ou lever le crayon."
+  >
+    <span class="nb-kbd-dot" data-nb-kbd aria-hidden="true"></span>
+  </div>
+
+  <!-- Commandes -->
+  <div class="nb-ui" data-nb-ui>
+    <button type="button" class="nb-btn nb-close" data-nb-close>
+      <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
+      <span class="nb-btn-label">Fermer le carnet</span>
+    </button>
+
+    <div class="nb-tools" role="group" aria-label="Outils de dessin">
+      <button type="button" class="nb-btn" data-nb-undo>
+        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M6 3L2.5 6.5 6 10M3 6.5h6.5a4 4 0 010 8H7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        <span class="nb-btn-label">Annuler</span>
+      </button>
+      <button type="button" class="nb-btn" data-nb-clear>
+        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2.5 11.5l6-7 5 4.2-3.6 4.3H5.2zM8 14h6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        <span class="nb-btn-label">Tout effacer</span>
+      </button>
+    </div>
+
+    <!-- Invitation à dessiner : souris + crayon qui trace -->
+    <div class="nb-hint" data-nb-hint aria-hidden="true">
+      <svg class="nb-hint-svg nb-hint-mouse" viewBox="0 0 150 128" width="150" height="128">
+        <g class="nb-mouse" fill="none" stroke="#232836" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="58" y="4" width="34" height="52" rx="17" fill="#fffaff" />
+          <path d="M75 4v22M58 26h34" />
+          <rect class="nb-mouse-btn" x="58" y="4" width="17" height="22" rx="0" fill="#e8bce9" stroke="none" />
+          <circle class="nb-mouse-ring" cx="66" cy="15" r="6" stroke="#e8bce9" />
+        </g>
+        <path class="nb-hint-line" d="M18 112c14-16 22 14 36-2s22 14 38-2 24 12 40-4" fill="none" stroke="#232836" stroke-width="2.4" stroke-linecap="round" pathLength="1" />
+        <g class="nb-pencil">
+          <g transform="rotate(-38)">
+            <rect x="-4" y="-46" width="8" height="36" fill="#232836" />
+            <rect x="-4" y="-52" width="8" height="6" fill="#f5dbf7" stroke="#232836" stroke-width="1.2" />
+            <polygon points="-4,-10 4,-10 0,0" fill="#dfb995" stroke="#232836" stroke-width="1" />
+            <polygon points="-1.4,-3 1.4,-3 0,0" fill="#232836" />
+          </g>
+        </g>
+      </svg>
+      <svg class="nb-hint-svg nb-hint-touch" viewBox="0 0 150 128" width="150" height="128">
+        <g fill="none" stroke="#232836" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M70 52V14a6 6 0 0112 0v26l14 3a7 7 0 015 7l-2 22a14 14 0 01-14 12H72a14 14 0 01-11-5L48 62a6 6 0 019-8l13 9z" fill="#fffaff" />
+          <circle class="nb-mouse-ring" cx="76" cy="14" r="9" stroke="#e8bce9" />
+        </g>
+        <path class="nb-hint-line" d="M18 112c14-16 22 14 36-2s22 14 38-2 24 12 40-4" fill="none" stroke="#232836" stroke-width="2.4" stroke-linecap="round" pathLength="1" />
+      </svg>
+    </div>
+  </div>
+
+  <div class="sr-only" role="status" aria-live="polite" data-nb-live></div>
+</div>
+
+<script src="../scripts/notebook.js"></script>

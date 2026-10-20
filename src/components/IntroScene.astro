@@ -153,6 +153,29 @@ import '../styles/intro-scene.css';
           </div>
         </div>
 
+        <!-- Invitation à ouvrir le carnet de dessin -->
+        <div class="pointer-events-none absolute right-0 bottom-14 z-20 sm:right-2 sm:bottom-12 lg:-right-3">
+          <button
+            id="nb-open"
+            type="button"
+            class="nb-invite pointer-events-auto group relative items-center gap-2.5 rounded-sm border-[1.5px] border-[#232836] bg-[#232836] px-3 py-2.5 text-[#fffaff] shadow-[4px_4px_0px_#e8bce9] transition-all duration-300 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:bg-[#e8bce9] hover:text-[#232836] hover:shadow-[6px_6px_0px_#232836] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#232836] focus-visible:ring-offset-2"
+            aria-haspopup="dialog"
+            aria-controls="nb-overlay"
+          >
+            <span class="nb-invite-ring pointer-events-none absolute -inset-1 -z-10 rounded-sm border border-[#232836]/50" aria-hidden="true"></span>
+            <svg viewBox="0 0 28 28" class="h-7 w-7 shrink-0" fill="none" aria-hidden="true">
+              <rect x="6" y="3" width="16" height="22" fill="#fffaff" stroke="currentColor" stroke-width="1.6" class="group-hover:fill-[#fffaff]" />
+              <rect x="6" y="3" width="4" height="22" fill="#f5dbf7" stroke="currentColor" stroke-width="1.6" />
+              <path d="M13 9h6M13 13h6" stroke="#232836" stroke-width="1.4" stroke-linecap="round" />
+              <path d="M15 24l7-9 2 1.5-7 9z" fill="#232836" stroke="#fffaff" stroke-width="1" />
+            </svg>
+            <span class="flex flex-col items-start leading-tight text-left">
+              <span class="font-mono text-[10px] uppercase tracking-widest opacity-70">Et si…</span>
+              <span class="font-display text-sm font-bold">Ouvrir le carnet</span>
+            </span>
+          </button>
+        </div>
+
         <!-- Légende discrète sous le carnet 3D -->
         <div class="mt-2 flex items-center gap-2 text-[11px] font-mono tracking-wider uppercase text-[#232836]/55">
           <span class="inline-block h-1.5 w-1.5 rounded-full bg-[#f5dbf7] ring-1 ring-[#232836]/40"></span>
